@@ -14,12 +14,12 @@ Route::get('/', function () {
 Route::prefix('/admin')->middleware('auth')->group(function () {
 
     Route::get('/', function () {
-        return redirect()->route('dashboard');
+        return redirect()->route('admin.dashboard');
     });
 
     Route::get('/dashboard', function () {
         return view('dashboard');
-    })->name('dashboard');
+    })->name('admin.dashboard');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
