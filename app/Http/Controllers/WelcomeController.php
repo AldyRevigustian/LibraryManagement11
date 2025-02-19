@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Buku;
 use App\Models\Kategori;
+use App\Models\Penerbit;
 use Illuminate\Http\Request;
 
 class WelcomeController extends Controller
@@ -35,7 +36,8 @@ class WelcomeController extends Controller
             $query->where('nama', 'Bisnis & Ekonomi');
         })->inRandomOrder()->limit(12)->get();
 
-        return view('welcome', compact('bukus', 'fiksis', 'pengembangans', 'komiks', 'bisnises', 'komputers'));
+        $penerbits = Penerbit::all();
+        return view('welcome', compact('bukus', 'fiksis', 'pengembangans', 'komiks', 'bisnises', 'komputers', 'penerbits'));
     }
 
     /**
