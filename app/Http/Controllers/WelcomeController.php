@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Buku;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 
 class WelcomeController extends Controller
@@ -11,8 +12,30 @@ class WelcomeController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {   $bukus = Buku::offset(0)->limit(10)->get();
-        return view('welcome', compact('bukus'));
+    {
+        $bukus = Buku::inRandomOrder()->limit(12)->get();
+
+        $fiksis = Buku::whereHas('kategori', function ($query) {
+            $query->where('nama', 'Fiksi');
+        })->inRandomOrder()->limit(12)->get();
+
+        $pengembangans = Buku::whereHas('kategori', function ($query) {
+            $query->where('nama', 'Pengembangan Diri');
+        })->inRandomOrder()->limit(12)->get();
+
+        $komiks = Buku::whereHas('kategori', function ($query) {
+            $query->where('nama', 'Komik & Novel Grafis');
+        })->inRandomOrder()->limit(12)->get();
+
+        $komputers = Buku::whereHas('kategori', function ($query) {
+            $query->where('nama', 'Komputer');
+        })->inRandomOrder()->limit(12)->get();
+
+        $bisnises = Buku::whereHas('kategori', function ($query) {
+            $query->where('nama', 'Bisnis & Ekonomi');
+        })->inRandomOrder()->limit(12)->get();
+
+        return view('welcome', compact('bukus', 'fiksis', 'pengembangans', 'komiks', 'bisnises', 'komputers'));
     }
 
     /**

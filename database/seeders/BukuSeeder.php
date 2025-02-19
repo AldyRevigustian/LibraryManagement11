@@ -14,7 +14,7 @@ class BukuSeeder extends Seeder
 
     public function run(): void
     {
-        $jsonFile = base_path('database/seeders/data_buku.json');
+        $jsonFile = base_path('scrapper/products.json');
         $jsonData = json_decode(File::get($jsonFile), true);
 
         $jsonData = array_map(function ($item) {

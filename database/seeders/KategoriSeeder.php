@@ -17,18 +17,6 @@ class KategoriSeeder extends Seeder
             "nama" => "Fiksi"
         ]);
         Kategori::create([
-            "nama" => "Fiksi Anak & Remaja"
-        ]);
-        Kategori::create([
-            "nama" => "Nonfiksi Anak & Remaja"
-        ]);
-        Kategori::create([
-            "nama" => "Misteri & Detektif"
-        ]);
-        Kategori::create([
-            "nama" => "Kejahatan & Misteri"
-        ]);
-        Kategori::create([
             "nama" => "Agama"
         ]);
         Kategori::create([
@@ -38,22 +26,13 @@ class KategoriSeeder extends Seeder
             "nama" => "Pendidikan"
         ]);
         Kategori::create([
-            "nama" => "Pengembangan Diri"
-        ]);
-        Kategori::create([
-            "nama" => "Sejarah"
-        ]);
-        Kategori::create([
-            "nama" => "Bisnis & Keuangan"
-        ]);
-        Kategori::create([
-            "nama" => "Pemerintah"
+            "nama" => "Alam"
         ]);
         Kategori::create([
             "nama" => "Arsitektur"
         ]);
         Kategori::create([
-            "nama" => "Persiapan Ujian"
+            "nama" => "Pengembangan Diri"
         ]);
         Kategori::create([
             "nama" => "Humor"
@@ -65,31 +44,22 @@ class KategoriSeeder extends Seeder
             "nama" => "Ilmu Politik"
         ]);
         Kategori::create([
-            "nama" => "Bisnis & Ekonomi"
-        ]);
-        Kategori::create([
-            "nama" => "Ekonomi"
-        ]);
-        Kategori::create([
-            "nama" => "Keuangan"
-        ]);
-        Kategori::create([
-            "nama" => "Kewirausahaan"
-        ]);
-        Kategori::create([
             "nama" => "Ilmu Sosial"
+        ]);
+        Kategori::create([
+            "nama" => "Bisnis & Ekonomi"
         ]);
         Kategori::create([
             "nama" => "Psikologi"
         ]);
         Kategori::create([
-            "nama" => "Kerajinan & Hobi"
+            "nama" => "Keluarga & Hubungan"
         ]);
         Kategori::create([
             "nama" => "Puisi"
         ]);
         Kategori::create([
-            "nama" => "Kesehatan & Kebugaran"
+            "nama" => "Referensi"
         ]);
         Kategori::create([
             "nama" => "Ensiklopedia"
@@ -98,49 +68,46 @@ class KategoriSeeder extends Seeder
             "nama" => "Kamus"
         ]);
         Kategori::create([
+            "nama" => "Resep & Masakan"
+        ]);
+        Kategori::create([
             "nama" => "Komik & Novel Grafis"
+        ]);
+        Kategori::create([
+            "nama" => "Romantis"
         ]);
         Kategori::create([
             "nama" => "Novel"
         ]);
         Kategori::create([
-            "nama" => "Manga"
-        ]);
-        Kategori::create([
-            "nama" => "Resep & Makanan"
-        ]);
-        Kategori::create([
-            "nama" => "Rumah"
-        ]);
-        Kategori::create([
             "nama" => "Komputer"
-        ]);
-        Kategori::create([
-            "nama" => "Database Administrasi & Manajemen"
-        ]);
-        Kategori::create([
-            "nama" => "Desain, Grafik & Media"
-        ]);
-        Kategori::create([
-            "nama" => "Hacking"
-        ]);
-        Kategori::create([
-            "nama" => "Ilmu Komputer"
-        ]);
-        Kategori::create([
-            "nama" => "Jaringan"
         ]);
         Kategori::create([
             "nama" => "Pemrograman"
         ]);
         Kategori::create([
-            "nama" => "Pengembangan & Rekayasa Perangkat Lunak"
+            "nama" => "Sejarah"
         ]);
         Kategori::create([
-            "nama" => "Perangkat Keras"
+            "nama" => "Desain"
         ]);
         Kategori::create([
-            "nama" => "Sistem Aplikasi"
+            "nama" => "Seni"
+        ]);
+        Kategori::create([
+            "nama" => "Matematika"
+        ]);
+        Kategori::create([
+            "nama" => "Medis"
+        ]);
+        Kategori::create([
+            "nama" => "Teknologi & Teknik"
+        ]);
+        Kategori::create([
+            "nama" => "Tubuh, Pikiran & Jiwa"
+        ]);
+        Kategori::create([
+            "nama" => "Akuntansi"
         ]);
         Kategori::create([
             "nama" => "Sains"
@@ -150,42 +117,6 @@ class KategoriSeeder extends Seeder
         ]);
         Kategori::create([
             "nama" => "Kimia"
-        ]);
-        Kategori::create([
-            "nama" => "Matematika"
-        ]);
-        Kategori::create([
-            "nama" => "Desain"
-        ]);
-        Kategori::create([
-            "nama" => "Medis"
-        ]);
-        Kategori::create([
-            "nama" => "Seni"
-        ]);
-        Kategori::create([
-            "nama" => "Teknologi & Teknik"
-        ]);
-        Kategori::create([
-            "nama" => "Filsafat"
-        ]);
-        Kategori::create([
-            "nama" => "Musik"
-        ]);
-        Kategori::create([
-            "nama" => "Fotografi"
-        ]);
-        Kategori::create([
-            "nama" => "Olahraga & Rekreasi"
-        ]);
-        Kategori::create([
-            "nama" => "Travel"
-        ]);
-        Kategori::create([
-            "nama" => "Transportasi"
-        ]);
-        Kategori::create([
-            "nama" => "Fantasi"
         ]);
     }
 }

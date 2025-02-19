@@ -1,59 +1,36 @@
 Buku
 Fiksi
-Fiksi Anak & Remaja
-Nonfiksi Anak & Remaja
-Misteri & Detektif
-Kejahatan & Misteri
 Agama
 Hukum
 Pendidikan
-Pengembangan Diri
-Sejarah
-Bisnis & Keuangan
-Pemerintah
+Alam
 Arsitektur
-Persiapan Ujian
+Pengembangan Diri
 Humor
 Biografi & Autobiografi
 Ilmu Politik
-Bisnis & Ekonomi
-Ekonomi
-Keuangan
-Kewirausahaan
 Ilmu Sosial
+Bisnis & Ekonomi
 Psikologi
-Kerajinan & Hobi
+Keluarga & Hubungan
 Puisi
-Kesehatan & Kebugaran
+Referensi
 Ensiklopedia
 Kamus
+Resep & Masakan
 Komik & Novel Grafis
+Romantis
 Novel
-Manga
-Resep & Makanan
-Rumah
 Komputer
-Database Administrasi & Manajemen
-Desain Grafik & Media
-Hacking
-Ilmu Komputer
-Jaringan
 Pemrograman
-Pengembangan & Rekayasa Perangkat Lunak
-Perangkat Keras
-Sistem Aplikasi
+Sejarah
+Desain
+Seni
+Matematika
+Medis
+Teknologi & Teknik
+Tubuh, Pikiran & Jiwa
+Akuntansi
 Sains
 Fisika
 Kimia
-Matematika
-Desain
-Medis
-Seni
-Teknologi & Teknik
-Filsafat
-Musik
-Fotografi
-Olahraga & Rekreasi
-Travel
-Transportasi
-Fantasi
