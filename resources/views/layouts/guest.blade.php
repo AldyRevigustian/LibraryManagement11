@@ -40,7 +40,7 @@
         <div class="sidebar-wrapper active d-flex flex-column min-vh-100">
             <div class="sidebar-header position-relative">
                 <div class="logo text-center">
-                    <img src="assets/images/lkc.png" style="width: 150px; height: 80px; " alt="Logo">
+                    <img src="/assets/images/lkc.png" style="width: 150px; height: 80px; " alt="Logo">
                 </div>
             </div>
             <div class="sidebar-menu flex-grow-1">
@@ -115,7 +115,7 @@
 
     </div>
 
-    <script src="assets/js/dark.js"></script>
+    <script src="/assets/js/dark.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     @stack('script')
 </body>

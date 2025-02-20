@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Guest;
+use App\Http\Controllers\Controller;
 
 use App\Models\Buku;
 use App\Models\Kategori;
@@ -37,7 +38,7 @@ class WelcomeController extends Controller
         })->inRandomOrder()->limit(12)->get();
 
         $penerbits = Penerbit::all();
-        return view('welcome', compact('bukus', 'fiksis', 'pengembangans', 'komiks', 'bisnises', 'komputers', 'penerbits'));
+        return view('guest.welcome', compact('bukus', 'fiksis', 'pengembangans', 'komiks', 'bisnises', 'komputers', 'penerbits'));
     }
 
     /**
