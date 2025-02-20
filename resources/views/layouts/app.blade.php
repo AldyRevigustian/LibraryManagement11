@@ -107,8 +107,6 @@
             localStorage.setItem('theme', "theme-light")
             appBody.classList.add("theme-light");
         };
-
-
     </script>
 
     @stack('script')
