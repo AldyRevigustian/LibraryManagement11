@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <link rel="stylesheet" href="/assets/css/main/app.css" />
+    <link rel="stylesheet" href="/assets/css/main/app-dark.css" />
+
     <style>
         ::-webkit-scrollbar {
             width: 20px;
@@ -211,8 +213,9 @@
                         <a class='sidebar-link d-flex'>
                             <i class="bi bi-moon-fill"></i>
                             <span class="mt-1">Dark Mode</span>
-                            <div class="form-check form-switch ms-auto mt-1">
-                                <input class="form-check-input" type="checkbox" id="darkModeSwitch">
+                            <div class="form-check form-switch fs-6 ms-auto mt-1">
+                                <input class="form-check-input me-0" type="checkbox" id="toggle-dark" style="cursor: pointer" />
+                                <label class="form-check-label"></label>
                             </div>
                         </a>
                     </li>
@@ -226,6 +229,14 @@
                         </a>
                     </li>
                 </ul>
+
+
+                {{-- <div class="theme-toggle d-flex gap-2 align-items-center mt-2">
+                    <div class="form-check form-switch fs-6">
+                        <input class="form-check-input me-0" type="checkbox" id="toggle-dark" style="cursor: pointer">
+                        <label class="form-check-label"></label>
+                    </div>
+                </div> --}}
 
             </div>
         </div>
@@ -407,8 +418,7 @@
         </div>
     </div>
 
-
-
+    <script src="assets/js/dark.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
         var swiper = new Swiper(".mySwiper", {
