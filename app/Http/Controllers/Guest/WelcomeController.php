@@ -11,9 +11,6 @@ use Illuminate\Http\Request;
 
 class WelcomeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $bukus = Buku::inRandomOrder()->limit(12)->get();
@@ -36,68 +33,5 @@ class WelcomeController extends Controller
 
         $penerbits = Penerbit::all();
         return view('guest.welcome', compact('bukus', 'fiksis', 'pengembangans', 'komiks', 'bisnises', 'penerbits'));
-    }
-
-    public function search(Request $request)
-    {
-        $perPage = 30; // Jumlah buku per halaman
-
-        if ($request->query('search')) {
-            $query = $request->query('search');
-            $bukus = Buku::search($query)->paginate($perPage);
-        } else {
-            $query = 'ALL';
-            $bukus = Buku::inRandomOrder()->paginate($perPage);
-        }
-
-        return view('guest.search', compact('bukus', 'query'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }
