@@ -81,6 +81,7 @@
         .swiper {
             width: 100%;
             padding: 20px 0;
+            transition: opacity 0.3s ease;
         }
 
         .swiper-slide {
@@ -112,6 +113,38 @@
             font-size: 18px;
             font-weight: bold;
         }
+
+        .swiper-container-wrapper {
+            position: relative;
+            min-height: 352px;
+            margin-bottom: 20px;
+        }
+
+        .swiper-loading {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            border-radius: 8px;
+        }
+
+        .swiper.loaded {
+            opacity: 1;
+        }
+
+        .swiper:not(.loaded) {
+            opacity: 0;
+        }
+
+        .spinner-border {
+            width: 3rem;
+            height: 3rem;
+        }
     </style>
 @endpush
 
@@ -129,30 +162,37 @@
                     </a>
                 </div>
             </div>
-            <div class="swiper mySwiper">
-                <div class="swiper-wrapper">
-                    @foreach ($bukus as $buku)
-                        <div class="swiper-slide">
-                            <div class="book-card">
-                                <a href="/buku/detail/{{ $buku->id }}">
-                                    <img src="{{ $buku->foto }}" alt="">
-                                    <div class="book-overlay-container">
-                                        <div class="book-overlay">
-                                            <div class="book-category">{{ $buku->kategori->nama }}</div>
-                                            <div class="book-title">{{ $buku->judul }}</div>
-                                            <div class="book-author">{{ $buku->kontributor }}</div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    @endforeach
+            <div class="swiper-container-wrapper">
+                <div class="swiper-loading" id="loading-rekomendasi">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
                 </div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-pagination"></div>
+                <div class="swiper mySwiper" id="swiper-rekomendasi">
+                    <div class="swiper-wrapper">
+                        @foreach ($bukus as $buku)
+                            <div class="swiper-slide">
+                                <div class="book-card">
+                                    <a href="/buku/detail/{{ $buku->id }}">
+                                        <img src="{{ $buku->foto }}" alt="{{ $buku->judul }}" class="book-image"
+                                            data-category="rekomendasi">
+                                        <div class="book-overlay-container">
+                                            <div class="book-overlay">
+                                                <div class="book-category">{{ $buku->kategori->nama }}</div>
+                                                <div class="book-title">{{ $buku->judul }}</div>
+                                                <div class="book-author">{{ $buku->kontributor }}</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
             </div>
-
         </div>
 
         <div class="fiksi mt-4">
@@ -169,38 +209,44 @@
                 </div>
             </div>
 
-
-            <div class="swiper mySwiper">
-                <div class="swiper-wrapper">
-                    @foreach ($fiksis as $buku)
-                        <div class="swiper-slide">
-                            <div class="book-card">
-                                <a href="/buku/detail/{{ $buku->id }}">
-                                    <img src="{{ $buku->foto }}" alt="">
-                                    <div class="book-overlay-container">
-                                        <div class="book-overlay">
-                                            <div class="book-category">{{ $buku->kategori->nama }}</div>
-                                            <div class="book-title">{{ $buku->judul }}</div>
-                                            <div class="book-author">{{ $buku->kontributor }}</div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    @endforeach
+            <div class="swiper-container-wrapper">
+                <div class="swiper-loading" id="loading-fiksi">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
                 </div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-pagination"></div>
+                <div class="swiper mySwiper" id="swiper-fiksi">
+                    <div class="swiper-wrapper">
+                        @foreach ($fiksis as $buku)
+                            <div class="swiper-slide">
+                                <div class="book-card">
+                                    <a href="/buku/detail/{{ $buku->id }}">
+                                        <img src="{{ $buku->foto }}" alt="{{ $buku->judul }}" class="book-image"
+                                            data-category="fiksi">
+                                        <div class="book-overlay-container">
+                                            <div class="book-overlay">
+                                                <div class="book-category">{{ $buku->kategori->nama }}</div>
+                                                <div class="book-title">{{ $buku->judul }}</div>
+                                                <div class="book-author">{{ $buku->kontributor }}</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
             </div>
-
         </div>
+
         <div class="komik mt-4">
             <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: flex-end;">
                 <div>
                     <h5 class="text-start mb-0">Buku Komik</h5>
                     <p class="text-start mb-0">Nikmati cerita bergambar dengan karakter ikonik dan petualangan seru</p>
-
                 </div>
                 <div>
                     <a href="" style="text-decoration: underline;">
@@ -209,31 +255,39 @@
                 </div>
             </div>
 
-            <div class="swiper mySwiper">
-                <div class="swiper-wrapper">
-                    @foreach ($komiks as $buku)
-                        <div class="swiper-slide">
-                            <div class="book-card">
-                                <a href="{{ route('guest.detail_buku', $buku->id) }}">
-                                    <img src="{{ $buku->foto }}" alt="">
-                                    <div class="book-overlay-container">
-                                        <div class="book-overlay">
-                                            <div class="book-category">{{ $buku->kategori->nama }}</div>
-                                            <div class="book-title">{{ $buku->judul }}</div>
-                                            <div class="book-author">{{ $buku->kontributor }}</div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    @endforeach
+            <div class="swiper-container-wrapper">
+                <div class="swiper-loading" id="loading-komik">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
                 </div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-pagination"></div>
+                <div class="swiper mySwiper" id="swiper-komik">
+                    <div class="swiper-wrapper">
+                        @foreach ($komiks as $buku)
+                            <div class="swiper-slide">
+                                <div class="book-card">
+                                    <a href="{{ route('guest.detail_buku', $buku->id) }}">
+                                        <img src="{{ $buku->foto }}" alt="{{ $buku->judul }}" class="book-image"
+                                            data-category="komik">
+                                        <div class="book-overlay-container">
+                                            <div class="book-overlay">
+                                                <div class="book-category">{{ $buku->kategori->nama }}</div>
+                                                <div class="book-title">{{ $buku->judul }}</div>
+                                                <div class="book-author">{{ $buku->kontributor }}</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
             </div>
-
         </div>
+
         <div class="pengembangan mt-4">
             <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: flex-end;">
                 <div>
@@ -248,79 +302,45 @@
                 </div>
             </div>
 
-            <div class="swiper mySwiper">
-                <div class="swiper-wrapper">
-                    @foreach ($pengembangans as $buku)
-                        <div class="swiper-slide">
-                            <div class="book-card">
-                                <a href="/buku/detail/{{ $buku->id }}">
-                                    <img src="{{ $buku->foto }}" alt="">
-                                    <div class="book-overlay-container">
-                                        <div class="book-overlay">
-                                            <div class="book-category">{{ $buku->kategori->nama }}</div>
-                                            <div class="book-title">{{ $buku->judul }}</div>
-                                            <div class="book-author">{{ $buku->kontributor }}</div>
+            <div class="swiper-container-wrapper">
+                <div class="swiper-loading" id="loading-pengembangan">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+                <div class="swiper mySwiper" id="swiper-pengembangan">
+                    <div class="swiper-wrapper">
+                        @foreach ($pengembangans as $buku)
+                            <div class="swiper-slide">
+                                <div class="book-card">
+                                    <a href="/buku/detail/{{ $buku->id }}">
+                                        <img src="{{ $buku->foto }}" alt="{{ $buku->judul }}" class="book-image"
+                                            data-category="pengembangan">
+                                        <div class="book-overlay-container">
+                                            <div class="book-overlay">
+                                                <div class="book-category">{{ $buku->kategori->nama }}</div>
+                                                <div class="book-title">{{ $buku->judul }}</div>
+                                                <div class="book-author">{{ $buku->kontributor }}</div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </a>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-pagination"></div>
                 </div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-pagination"></div>
-            </div>
-
-        </div>
-        <div class="komputer mt-4">
-            <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: flex-end;">
-                <div>
-                    <h5 class="text-start mb-0">Buku Komputer</h5>
-                    <p class="text-start mb-0">Pelajari teknologi terkini dengan panduan praktis tentang pemrograman,
-                        jaringan,
-                        dan komputasi</p>
-                </div>
-                <div>
-                    <a href="" style="text-decoration: underline;">
-                        <p class="mb-0">Lihat Semua</p>
-                    </a>
-                </div>
-            </div>
-            <div class="swiper mySwiper">
-                <div class="swiper-wrapper">
-                    @foreach ($komputers as $buku)
-                        <div class="swiper-slide">
-                            <div class="book-card">
-                                <a href="/buku/detail/{{ $buku->id }}">
-                                    <img src="{{ $buku->foto }}" alt="">
-                                    <div class="book-overlay-container">
-                                        <div class="book-overlay">
-                                            <div class="book-category">{{ $buku->kategori->nama }}</div>
-                                            <div class="book-title">{{ $buku->judul }}</div>
-                                            <div class="book-author">{{ $buku->kontributor }}</div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-pagination"></div>
             </div>
         </div>
 
         <div class="bisnis mt-4">
-
             <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: flex-end;">
                 <div>
                     <h5 class="text-start mb-0">Buku Bisnis</h5>
                     <p class="text-start mb-0">Dapatkan wawasan dari para ahli untuk mengembangkan karir dan membangun
-                        bisnis
-                        sukses</p>
-
+                        bisnis sukses</p>
                 </div>
                 <div>
                     <a href="" style="text-decoration: underline;">
@@ -328,28 +348,37 @@
                     </a>
                 </div>
             </div>
-            <div class="swiper mySwiper">
-                <div class="swiper-wrapper">
-                    @foreach ($bisnises as $buku)
-                        <div class="swiper-slide">
-                            <div class="book-card">
-                                <a href="/buku/detail/{{ $buku->id }}">
-                                    <img src="{{ $buku->foto }}" alt="">
-                                    <div class="book-overlay-container">
-                                        <div class="book-overlay">
-                                            <div class="book-category">{{ $buku->kategori->nama }}</div>
-                                            <div class="book-title">{{ $buku->judul }}</div>
-                                            <div class="book-author">{{ $buku->kontributor }}</div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    @endforeach
+
+            <div class="swiper-container-wrapper">
+                <div class="swiper-loading" id="loading-bisnis">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
                 </div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-pagination"></div>
+                <div class="swiper mySwiper" id="swiper-bisnis">
+                    <div class="swiper-wrapper">
+                        @foreach ($bisnises as $buku)
+                            <div class="swiper-slide">
+                                <div class="book-card">
+                                    <a href="/buku/detail/{{ $buku->id }}">
+                                        <img src="{{ $buku->foto }}" alt="{{ $buku->judul }}" class="book-image"
+                                            data-category="bisnis">
+                                        <div class="book-overlay-container">
+                                            <div class="book-overlay">
+                                                <div class="book-category">{{ $buku->kategori->nama }}</div>
+                                                <div class="book-title">{{ $buku->judul }}</div>
+                                                <div class="book-author">{{ $buku->kontributor }}</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -357,33 +386,98 @@
 
 @push('script')
     <script>
-        var swiper = new Swiper(".mySwiper", {
-            slidesPerView: 1,
-            spaceBetween: 20,
-            loop: true,
-            navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-            },
-            breakpoints: {
-                320: {
-                    slidesPerView: 1
-                },
-                480: {
-                    slidesPerView: 1
-                },
-                640: {
-                    slidesPerView: 2
-                },
-                768: {
-                    slidesPerView: 3
-                },
-                1024: {
-                    slidesPerView: 4
-                },
-                1280: {
-                    slidesPerView: 5
+        document.addEventListener('DOMContentLoaded', function() {
+            // Daftar semua kategori buku
+            const categories = ['rekomendasi', 'fiksi', 'komik', 'pengembangan', 'komputer', 'bisnis'];
+
+            // Untuk setiap kategori, inisialisasi Swiper setelah gambar dimuat
+            categories.forEach(category => {
+                initializeCategory(category);
+            });
+
+            function initializeCategory(category) {
+                const images = document.querySelectorAll(`.book-image[data-category="${category}"]`);
+                const loadingElement = document.getElementById(`loading-${category}`);
+                const swiperElement = document.getElementById(`swiper-${category}`);
+
+                let imagesLoaded = 0;
+                const totalImages = images.length;
+
+                // Function untuk menginisialisasi Swiper dan menampilkan konten
+                function initSwiper() {
+                    // Sembunyikan loading
+                    if (loadingElement) loadingElement.style.display = 'none';
+
+                    // Tampilkan Swiper
+                    if (swiperElement) {
+                        swiperElement.classList.add('loaded');
+
+                        // Inisialisasi Swiper untuk kategori ini
+                        new Swiper(`#swiper-${category}`, {
+                            slidesPerView: 1,
+                            spaceBetween: 20,
+                            loop: true,
+                            navigation: {
+                                nextEl: `#swiper-${category} .swiper-button-next`,
+                                prevEl: `#swiper-${category} .swiper-button-prev`,
+                            },
+                            breakpoints: {
+                                320: {
+                                    slidesPerView: 1
+                                },
+                                480: {
+                                    slidesPerView: 1
+                                },
+                                640: {
+                                    slidesPerView: 2
+                                },
+                                768: {
+                                    slidesPerView: 3
+                                },
+                                1024: {
+                                    slidesPerView: 4
+                                },
+                                1280: {
+                                    slidesPerView: 5
+                                }
+                            }
+                        });
+                    }
                 }
+
+                if (totalImages === 0) {
+                    initSwiper();
+                    return;
+                }
+
+                images.forEach(img => {
+                    if (img.complete) {
+                        imagesLoaded++;
+                        if (imagesLoaded === totalImages) {
+                            initSwiper();
+                        }
+                    } else {
+                        img.addEventListener('load', () => {
+                            imagesLoaded++;
+                            if (imagesLoaded === totalImages) {
+                                initSwiper();
+                            }
+                        });
+
+                        img.addEventListener('error', () => {
+                            imagesLoaded++;
+                            if (imagesLoaded === totalImages) {
+                                initSwiper();
+                            }
+                        });
+                    }
+                });
+
+                setTimeout(() => {
+                    if (!swiperElement.classList.contains('loaded')) {
+                        initSwiper();
+                    }
+                }, 5000);
             }
         });
     </script>

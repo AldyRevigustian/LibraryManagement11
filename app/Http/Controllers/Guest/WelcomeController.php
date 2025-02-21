@@ -30,21 +30,16 @@ class WelcomeController extends Controller
             $query->where('nama', 'Komik & Novel Grafis');
         })->inRandomOrder()->limit(12)->get();
 
-        $komputers = Buku::whereHas('kategori', function ($query) {
-            $query->where('nama', 'Komputer');
-        })->inRandomOrder()->limit(12)->get();
-
         $bisnises = Buku::whereHas('kategori', function ($query) {
             $query->where('nama', 'Bisnis & Ekonomi');
         })->inRandomOrder()->limit(12)->get();
 
         $penerbits = Penerbit::all();
-        return view('guest.welcome', compact('bukus', 'fiksis', 'pengembangans', 'komiks', 'bisnises', 'komputers', 'penerbits'));
+        return view('guest.welcome', compact('bukus', 'fiksis', 'pengembangans', 'komiks', 'bisnises', 'penerbits'));
     }
 
     public function search(Request $request)
     {
-        // dd($request->query('search'));
         if ($request->query('search')) {
             $bukus = Buku::search($request->query('search'))->get();
             $query = $request->query('search');
