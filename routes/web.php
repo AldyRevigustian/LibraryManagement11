@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [WelcomeController::class, 'index']);
+Route::get('/buku', [WelcomeController::class, 'search'])->name('guest.search_buku');
 Route::get('/buku/detail/{id}', [DetailController::class, 'index'])->name('guest.detail_buku');
 
 Route::prefix('/admin')->middleware('auth')->group(function () {

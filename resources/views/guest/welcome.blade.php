@@ -117,7 +117,7 @@
 
 @section('content')
     <div class="container">
-        <div class="rekomendasi mt-4">
+        <div class="rekomendasi mt-5">
             <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: flex-end;">
                 <div>
                     <h5 class="text-start mb-0">Rekomendasi Buku</h5>

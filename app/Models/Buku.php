@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Buku extends Model
 {
+    use Searchable;
+
     protected $fillable = [
         'ISBN',
         'judul',
@@ -18,6 +21,14 @@ class Buku extends Model
         'deskripsi',
         'foto'
     ];
+
+    public function toSearchableArray()
+    {
+        return [
+            'ISBN' => (int) $this->ISBN,
+            'judul' => $this->judul,
+        ];
+    }
 
     public function kategori()
     {

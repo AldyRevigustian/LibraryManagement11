@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Guest;
+
 use App\Http\Controllers\Controller;
 
 use App\Models\Buku;
@@ -39,6 +40,20 @@ class WelcomeController extends Controller
 
         $penerbits = Penerbit::all();
         return view('guest.welcome', compact('bukus', 'fiksis', 'pengembangans', 'komiks', 'bisnises', 'komputers', 'penerbits'));
+    }
+
+    public function search(Request $request)
+    {
+        // dd($request->query('search'));
+        if ($request->query('search')) {
+            $bukus = Buku::search($request->query('search'))->get();
+            $query = $request->query('search');
+        } else {
+            $bukus = Buku::inRandomOrder()->limit(50)->get();
+            $query = 'ALL';
+        }
+
+        return view('guest.search', compact('bukus', 'query'));
     }
 
     /**

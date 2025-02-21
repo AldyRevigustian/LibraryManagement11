@@ -9,7 +9,7 @@
             <table class="table table-bordered" style="border-width: 2px;">
                 <tbody>
                     <tr>
-                        <td rowspan="7" class="text-center p-3"
+                        <td rowspan="7" class="text-center p-3 bg-light"
                             style="width: 30%; vertical-align: middle; border: 2px solid #dee2e6;">
                             <img src="{{ $buku->foto }}" alt="Cover Buku" class="img-fluid rounded"
                                 style="object-fit: cover; height: 100%; max-height: 400px;">
@@ -58,7 +58,7 @@
                         <td style="border: 2px solid #dee2e6;">{{ $buku->deskripsi_fisik }}</td>
                     </tr>
                     <tr>
-                        <td colspan="3" class="p-3" style="border: 2px solid #dee2e6;">
+                        <td colspan="3" class="px-5 py-4" style="border: 2px solid #dee2e6;">
                             <h5 style="color: #607080;">Deskripsi</h5>
                             {!! nl2br(e($buku->deskripsi)) !!}
                         </td>
