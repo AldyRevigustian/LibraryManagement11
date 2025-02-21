@@ -62,7 +62,7 @@
                         </div>
                     </form>
                     <li class="sidebar-item {{ request()->is('/') ? 'active' : '' }} mt-4">
-                        <a href="{{ route('admin.dashboard') }}" class='sidebar-link'>
+                        <a href="/" class='sidebar-link'>
                             <i class="bi bi-house-fill"></i>
                             <span class="mt-1">Beranda</span>
                         </a>

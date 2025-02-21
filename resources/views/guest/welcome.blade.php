@@ -8,6 +8,12 @@
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            /* transition: box-shadow 0.1s ease-in-out; */
+        }
+
+        .book-card:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
         .book-card img {
@@ -18,7 +24,7 @@
 
         .book-overlay {
             width: 100%;
-            height: 35%;
+            height: 33%;
             padding: 10px;
             display: flex;
             flex-direction: column;
@@ -35,12 +41,12 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
         }
 
         .book-category {
             align-self: center;
-            background-color: rgba(6, 58, 118, 0.5);
+            background-color: rgba(6, 58, 118, 0.7);
             color: white;
             padding: 4px 12px;
             font-size: .7rem;
@@ -79,39 +85,31 @@
 
         .swiper-slide {
             display: flex;
-            height: 320px;
+            height: 352px;
             justify-content: center;
         }
 
         .swiper-button-next,
         .swiper-button-prev {
             width: 45px;
-            /* Ukuran lingkaran */
             height: 45px;
             border-radius: 50%;
-            /* Membuat tombol bulat */
             background-color: rgba(0, 0, 0, 0.5);
-            /* Warna latar belakang semi-transparan */
             color: white;
-            /* Warna ikon */
             display: flex;
             justify-content: center;
             align-items: center;
             transition: background-color 0.3s ease;
         }
 
-        /* Hover Effect */
         .swiper-button-next:hover,
         .swiper-button-prev:hover {
             background-color: rgba(0, 0, 0, 0.8);
-            /* Warna lebih gelap saat hover */
         }
 
-        /* Menghilangkan default ikon Swiper */
         .swiper-button-next::after,
         .swiper-button-prev::after {
             font-size: 18px;
-            /* Ukuran ikon */
             font-weight: bold;
         }
     </style>
