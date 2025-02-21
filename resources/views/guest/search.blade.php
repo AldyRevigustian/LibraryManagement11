@@ -147,6 +147,23 @@
             color: #6c757d;
             font-size: 0.9rem;
         }
+
+        #error {
+            background-color: #ebf3ff;
+            min-height: 100vh;
+            padding: 2rem 0;
+        }
+
+        .img-error {
+            height: 435px;
+            -o-object-fit: contain;
+            object-fit: contain;
+            padding: 3rem 0;
+        }
+
+        .error-title {
+            margin-top: 10px;
+        }
     </style>
 @endpush
 @section('content')
@@ -170,6 +187,12 @@
                 </div>
             </div>
 
+            @if (count($bukus) == 0)
+                <div class="d-flex justify-content-center align-items-center flex-column" style="min-height: 70vh;">
+                    <img class="img-error" src="/assets/images/samples/error-500.svg" alt="Not Found" />
+                    <h3 class="error-title">Buku Tidak Ditemukan 😓</h3>
+                </div>
+            @endif
             <div id="booksGrid" class="books-grid loading">
                 @foreach ($bukus as $buku)
                     <div class="book-card">
