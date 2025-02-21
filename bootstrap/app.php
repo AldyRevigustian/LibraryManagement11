@@ -22,14 +22,18 @@ return Application::configure(basePath: dirname(__DIR__))
         //     }
         // });
         $exceptions->render(function (Throwable $e) {
+            if ($e->getMessage() == 'Unauthenticated.') {
+                return response()->view("error.error-403", [], 403);
+            }
             if ($e->getStatusCode() == 404) {
                 return response()->view("error.error-404", [], 404);
             }
-            if ($e->getStatusCode() == 403) {
-                return response()->view("error.error-403", [], 403);
-            }
-            if ($e->getStatusCode() == 500) {
-                return response()->view("error.error-500", [], 500);
-            }
+            // if ($e->getStatusCode() == 403) {
+            //     return response()->view("error.error-403", [], 403);
+            // }
+            // if ($e->getStatusCode() == 500) {
+            //     dd($e);
+            //     return response()->view("error.error-500", [], 500);
+            // }
         });
     })->create();

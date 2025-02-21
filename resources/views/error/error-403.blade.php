@@ -26,7 +26,7 @@
                     <p class="fs-5 text-gray-600">
                         You are unauthorized to see this page.
                     </p>
-                    <a href="index.html" class="btn btn-lg btn-outline-primary mt-3">Go Home</a>
+                    <a href="/login" class="btn btn-lg btn-outline-primary mt-3">Go Login</a>
                 </div>
             </div>
         </div>
