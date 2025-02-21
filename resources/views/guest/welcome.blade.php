@@ -8,12 +8,11 @@
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            /* transition: box-shadow 0.1s ease-in-out; */
         }
 
         .book-card:hover {
             transform: scale(1.05);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .book-card img {
@@ -24,7 +23,7 @@
 
         .book-overlay {
             width: 100%;
-            height: 33%;
+            height: 35%;
             padding: 10px;
             display: flex;
             flex-direction: column;
@@ -86,7 +85,7 @@
 
         .swiper-slide {
             display: flex;
-            height: 352px;
+            height: 320px;
             justify-content: center;
         }
 
@@ -152,7 +151,7 @@
     <div class="container">
         <div class="rekomendasi mt-5">
             <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: flex-end;">
-                <div>
+                <div class="section-header">
                     <h5 class="text-start mb-0">Rekomendasi Buku</h5>
                     <p class="text-start mb-0">Pilihan buku terbaik dari berbagai kategori khusus untuk kamu</p>
                 </div>
@@ -197,7 +196,7 @@
 
         <div class="fiksi mt-4">
             <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: flex-end;">
-                <div>
+                <div class="section-header">
                     <h5 class="text-start mb-0">Buku Fiksi</h5>
                     <p class="text-start mb-0">Jelajahi dunia imajinasi dengan kisah-kisah menarik
                         dan karakter yang menginspirasi</p>
@@ -244,7 +243,7 @@
 
         <div class="komik mt-4">
             <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: flex-end;">
-                <div>
+                <div class="section-header">
                     <h5 class="text-start mb-0">Buku Komik</h5>
                     <p class="text-start mb-0">Nikmati cerita bergambar dengan karakter ikonik dan petualangan seru</p>
                 </div>
@@ -290,7 +289,7 @@
 
         <div class="pengembangan mt-4">
             <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: flex-end;">
-                <div>
+                <div class="section-header">
                     <h5 class="text-start mb-0">Buku Pengembangan Diri</h5>
                     <p class="text-start mb-0">Temukan tips dan strategi untuk mengembangkan potensi dan menjadi versi
                         terbaik dirimu</p>
@@ -337,7 +336,7 @@
 
         <div class="bisnis mt-4">
             <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: flex-end;">
-                <div>
+                <div class="section-header">
                     <h5 class="text-start mb-0">Buku Bisnis</h5>
                     <p class="text-start mb-0">Dapatkan wawasan dari para ahli untuk mengembangkan karir dan membangun
                         bisnis sukses</p>

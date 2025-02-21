@@ -172,11 +172,11 @@
         <div class="rekomendasi mt-5">
             <div>
                 <div class="section-header">
-                    @if ($query == 'ALL')
-                        <h4 class="text-start mb-0">Menampilkan Semua Buku</h4>
+                    @if ($tipe == 'penerbit')
+                        <h4 class="text-start mb-0">Menampilkan Penerbit "{{ $penerbit->nama }}"</h4>
                         <p class="text-start mb-0">Tingkatkan literasi membacamu hari ini!</p>
                     @else
-                        <h4 class="text-start mb-0">Menampilkan hasil untuk "{{ $query }}"</h4>
+                        <h4 class="text-start mb-0">Menampilkan Kategori "{{ $kategori->nama }}"</h4>
                         <p class="text-start mb-0">Tingkatkan literasi membacamu hari ini!</p>
                     @endif
                 </div>
@@ -194,6 +194,7 @@
                     <h3 class="error-title">Buku Tidak Ditemukan 😓</h3>
                 </div>
             @endif
+
             <div id="booksGrid" class="books-grid loading">
                 @foreach ($bukus as $buku)
                     <div class="book-card">

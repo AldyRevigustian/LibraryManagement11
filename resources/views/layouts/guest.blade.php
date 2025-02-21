@@ -29,6 +29,11 @@
         ::-webkit-scrollbar-thumb:hover {
             background-color: #a8bbbf;
         }
+
+        .section-header {
+            border-left: 4px solid #435ebe;
+            padding-left: 1rem;
+        }
     </style>
     @stack('style')
 </head>
@@ -43,17 +48,18 @@
             </div>
             <div class="sidebar-menu flex-grow-1">
                 <ul class="menu mt-2">
-                    <form class="d-flex mx-0" style="width: 100%;" action="{{ route('guest.search_buku') }}" method="GET">
+                    <form class="d-flex mx-0" style="width: 100%;" action="{{ route('guest.search_buku') }}"
+                        method="GET">
                         <div class="input-group">
                             <div class="position-relative w-100">
-                                <input class="form-control py-2 ps-4 pe-5" type="search" name="search" placeholder="Cari Judul / ISBN..."
-                                    aria-label="Search"
+                                <input class="form-control py-2 ps-4 pe-5" type="search" name="search"
+                                    placeholder="Cari Judul / ISBN..." aria-label="Search"
                                     style="border-color: rgba(209,213,219, 1); background-color: rgb(249,250,251); border-width: 1px; border-radius: .5rem;"
                                     value="{{ request()->query('search') }}">
                                 <div class="position-absolute top-50 end-0 translate-middle-y pe-3">
                                     <button type="submit" style="border: none; background: none;">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#6b7280"
-                                            class="bi bi-search" viewBox="0 0 16 16">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="#6b7280" class="bi bi-search" viewBox="0 0 16 16">
                                             <path
                                                 d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
                                         </svg>
@@ -76,8 +82,8 @@
                             <span class="mt-1">Koleksi</span>
                         </a>
                     </li>
-                    <li class="sidebar-item {{ request()->is('/kategori') ? 'active' : '' }}">
-                        <a href="{{ route('admin.dashboard') }}" class='sidebar-link'>
+                    <li class="sidebar-item {{ request()->is('kategori*') ? 'active' : '' }}">
+                        <a href="{{ route('guest.kategori_buku') }}" class='sidebar-link'>
                             <i class="bi bi-tags-fill"></i>
                             <span class="mt-1">Kategori</span>
                         </a>
