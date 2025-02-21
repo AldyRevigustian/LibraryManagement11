@@ -123,6 +123,30 @@
         .books-grid.loading {
             display: none;
         }
+
+        .pagination {
+            margin-top: 30px;
+        }
+
+        .page-item.active .page-link {
+            background-color: #063A76;
+            border-color: #063A76;
+        }
+
+        .page-link {
+            color: #063A76;
+        }
+
+        .page-link:hover {
+            color: #042858;
+        }
+
+        .pagination-info {
+            text-align: center;
+            margin-top: 10px;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
     </style>
 @endpush
 @section('content')
@@ -161,6 +185,15 @@
                         </a>
                     </div>
                 @endforeach
+            </div>
+
+            <div class="d-flex justify-content-center mt-4">
+                {{ $bukus->withQueryString()->links('pagination::bootstrap-5') }}
+            </div>
+
+            <!-- Informasi showing results di bawah pagination -->
+            <div class="pagination-info mt-2">
+                Showing {{ $bukus->firstItem() }} to {{ $bukus->lastItem() }} of {{ $bukus->total() }} results
             </div>
         </div>
     </div>

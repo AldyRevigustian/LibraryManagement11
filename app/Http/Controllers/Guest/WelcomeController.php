@@ -40,12 +40,14 @@ class WelcomeController extends Controller
 
     public function search(Request $request)
     {
+        $perPage = 30; // Jumlah buku per halaman
+
         if ($request->query('search')) {
-            $bukus = Buku::search($request->query('search'))->get();
             $query = $request->query('search');
+            $bukus = Buku::search($query)->paginate($perPage);
         } else {
-            $bukus = Buku::inRandomOrder()->limit(50)->get();
             $query = 'ALL';
+            $bukus = Buku::inRandomOrder()->paginate($perPage);
         }
 
         return view('guest.search', compact('bukus', 'query'));
