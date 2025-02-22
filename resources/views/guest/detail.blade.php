@@ -91,6 +91,44 @@
                 padding: 0 16px;
             }
         }
+
+        .modal-dialog {
+            max-width: 630px;
+            margin: 1.75rem auto;
+        }
+
+        @media (max-width: 576px) {
+            .modal-dialog {
+                max-width: 90%;
+                margin: 1rem auto;
+            }
+        }
+
+        .social-icon {
+            width: 48px;
+            height: 48px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .social-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .copy-link {
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            padding: 8px 12px;
+            font-size: 14px;
+        }
+
+        .copy-button {
+            background-color: #f8f9fa;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
     </style>
 @endpush
 
@@ -166,7 +204,7 @@
             </div>
         </div>
         <div class="sticky-footer bg-white">
-            <button class="action-btn share-btn">
+            <button type="button" class="action-btn share-btn" data-bs-toggle="modal" data-bs-target="#shareModal">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -193,7 +231,103 @@
             </button>
         </div>
     </div>
+
+    <div class="modal fade" id="shareModal" tabindex="-1" aria-labelledby="shareModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-bottom pb-3">
+                    <p class="modal-title d-flex align-items-center gap-2" id="shareModalLabel" style="font-size: 14px; color: black;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+                        </svg>
+                        Yuk, bagikan buku ini!
+                    </p>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="d-flex justify-content-center gap-4 mb-4">
+                        <div class="text-center">
+                            <img src="https://perpustakaan.jakarta.go.id/assets/img/social-media/Whatsapp.svg"
+                                alt="WhatsApp" class="social-icon mb-2">
+                            <span class="d-block small">WhatsApp</span>
+                        </div>
+                        <div class="text-center">
+                            <img src="https://perpustakaan.jakarta.go.id/assets/img/social-media/Facebook.svg"
+                                alt="Facebook" class="social-icon mb-2">
+                            <span class="d-block small">Facebook</span>
+                        </div>
+                        <div class="text-center">
+                            <img src="https://perpustakaan.jakarta.go.id/assets/img/social-media/X.svg" alt="X"
+                                class="social-icon mb-2">
+                            <span class="d-block small">X</span>
+                        </div>
+                        <div class="text-center">
+                            <img src="https://perpustakaan.jakarta.go.id/assets/img/social-media/Telegram.svg"
+                                alt="Telegram" class="social-icon mb-2">
+                            <span class="d-block small">Telegram</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <label class="fw-medium mb-2">Salin tautan:</label>
+                        <div class="d-flex gap-2">
+                            <div class="copy-link flex-grow-1">
+                                https://perpustakaan.jakarta.go.id/digital-book/detail?cn=INLIS000000000015233
+                            </div>
+                            <button class="copy-button">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                        d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer bg-light">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @push('script')
+    <script>
+        // Add click handlers for social sharing
+        function shareToSocialMedia(platform, title, url) {
+            const text = encodeURIComponent(title);
+            const shareUrl = encodeURIComponent(url);
+
+            let shareLink = '';
+            switch (platform) {
+                case 'whatsapp':
+                    shareLink = `https://wa.me/?text=${text}%20${shareUrl}`;
+                    break;
+                case 'facebook':
+                    shareLink = `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`;
+                    break;
+                case 'x':
+                    shareLink = `https://twitter.com/intent/tweet?text=${text}&url=${shareUrl}`;
+                    break;
+                case 'telegram':
+                    shareLink = `https://t.me/share/url?url=${shareUrl}&text=${text}`;
+                    break;
+            }
+
+            window.open(shareLink, '_blank');
+        }
+
+        // Add click handler for copy button
+        document.querySelector('.copy-button').addEventListener('click', function() {
+            const link = document.querySelector('.copy-link').textContent.trim();
+            navigator.clipboard.writeText(link).then(() => {
+                alert('Link copied to clipboard!');
+            });
+        });
+    </script>
 @endpush

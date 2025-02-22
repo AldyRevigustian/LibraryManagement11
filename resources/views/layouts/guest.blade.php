@@ -97,7 +97,7 @@
 
                     <li class="sidebar-item {{ request()->is('kategori*') ? 'active' : '' }}">
                         <a href="{{ route('guest.kategori_buku') }}" class='sidebar-link'>
-                            <i class="bi bi-arrow-left-right"></i>
+                            <i class="bi bi-file-earmark-text-fill"></i>
                             <span class="mt-1">Transaksi</span>
                         </a>
                     </li>
@@ -109,7 +109,7 @@
                     <li class="sidebar-item">
                         <a href="{{ route('login') }}" class='sidebar-link'>
                             <i class="bi bi-door-open-fill"></i>
-                            <span class="mt-1">Admin Login</span>
+                            <span class="mt-1">Login Anggota</span>
                         </a>
                     </li>
                 </ul>
