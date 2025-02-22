@@ -9,6 +9,7 @@ class Anggota extends Authenticatable
 {
     protected $table = 'anggotas';
     protected $fillable = [
+        'nim',
         'name',
         'email',
         'password',

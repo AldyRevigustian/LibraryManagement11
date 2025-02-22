@@ -20,10 +20,40 @@
         <div class="row h-100">
             <div class="col-lg-5 col-12" style="display: flex; flex-direction:column; justify-content:center">
                 <div id="auth-left">
-                    <h1 class="auth-title">Log in.</h1>
-                    <p class="auth-subtitle mb-3">Log in with your data that you entered during registration.</p>
-                    <form method="POST" action="{{ route('anggota.login.auth') }}">
+                    <h1 class="auth-title">Register</h1>
+                    <p class="auth-subtitle mb-3">Input your data to register to our website.</p>
+                    <form method="POST" action="{{ route('anggota.register.auth') }}">
                         @csrf
+                        <div class="form-group position-relative has-icon-left mb-4">
+                            <input id="nim" type="number"
+                                class="form-control @error('nim') is-invalid @enderror form-control-xl" name="nim"
+                                value="{{ old('nim') }}" required autocomplete="nim"
+                                placeholder="NIM" autofocus>
+                            @error('nim')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                            <div class="form-control-icon">
+                                <i class="bi bi-hash"></i>
+                            </div>
+                        </div>
+
+                        <div class="form-group position-relative has-icon-left mb-4">
+                            <input id="nama" type="text"
+                                class="form-control @error('nama') is-invalid @enderror form-control-xl" name="name"
+                                value="{{ old('nama') }}" required autocomplete="nama"
+                                placeholder="Nama Lengkap" autofocus>
+                            @error('nama')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                            <div class="form-control-icon">
+                                <i class="bi bi-person-fill"></i>
+                            </div>
+                        </div>
+
                         <div class="form-group position-relative has-icon-left mb-4">
                             <input id="email" type="email"
                                 class="form-control @error('email') is-invalid @enderror form-control-xl" name="email"
@@ -53,14 +83,9 @@
                             </div>
                         </div>
                         <button class="btn btn-primary btn-block btn-lg shadow-lg mt-3" type="submit">
-                            Log in
+                            Register
                         </button>
                     </form>
-                    <div class="text-center mt-5 text-lg fs-4">
-                        <p class="text-gray-600">Don't have an account? <a href="{{ route('anggota.register') }}"
-                                class="font-bold">Sign
-                                up</a>.</p>
-                    </div>
                 </div>
             </div>
             <div class="col-lg-7 d-none d-lg-block">

@@ -37,9 +37,12 @@ Route::prefix('admin')->middleware('auth:web')->group(function () {
 });
 
 
-Route::middleware('guest')->group(function () {
-    Route::get('anggota/login', [AnggotaAuthController::class, 'showLoginForm'])->name('anggota.login');
-    Route::post('anggota/login', [AnggotaAuthController::class, 'login'])->name('anggota.login.auth');
+Route::prefix('anggota')->middleware('guest')->group(function () {
+    Route::get('login', [AnggotaAuthController::class, 'showLoginForm'])->name('anggota.login');
+    Route::post('login', [AnggotaAuthController::class, 'login'])->name('anggota.login.auth');
+
+    Route::get('register', [AnggotaAuthController::class, 'showRegisterForm'])->name('anggota.register');
+    Route::post('register', [AnggotaAuthController::class, 'register'])->name('anggota.register.auth');
 });
 
 Route::prefix('anggota')->middleware('auth:anggota')->group(function () {

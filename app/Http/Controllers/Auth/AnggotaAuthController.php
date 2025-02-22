@@ -3,14 +3,21 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Anggota;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AnggotaAuthController extends Controller
 {
     public function showLoginForm()
     {
         return view('auth.login_anggota');
+    }
+
+    public function showRegisterForm()
+    {
+        return view('auth.register_anggota');
     }
 
     public function login(Request $request)
@@ -28,6 +35,40 @@ class AnggotaAuthController extends Controller
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ]);
+    }
+
+    public function register(Request $request)
+    {
+        $validated = $request->validate([
+            'nim' => 'required|digits_between:1,12',
+            'name' => 'required|string|max:255',
+            'email' => [
+                'required',
+                'email',
+                'unique:anggotas,email',
+                'regex:/^[a-zA-Z0-9._%+-]+@binus(\.[a-zA-Z]+)+$/'
+            ],
+            'password' => 'required|min:11',
+        ]);
+
+        $anggota = Anggota::create([
+            'nim' => $validated['nim'],
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'password' => Hash::make($validated['password']),
+        ]);
+
+        if ($anggota) {
+            $credentials = $request->validate([
+                'email' => ['required', 'email'],
+                'password' => ['required'],
+            ]);
+
+            if (Auth::guard('anggota')->attempt($credentials)) {
+                $request->session()->regenerate();
+                return redirect()->intended('/');
+            }
+        }
     }
 
     public function logout(Request $request)

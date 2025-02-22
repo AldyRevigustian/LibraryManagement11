@@ -13,9 +13,10 @@ class AnggotaSeeder extends Seeder
     public function run():   void
     {
         Anggota::create([
-            'name' => 'aldy',
-            'email' => 'aldy@anggota.com',
-            'password' => Hash::make("aldy"),
+            'nim' => 2702303715,
+            'name' => 'Aldy Revigustian',
+            'email' => 'aldy@binus.ac.id',
+            'password' => Hash::make("Akunbaru123*"),
         ]);
     }
 }
