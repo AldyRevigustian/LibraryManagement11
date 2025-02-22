@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <link rel="stylesheet" href="/assets/css/main/app.css" />
-    <link rel="stylesheet" href="/assets/css/main/app-dark.css" />
 
     <style>
         ::-webkit-scrollbar {
@@ -88,24 +87,24 @@
                             <span class="mt-1">Kategori</span>
                         </a>
                     </li>
-                </ul>
-            </div>
+                    {{-- <li class="sidebar-item disabled"> --}}
+                    <li class="sidebar-item {{ request()->is('kategori*') ? 'active' : '' }}">
+                        <a href="{{ route('guest.kategori_buku') }}" class='sidebar-link'>
+                            <i class="bi bi-bookmark-fill"></i>
+                            <span class="mt-1">Buku Favorit</span>
+                        </a>
+                    </li>
 
-            <div class="sidebar-bottom mt-auto border-top">
-                <ul class="menu mt-0">
-                    <li class="sidebar-item">
-                        <a class='sidebar-link d-flex'>
-                            <i class="bi bi-moon-fill"></i>
-                            <span class="mt-1">Dark Mode</span>
-                            <div class="form-check form-switch fs-6 ms-auto mt-1">
-                                <input class="form-check-input me-0" type="checkbox" id="toggle-dark"
-                                    style="cursor: pointer" />
-                                <label class="form-check-label"></label>
-                            </div>
+                    <li class="sidebar-item {{ request()->is('kategori*') ? 'active' : '' }}">
+                        <a href="{{ route('guest.kategori_buku') }}" class='sidebar-link'>
+                            <i class="bi bi-arrow-left-right"></i>
+                            <span class="mt-1">Transaksi</span>
                         </a>
                     </li>
                 </ul>
+            </div>
 
+            <div class="sidebar-bottom mt-auto">
                 <ul class="menu mt-0">
                     <li class="sidebar-item">
                         <a href="{{ route('login') }}" class='sidebar-link'>
@@ -124,7 +123,6 @@
 
     </div>
 
-    <script src="/assets/js/dark.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     @stack('script')
 </body>

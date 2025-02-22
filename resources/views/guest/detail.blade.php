@@ -33,7 +33,7 @@
             bottom: 0;
             left: 300px;
             right: 0;
-            background: white;
+            /* background: white; */
             padding: 12px 24px;
             border-top: 2px solid #e5e7eb;
             z-index: 1000;
@@ -165,7 +165,7 @@
                 </div>
             </div>
         </div>
-        <div class="sticky-footer">
+        <div class="sticky-footer bg-white">
             <button class="action-btn share-btn">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
