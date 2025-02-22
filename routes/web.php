@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AdminAuthController;
 use App\Http\Controllers\Auth\AnggotaAuthController;
 
-Route::get('/', [WelcomeController::class, 'index']);
+Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 Route::get('/buku', [BukuController::class, 'search'])->name('guest.search_buku');
 Route::get('/buku/detail/{id}', [BukuController::class, 'detail'])->name('guest.detail_buku');
 
