@@ -89,7 +89,7 @@
                     </li>
                     {{-- <li class="sidebar-item disabled"> --}}
                     <li class="sidebar-item {{ request()->is('anggota/favorit*') ? 'active' : '' }}">
-                        <a href="{{ route('anggota.favorit') }}" class='sidebar-link'>
+                        <a href="{{ route('anggota.favorite') }}" class='sidebar-link'>
                             <i class="bi bi-bookmark-fill"></i>
                             <span class="mt-1">Buku Favorit</span>
                         </a>
@@ -107,7 +107,6 @@
             <div class="sidebar-bottom mt-auto">
                 <ul class="menu mt-0">
                     @if (Auth::guard('anggota')->check())
-                        {{-- @if (Auth::check()) --}}
                         <li class="sidebar-item">
                             <a href="{{ route('anggota.logout') }}"
                                 onclick="event.preventDefault();

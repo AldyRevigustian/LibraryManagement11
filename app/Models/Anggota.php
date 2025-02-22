@@ -18,4 +18,14 @@ class Anggota extends Authenticatable
     {
         return $this->password;
     }
+
+    public function favorite()
+    {
+        return $this->belongsToMany(Buku::class, 'favorites', 'anggota_id', 'buku_id')->withTimestamps();
+    }
+
+    public function isFavorite($bukuId)
+    {
+        return $this->favorite()->wherePivot('buku_id', $bukuId)->first();
+    }
 }

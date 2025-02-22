@@ -46,7 +46,9 @@ Route::prefix('anggota')->middleware('auth:anggota')->group(function () {
     // Route::get('/dashboard', function () {
     //     return view('anggota.dashboard');
     // })->name('anggota.dashboard');
-    Route::get('/favorit', [BukuFavorit::class, 'index'])->name('anggota.favorit');
+    Route::get('/favorit', [BukuFavorit::class, 'index'])->name('anggota.favorite');
+    Route::post('/favorit/add/{id}', [BukuFavorit::class, 'create'])->name('anggota.favorite_add');
+    Route::delete('/favorit/delete/{id}', [BukuFavorit::class, 'destroy'])->name('anggota.favorite_delete');
 
     Route::post('/logout', [AnggotaAuthController::class, 'logout'])->name('anggota.logout');
 });

@@ -38,4 +38,9 @@ class Buku extends Model
     {
         return $this->belongsTo(Penerbit::class);
     }
+    public function isFavorite()
+    {
+        return $this->belongsToMany(Anggota::class, 'favorites', 'buku_id', 'anggota_id')->withTimestamps();
+    }
+    
 }
