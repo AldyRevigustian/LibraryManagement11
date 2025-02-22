@@ -93,7 +93,7 @@
         }
 
         .modal-dialog {
-            max-width: 630px;
+            max-width: 600px;
             margin: 1.75rem auto;
         }
 
@@ -275,7 +275,7 @@
                         <label class="fw-medium mb-2">Salin tautan:</label>
                         <div class="d-flex gap-2">
                             <div class="copy-link flex-grow-1">
-                                https://perpustakaan.jakarta.go.id/digital-book/detail?cn=INLIS000000000015233
+                                {{ url()->current() }}
                             </div>
                             <button class="copy-button">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none"
