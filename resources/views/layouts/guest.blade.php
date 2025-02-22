@@ -107,7 +107,7 @@
             <div class="sidebar-bottom mt-auto">
                 <ul class="menu mt-0">
                     <li class="sidebar-item">
-                        <a href="{{ route('login') }}" class='sidebar-link'>
+                        <a href="{{ route('anggota.login') }}" class='sidebar-link'>
                             <i class="bi bi-door-open-fill"></i>
                             <span class="mt-1">Login Anggota</span>
                         </a>

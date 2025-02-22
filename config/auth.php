@@ -11,12 +11,21 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'anggota' => [
+            'driver' => 'session',
+            'provider' => 'anggotas',
+        ],
     ],
 
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\Admin::class),
+            'model' => App\Models\Admin::class,
+        ],
+
+        'anggotas' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Anggota::class,
         ],
     ],
 

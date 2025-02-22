@@ -6,9 +6,10 @@ use App\Http\Controllers\Guest\KategoriController;
 use App\Http\Controllers\Guest\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\Auth\AdminAuthController;
+use App\Http\Controllers\Auth\AnggotaAuthController;
 
 Route::get('/', [WelcomeController::class, 'index']);
-
 Route::get('/buku', [BukuController::class, 'search'])->name('guest.search_buku');
 Route::get('/buku/detail/{id}', [BukuController::class, 'detail'])->name('guest.detail_buku');
 
@@ -16,7 +17,13 @@ Route::get('/kategori', [KategoriController::class, 'index'])->name('guest.kateg
 Route::get('/kategori/penerbit/{id}', [KategoriController::class, 'penerbit'])->name('guest.penerbit_buku_id');
 Route::get('/kategori/{id}', [KategoriController::class, 'kategori'])->name('guest.kategori_buku_id');
 
-Route::prefix('/admin')->middleware('auth')->group(function () {
+
+Route::middleware('guest')->group(function () {
+    Route::get('admin/login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
+    Route::post('admin/login', [AdminAuthController::class, 'login'])->name('admin.login.auth');
+});
+
+Route::prefix('admin')->middleware('auth:web')->group(function () {
     Route::get('/', function () {
         return redirect()->route('admin.dashboard');
     });
@@ -25,6 +32,18 @@ Route::prefix('/admin')->middleware('auth')->group(function () {
         return view('dashboard');
     })->name('admin.dashboard');
 
+    Route::post('admin/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
 });
 
-require __DIR__.'/auth.php';
+
+Route::middleware('guest')->group(function () {
+    Route::get('anggota/login', [AnggotaAuthController::class, 'showLoginForm'])->name('anggota.login');
+    Route::post('anggota/login', [AnggotaAuthController::class, 'login'])->name('anggota.login.auth');
+});
+
+// Route::middleware('auth:anggota')->group(function () {
+//     Route::get('anggota/dashboard', function () {
+//         return view('anggota.dashboard');
+//     })->name('anggota.dashboard');
+//     Route::post('anggota/logout', [AnggotaAuthController::class, 'logout'])->name('anggota.logout');
+// });

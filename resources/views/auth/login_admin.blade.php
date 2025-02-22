@@ -22,7 +22,7 @@
                 <div id="auth-left">
                     <h1 class="auth-title">Log in.</h1>
                     <p class="auth-subtitle mb-3">Log in with your data that you entered during registration.</p>
-                    <form method="POST" action="{{ route('login') }}">
+                    <form method="POST" action="{{ route('admin.login.auth') }}">
                         @csrf
                         <div class="form-group position-relative has-icon-left mb-4">
                             <input id="email" type="text"
