@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Anggota\BukuFavorit;
 use App\Http\Controllers\Guest\BukuController;
 use App\Http\Controllers\Guest\DetailController;
 use App\Http\Controllers\Guest\KategoriController;
@@ -41,9 +42,11 @@ Route::middleware('guest')->group(function () {
     Route::post('anggota/login', [AnggotaAuthController::class, 'login'])->name('anggota.login.auth');
 });
 
-// Route::middleware('auth:anggota')->group(function () {
-//     Route::get('anggota/dashboard', function () {
-//         return view('anggota.dashboard');
-//     })->name('anggota.dashboard');
-//     Route::post('anggota/logout', [AnggotaAuthController::class, 'logout'])->name('anggota.logout');
-// });
+Route::prefix('anggota')->middleware('auth:anggota')->group(function () {
+    // Route::get('/dashboard', function () {
+    //     return view('anggota.dashboard');
+    // })->name('anggota.dashboard');
+    Route::get('/favorit', [BukuFavorit::class, 'index'])->name('anggota.favorit');
+
+    Route::post('/logout', [AnggotaAuthController::class, 'logout'])->name('anggota.logout');
+});

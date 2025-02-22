@@ -35,6 +35,6 @@ class AnggotaAuthController extends Controller
         Auth::guard('anggota')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect()->route('anggota.login');
+        return redirect('/');
     }
 }

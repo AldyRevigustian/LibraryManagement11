@@ -88,14 +88,14 @@
                         </a>
                     </li>
                     {{-- <li class="sidebar-item disabled"> --}}
-                    <li class="sidebar-item {{ request()->is('kategori*') ? 'active' : '' }}">
-                        <a href="{{ route('guest.kategori_buku') }}" class='sidebar-link'>
+                    <li class="sidebar-item {{ request()->is('anggota/favorit*') ? 'active' : '' }}">
+                        <a href="{{ route('anggota.favorit') }}" class='sidebar-link'>
                             <i class="bi bi-bookmark-fill"></i>
                             <span class="mt-1">Buku Favorit</span>
                         </a>
                     </li>
 
-                    <li class="sidebar-item {{ request()->is('kategori*') ? 'active' : '' }}">
+                    <li class="sidebar-item {{ request()->is('anggota/transaksi*') ? 'active' : '' }}">
                         <a href="{{ route('guest.kategori_buku') }}" class='sidebar-link'>
                             <i class="bi bi-file-earmark-text-fill"></i>
                             <span class="mt-1">Transaksi</span>
@@ -106,14 +106,31 @@
 
             <div class="sidebar-bottom mt-auto">
                 <ul class="menu mt-0">
-                    <li class="sidebar-item">
-                        <a href="{{ route('anggota.login') }}" class='sidebar-link'>
-                            <i class="bi bi-door-open-fill"></i>
-                            <span class="mt-1">Login Anggota</span>
-                        </a>
-                    </li>
+                    @if (Auth::guard('anggota')->check())
+                        {{-- @if (Auth::check()) --}}
+                        <li class="sidebar-item">
+                            <a href="{{ route('anggota.logout') }}"
+                                onclick="event.preventDefault();
+        document.getElementById('logout-form').submit();"
+                                class='sidebar-link'>
+                                <i class="bi bi-box-arrow-in-left"></i>
+                                <span>Logout</span>
+                            </a>
+                        </li>
+                        <form id="logout-form" action="{{ route('anggota.logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    @else
+                        <li class="sidebar-item">
+                            <a href="{{ route('anggota.login') }}" class='sidebar-link'>
+                                <i class="bi bi-door-open-fill"></i>
+                                <span class="mt-1">Login Anggota</span>
+                            </a>
+                        </li>
                 </ul>
+                @endif
             </div>
+            {{-- @dd(Auth::check()) --}}
         </div>
     </div>
     <div id="main" class='layout-navbar navbar-fixed'>
