@@ -15,7 +15,7 @@
 
     <link rel="stylesheet" href="/assets/css/shared/iconly.css">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    {{-- <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"> --}}
 
     <link rel="stylesheet" href="/assets/extensions/apexcharts/apexcharts.css">
     <link rel="stylesheet" href="/assets/extensions/simple-datatables/style.css">
