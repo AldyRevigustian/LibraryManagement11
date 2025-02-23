@@ -156,7 +156,7 @@
                     <p class="text-start mb-0">Pilihan buku terbaik dari berbagai kategori khusus untuk kamu</p>
                 </div>
                 <div>
-                    <a href="" style="text-decoration: underline;">
+                    <a href="/buku/" style="text-decoration: underline;">
                         <p class="mb-0">Lihat Semua</p>
                     </a>
                 </div>
@@ -202,7 +202,7 @@
                         dan karakter yang menginspirasi</p>
                 </div>
                 <div>
-                    <a href="" style="text-decoration: underline;">
+                    <a href="/kategori/2" style="text-decoration: underline;">
                         <p class="mb-0">Lihat Semua</p>
                     </a>
                 </div>
@@ -248,7 +248,7 @@
                     <p class="text-start mb-0">Nikmati cerita bergambar dengan karakter ikonik dan petualangan seru</p>
                 </div>
                 <div>
-                    <a href="" style="text-decoration: underline;">
+                    <a href="/kategori/21" style="text-decoration: underline;">
                         <p class="mb-0">Lihat Semua</p>
                     </a>
                 </div>
@@ -295,7 +295,7 @@
                         terbaik dirimu</p>
                 </div>
                 <div>
-                    <a href="" style="text-decoration: underline;">
+                    <a href="/kategori/8" style="text-decoration: underline;">
                         <p class="mb-0">Lihat Semua</p>
                     </a>
                 </div>
@@ -342,7 +342,7 @@
                         bisnis sukses</p>
                 </div>
                 <div>
-                    <a href="" style="text-decoration: underline;">
+                    <a href="/kategori/13" style="text-decoration: underline;">
                         <p class="mb-0">Lihat Semua</p>
                     </a>
                 </div>
