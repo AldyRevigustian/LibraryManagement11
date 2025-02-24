@@ -20,7 +20,7 @@ class DashboardController extends Controller
         $stoks = Buku::sum('stok');
         $peminjamans = Peminjaman::whereNull('tanggal_pengembalian')->count();
 
-        return view('dashboard', compact('bukus', 'anggotas', 'stoks', 'peminjamans', 'tahun'));
+        return view('admin.dashboard', compact('bukus', 'anggotas', 'stoks', 'peminjamans', 'tahun'));
     }
 
     public function getChartData(Request $request)

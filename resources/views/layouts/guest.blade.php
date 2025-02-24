@@ -129,7 +129,6 @@
                 </ul>
                 @endif
             </div>
-            {{-- @dd(Auth::check()) --}}
         </div>
     </div>
     <div id="main" class='layout-navbar navbar-fixed'>

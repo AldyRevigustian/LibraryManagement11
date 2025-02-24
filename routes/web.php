@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AnggotaController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Anggota\BukuFavorit;
 use App\Http\Controllers\Guest\BukuController;
@@ -41,7 +42,6 @@ Route::prefix('anggota')->middleware('auth:anggota')->group(function () {
 
 
 // Admin Controlelr
-
 Route::middleware('guest')->group(function () {
     Route::get('admin/login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
     Route::post('admin/login', [AdminAuthController::class, 'login'])->name('admin.login.auth');
@@ -52,8 +52,17 @@ Route::prefix('admin')->middleware('auth:web')->group(function () {
         return redirect()->route('admin.dashboard');
     });
 
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
-    Route::get('/dashboard/chart', [DashboardController::class, 'getChartData'])->name('dashboard.chart');
+    Route::prefix('dasboard')->group(function () {
+        Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
+        Route::get('/chart', [DashboardController::class, 'getChartData'])->name('dashboard.chart');
+    });
+
+    Route::prefix('master')->group(function () {
+        Route::prefix('anggota')->group(function () {
+            Route::get('/', [AnggotaController::class, 'index'])->name('admin.anggota');
+        });
+    });
+
 
     Route::post('/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
 });

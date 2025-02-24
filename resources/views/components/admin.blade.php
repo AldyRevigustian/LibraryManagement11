@@ -8,7 +8,8 @@
         </a>
     </li>
 
-    {{-- <li class="sidebar-item has-sub {{ request()->is('admin/master*') ? 'active' : '' }}">
+
+    <li class="sidebar-item has-sub {{ request()->is('admin/master*') ? 'active' : '' }}">
         <a href="#" class="sidebar-link">
             <i class="bi bi-collection-fill"></i>
             <span>Master Data</span>
@@ -17,7 +18,7 @@
             <li class="submenu-item {{ request()->is('admin/master/anggota') ? 'active' : '' }}">
                 <a href="{{ route('admin.anggota') }}">Data Anggota</a>
             </li>
-            <li class="submenu-item {{ request()->is('admin/master/penerbit') ? 'active' : '' }}">
+            {{-- <li class="submenu-item {{ request()->is('admin/master/penerbit') ? 'active' : '' }}">
                 <a href="{{ route('admin.penerbit') }}">Data Penerbit</a>
             </li>
             <li class="submenu-item {{ request()->is('admin/master/administrator') ? 'active' : '' }}">
@@ -25,11 +26,11 @@
             </li>
             <li class="submenu-item {{ request()->is('admin/master/peminjaman') ? 'active' : '' }}">
                 <a href="{{ route('admin.peminjaman') }}">Data Peminjaman</a>
-            </li>
+            </li> --}}
         </ul>
     </li>
 
-    <li class="sidebar-item has-sub {{ request()->is('admin/katalog*') ? 'active' : '' }}">
+    {{-- <li class="sidebar-item has-sub {{ request()->is('admin/katalog*') ? 'active' : '' }}">
         <a href="#" class="sidebar-link">
             <i class="bi bi-book-fill"></i>
             <span>Katalog Buku</span>
@@ -59,9 +60,9 @@
     </li> --}}
 
     <li class="sidebar-item" style="margin-bottom:5rem;">
-        <a href="{{ route('admin.logout') }}" onclick="event.preventDefault();
-document.getElementById('logout-form').submit();"
-            class='sidebar-link'>
+        <a href="{{ route('admin.logout') }}"
+            onclick="event.preventDefault();
+document.getElementById('logout-form').submit();" class='sidebar-link'>
             <i class="bi bi-box-arrow-in-left"></i>
             <span>Logout</span>
         </a>
