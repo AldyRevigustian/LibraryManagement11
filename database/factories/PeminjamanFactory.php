@@ -12,11 +12,6 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class PeminjamanFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     protected $model = Peminjaman::class;
 
     public function definition(): array
@@ -30,18 +25,24 @@ class PeminjamanFactory extends Factory
             throw new \Exception('Tidak ada Anggota atau Buku di database. Jalankan seeder Anggota dan Buku terlebih dahulu.');
         }
 
-        $tanggalPeminjaman = $faker->dateTimeBetween('-1 year', 'now');
-        $tanggalPengembalian = $faker->boolean(70)
-            ? (clone $tanggalPeminjaman)->modify('+' . rand(3, 14) . ' days')->format('Y-m-d')
-            : null;
+        $tanggalPeminjaman = $faker->dateTimeBetween('2024-01-01', '2025-02-28');
 
+        if ($tanggalPeminjaman->format('Y-m') === '2025-02') {
+            $tanggalPengembalian = null;
+        } else {
+            $tanggalPengembalian = (clone $tanggalPeminjaman)->modify('+' . rand(3, 14) . ' days');
+
+            if ($tanggalPengembalian->format('Y-m') > '2025-02') {
+                $tanggalPengembalian = null;
+            }
+        }
 
         return [
             'anggota_id' => $faker->randomElement($userIds),
             'buku_id' => $faker->randomElement($bukuIds),
             'tanggal_peminjaman' => $tanggalPeminjaman->format('Y-m-d'),
-            'tanggal_pengembalian' => $tanggalPengembalian,
-            'denda' => $tanggalPengembalian === null ? null : rand(0, 50000),
+            'tanggal_pengembalian' => $tanggalPengembalian ? $tanggalPengembalian->format('Y-m-d') : null,
+            'denda' => $tanggalPengembalian ? $faker->randomElement([0, 50000]) : null,
             'created_at' => now(),
             'updated_at' => now(),
         ];

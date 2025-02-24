@@ -140,10 +140,6 @@
             opacity: 0;
         }
 
-        .spinner-border {
-            width: 3rem;
-            height: 3rem;
-        }
     </style>
 @endpush
 

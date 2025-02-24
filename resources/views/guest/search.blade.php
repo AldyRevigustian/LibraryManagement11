@@ -116,11 +116,6 @@
             min-height: 80vh;
         }
 
-        .loading-spinner {
-            width: 3rem;
-            height: 3rem;
-        }
-
         .books-grid.loading {
             display: none;
         }

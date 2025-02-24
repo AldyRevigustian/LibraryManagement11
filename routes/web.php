@@ -53,5 +53,7 @@ Route::prefix('admin')->middleware('auth:web')->group(function () {
     });
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+    Route::get('/dashboard/chart', [DashboardController::class, 'getChartData'])->name('dashboard.chart');
+
     Route::post('/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
 });

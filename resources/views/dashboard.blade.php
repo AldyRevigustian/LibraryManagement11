@@ -2,10 +2,19 @@
 
 @include('components.admin')
 
+@push('style')
+@endpush
+
 @section('content')
     <div class="col">
         <div class="page-content">
-            <section class="row">
+            <div id="loadingSpinner" class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+
+            <section class="row" id="dashboardContent" style="display: none;">
                 <div class="col-12 col-lg-12">
                     <div class="row">
                         <div class="col-6 col-lg-3 col-md-6">
@@ -83,11 +92,19 @@
             </section>
         </div>
     </div>
+
+    {{-- Dropdown Pilihan Tahun --}}
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-header">
-                    <h4>Jumlah Peminjaman Buku 2025</h4>
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h4>Jumlah Peminjaman Buku</h4>
+                    <select id="tahunFilter" class="form-control w-auto">
+                        @for ($i = 2022; $i <= now()->year; $i++)
+                            <option value="{{ $i }}" {{ $i == $tahun ? 'selected' : '' }}>{{ $i }}
+                            </option>
+                        @endfor
+                    </select>
                 </div>
                 <div class="card-body">
                     <div id="chart-peminjaman"></div>
@@ -95,48 +112,74 @@
             </div>
         </div>
     </div>
+
     @push('script')
         <script>
-            var optionsProfileVisit = {
-                annotations: {
-                    position: "back",
-                },
-                dataLabels: {
-                    enabled: false,
-                },
-                chart: {
-                    type: "bar",
-                    height: 300,
-                },
-                fill: {
-                    opacity: 1,
-                },
-                plotOptions: {},
-                series: [{
-                    name: "sales",
-                    data: [9, 20, 30, 20, 10, 20, 30, 20],
-                }, ],
-                colors: "#435ebe",
-                xaxis: {
-                    categories: [
-                        "Januari",
-                        "Februaru",
-                        "Maret",
-                        "April",
-                        "Mei",
-                        "Juni",
-                        "Juli",
-                        "Agustus",
-                    ],
-                },
+            var chartProfileVisit;
+
+            function loadChart(tahun) {
+                $.ajax({
+                    url: "{{ route('dashboard.chart') }}",
+                    type: "GET",
+                    data: {
+                        tahun: tahun
+                    },
+                    success: function(response) {
+                        var optionsProfileVisit = {
+                            annotations: {
+                                position: "back"
+                            },
+                            dataLabels: {
+                                enabled: false
+                            },
+                            chart: {
+                                type: "bar",
+                                height: 300
+                            },
+                            fill: {
+                                opacity: 1
+                            },
+                            series: [{
+                                name: "Jumlah Peminjaman",
+                                data: response.peminjamanChart
+                            }],
+                            colors: "#435ebe",
+                            xaxis: {
+                                categories: [
+                                    "Januari", "Februari", "Maret", "April", "Mei", "Juni",
+                                    "Juli", "Agustus", "September", "Oktober", "November", "Desember"
+                                ],
+                            },
+                        };
+
+                        if (chartProfileVisit) {
+                            chartProfileVisit.destroy();
+                        }
+
+                        chartProfileVisit = new ApexCharts(
+                            document.querySelector("#chart-peminjaman"),
+                            optionsProfileVisit
+                        );
+
+                        chartProfileVisit.render();
+                    }
+                });
             }
 
-            var chartProfileVisit = new ApexCharts(
-                document.querySelector("#chart-peminjaman"),
-                optionsProfileVisit
-            )
+            $(document).ready(function() {
+                loadChart($("#tahunFilter").val());
 
-            chartProfileVisit.render()
+                $("#tahunFilter").change(function() {
+                    loadChart($(this).val());
+                });
+
+                setTimeout(function() {
+                    $("#loadingSpinner").fadeOut(300, function() {
+                        $(this).remove(); // Menghapus spinner dari DOM
+                        $("#dashboardContent").fadeIn(300).css("display", "block");
+                    });
+                }, 1000);
+            });
         </script>
     @endpush
 @endsection

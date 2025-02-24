@@ -55,7 +55,7 @@
             background-color: white
         }
     </style>
-
+    @stack('style')
 </head>
 {{-- @php
     $identitas = \App\Models\Identitas::first();
