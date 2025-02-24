@@ -19,7 +19,7 @@
                                         </div>
                                         <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
                                             <h6 class="text-muted font-semibold">Jumlah Buku</h6>
-                                            {{-- <h6 class="font-extrabold mb-0">{{ count($bukus) }}</h6> --}}
+                                            <h6 class="font-extrabold mb-0">{{ $bukus }}</h6>
                                         </div>
                                     </div>
                                 </div>
@@ -38,7 +38,7 @@
                                             <h6 class="text-muted font-semibold">
                                                 Jumlah Anggota
                                             </h6>
-                                            {{-- <h6 class="font-extrabold mb-0">{{ count($anggotas) }}</h6> --}}
+                                            <h6 class="font-extrabold mb-0">{{ $anggotas }}</h6>
                                         </div>
                                     </div>
                                 </div>
@@ -55,7 +55,7 @@
                                         </div>
                                         <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
                                             <h6 class="text-muted font-semibold">Stok Buku</h6>
-                                            {{-- <h6 class="font-extrabold mb-0">{{ $stock }}</h6> --}}
+                                            <h6 class="font-extrabold mb-0">{{ $stoks }}</h6>
                                         </div>
                                     </div>
                                 </div>
@@ -72,7 +72,7 @@
                                         </div>
                                         <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
                                             <h6 class="text-muted font-semibold">Peminjaman</h6>
-                                            {{-- <h6 class="font-extrabold mb-0">{{ count($peminjamans) }}</h6> --}}
+                                            <h6 class="font-extrabold mb-0">{{ $peminjamans }}</h6>
                                         </div>
                                     </div>
                                 </div>

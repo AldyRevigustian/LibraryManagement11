@@ -123,7 +123,7 @@
                         <li class="sidebar-item">
                             <a href="{{ route('anggota.login') }}" class='sidebar-link'>
                                 <i class="bi bi-door-open-fill"></i>
-                                <span class="mt-1">Login Anggota</span>
+                                <span class="mt-1">Login</span>
                             </a>
                         </li>
                 </ul>
