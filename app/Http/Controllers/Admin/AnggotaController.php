@@ -17,7 +17,7 @@ class AnggotaController extends Controller
 
     public function add()
     {
-        return view('admin.anggota.add');
+        return view('admin.anggota.create');
     }
 
     public function store(Request $request)
@@ -50,5 +50,59 @@ class AnggotaController extends Controller
         } else {
             return redirect()->back()->with('status', 'danger')->with('message', 'Gagal Menambahkan Anggota');
         }
+    }
+
+    public function edit($id)
+    {
+        $anggota = Anggota::find($id);
+        return view('admin.anggota.edit', compact('anggota'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $anggota = Anggota::findOrFail($id);
+
+        $validated = $request->validate([
+            'nim' => [
+                'required',
+                'digits_between:1,10',
+                'unique:anggotas,nim,' . $id,
+            ],
+            'name' => 'required|string|max:255',
+            'email' => [
+                'required',
+                'email',
+                'unique:anggotas,email,' . $id,
+                'regex:/^[a-zA-Z0-9._%+-]+@binus(\.[a-zA-Z]+)+$/'
+            ],
+            'password' => 'nullable|min:11',
+        ]);
+
+        $updateData = [
+            'nim' => $validated['nim'],
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+        ];
+
+        if (!empty($request->password)) {
+            $updateData['password'] = Hash::make($request->password);
+        }
+
+        $anggota->update($updateData);
+
+        return redirect()->route('admin.anggota')
+            ->with('status', 'success')
+            ->with('message', 'Sukses Memperbarui Anggota');
+    }
+
+
+    public function destroy($id)
+    {
+        $anggota = Anggota::find($id)->delete();
+
+        if ($anggota) {
+            return redirect()->route('admin.anggota')->with('status', 'success')->with('message', 'Suskses Menghapus Anggota');
+        }
+        return redirect()->route('admin.anggota')->with('status', 'danger')->with('message', 'Gagal Menghapus Anggota');
     }
 }

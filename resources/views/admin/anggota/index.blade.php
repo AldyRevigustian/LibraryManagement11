@@ -29,7 +29,7 @@
                             <th>NIM</th>
                             <th>Nama Lengkap</th>
                             <th>Email</th>
-                            <th class="col-1">Action</th>
+                            <th class="action-table">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -40,15 +40,15 @@
                                 <td>{{ $anggota->name }}</td>
                                 <td>{{ $anggota->email }}</td>
                                 <td>
-                                    {{-- <a href="#" class="btn icon btn-warning text-light" data-bs-toggle="modal"
-                                        data-bs-target="#edit{{ $anggota->id }}"><i class="bi bi-pencil-fill"></i></a> --}}
-                                    {{-- <form class="d-inline" method="POST"
-                                        action="{{ route('admin.destroy_anggota', $anggota->id) }}">
+                                    <a href="{{ route('admin.anggota_edit', $anggota->id) }}"
+                                        class="btn icon btn-warning text-light"><i class="bi bi-pencil-fill"></i></a>
+                                    <form class="d-inline" method="POST"
+                                        action="{{ route('admin.anggota_destroy', $anggota->id) }}">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn icon btn-danger"><i
                                                 class="bi bi-trash-fill"></i></a>
-                                    </form> --}}
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach

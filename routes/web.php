@@ -58,10 +58,15 @@ Route::prefix('admin')->middleware('auth:web')->group(function () {
     });
 
     Route::prefix('master')->group(function () {
-        Route::prefix('anggota')->group(function () {
-            Route::get('/', [AnggotaController::class, 'index'])->name('admin.anggota');
-            Route::get('/add', [AnggotaController::class, 'add'])->name('admin.anggota_add');
-            Route::post('/store', [AnggotaController::class, 'store'])->name('admin.anggota_store');
+        Route::prefix('anggota')->controller(App\Http\Controllers\Admin\AnggotaController::class)->group(function () {
+            Route::get('/', 'index')->name('admin.anggota');
+            Route::get('/add', 'add')->name('admin.anggota_add');
+            Route::post('/add/store', 'store')->name('admin.anggota_store');
+
+            Route::get('/edit/{id}', 'edit')->name('admin.anggota_edit');
+            Route::post('/update/{id}', 'update')->name('admin.anggota_update');
+
+            Route::delete('/{id}', 'destroy')->name('admin.anggota_destroy');
         });
     });
 
