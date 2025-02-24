@@ -12,7 +12,7 @@
                 <div class="d-flex flex-column w-100">
                     <div class="d-flex justify-content-between align-items-center">
                         <h5 class="mb-0">List Anggota</h5>
-                        <a href="#" class="btn btn-primary text-light w-auto">
+                        <a href="{{ route('admin.anggota_add') }}" class="btn btn-primary text-light w-auto">
                             <i class="bi bi-plus-lg"></i> Add
                         </a>
                     </div>
@@ -22,7 +22,6 @@
 
             @include('components.message')
             <div class="card-body">
-
                 <table class="table table-striped" id="table1">
                     <thead>
                         <tr>
@@ -42,14 +41,14 @@
                                 <td>{{ $anggota->email }}</td>
                                 <td>
                                     {{-- <a href="#" class="btn icon btn-warning text-light" data-bs-toggle="modal"
-                                            data-bs-target="#edit{{ $anggota->id }}"><i class="bi bi-pencil-fill"></i></a>
-                                        <form class="d-inline" method="POST"
-                                            action="{{ route('admin.destroy_anggota', $anggota->id) }}">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn icon btn-danger"><i
-                                                    class="bi bi-trash-fill"></i></a>
-                                        </form> --}}
+                                        data-bs-target="#edit{{ $anggota->id }}"><i class="bi bi-pencil-fill"></i></a> --}}
+                                    {{-- <form class="d-inline" method="POST"
+                                        action="{{ route('admin.destroy_anggota', $anggota->id) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn icon btn-danger"><i
+                                                class="bi bi-trash-fill"></i></a>
+                                    </form> --}}
                                 </td>
                             </tr>
                         @endforeach

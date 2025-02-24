@@ -40,7 +40,11 @@ class AnggotaAuthController extends Controller
     public function register(Request $request)
     {
         $validated = $request->validate([
-            'nim' => 'required|digits_between:1,10',
+            'nim' => [
+                'required',
+                'unique:anggotas,nim',
+                'digits_between:1,10',
+            ],
             'name' => 'required|string|max:255',
             'email' => [
                 'required',
