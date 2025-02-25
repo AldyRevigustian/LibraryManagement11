@@ -41,14 +41,14 @@
             <span>Katalog Buku</span>
         </a>
         <ul class="submenu {{ request()->is('admin/katalog*') ? 'active' : '' }}">
-            {{-- <li class="submenu-item {{ request()->is('admin/katalog/buku') ? 'active' : '' }}">
-                <a href="{{ route('admin.buku') }}">Data Buku</a>
-            </li> --}}
             <li class="submenu-item {{ request()->is('admin/katalog/kategori*') ? 'active' : '' }}">
                 <a href="{{ route('admin.kategori') }}">Data Kategori</a>
             </li>
             <li class="submenu-item {{ request()->is('admin/katalog/penerbit*') ? 'active' : '' }}">
                 <a href="{{ route('admin.penerbit') }}">Data Penerbit</a>
+            </li>
+            <li class="submenu-item {{ request()->is('admin/katalog/buku*') ? 'active' : '' }}">
+                <a href="{{ route('admin.buku') }}">Data Buku</a>
             </li>
         </ul>
     </li>
@@ -59,7 +59,7 @@
             <span>Laporan Perpustakaan</span>
         </a>
     </li> --}}
-{{--
+    {{--
     <li class="sidebar-item {{ request()->is('admin/identitas*') ? 'active' : '' }}">
         <a href="{{ route('admin.identitas') }}" class='sidebar-link'>
             <i class="bi bi-info-lg"></i>

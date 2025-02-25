@@ -102,6 +102,17 @@ Route::prefix('admin')->middleware('auth:web')->group(function () {
 
             Route::delete('/{id}', 'destroy')->name('admin.penerbit_destroy');
         });
+
+        Route::prefix('buku')->controller(App\Http\Controllers\Admin\BukuController::class)->group(function () {
+            Route::get('/', 'index')->name('admin.buku');
+            Route::get('/add', 'add')->name('admin.buku_add');
+            Route::post('/add/store', 'store')->name('admin.buku_store');
+
+            Route::get('/edit/{id}', 'edit')->name('admin.buku_edit');
+            Route::post('/update/{id}', 'update')->name('admin.buku_update');
+
+            Route::delete('/{id}', 'destroy')->name('admin.buku_destroy');
+        });
     });
 
 

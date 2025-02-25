@@ -45,13 +45,20 @@
             padding: 5px 0;
         }
 
-        input:read-only {
+        /* input:read-only {
             background-color: #efefef;
             pointer-events: none;
-        }
+        } */
 
         .choices__inner {
-            background-color: white
+            background-color: white;
+            min-height: 0px;
+            padding: 4px !important;
+            border: 1px solid #dce7f1 !important;
+        }
+
+        .choices[data-type*=select-one] .choices__inner {
+            padding: 0;
         }
     </style>
     @stack('style')
