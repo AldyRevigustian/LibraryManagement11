@@ -167,7 +167,7 @@
         <div class="rekomendasi mt-5">
             <div>
                 <div class="section-header">
-                    <h4 class="text-start mb-0">Menampilkan Buku Favorit {{ Auth::user()->name }}</h4>
+                    <h4 class="text-start mb-0">Menampilkan Buku Favorit {{ Auth::user()->nama }}</h4>
                     <p class="text-start mb-0">Tingkatkan literasi membacamu hari ini!</p>
                 </div>
             </div>

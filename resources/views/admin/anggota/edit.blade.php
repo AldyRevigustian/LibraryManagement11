@@ -63,11 +63,11 @@
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
-                            <div class="form-group mandatory">
+                            <div class="form-group">
                                 <label for="password" class="form-label">Password</label>
                                 <input type="text" id="password"
                                     class="form-control @error('password') is-invalid @enderror" placeholder="Password"
-                                    name="password" value="" required autocomplete="password">
+                                    name="password" value="" autocomplete="password">
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

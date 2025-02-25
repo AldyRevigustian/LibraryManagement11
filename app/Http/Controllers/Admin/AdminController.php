@@ -23,7 +23,7 @@ class AdminController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
+            'nama' => 'required|string|max:255',
             'email' => [
                 'required',
                 'email',
@@ -33,7 +33,7 @@ class AdminController extends Controller
         ]);
 
         $admin = Admin::create([
-            'name' => $validated['name'],
+            'nama' => $validated['nama'],
             'email' => $validated['email'],
             'role' => 'admin',
             'password' => Hash::make($validated['password']),
@@ -57,7 +57,7 @@ class AdminController extends Controller
         $admin = Admin::findOrFail($id);
 
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
+            'nama' => 'required|string|max:255',
             'email' => [
                 'required',
                 'email',
@@ -67,7 +67,7 @@ class AdminController extends Controller
         ]);
 
         $updateData = [
-            'name' => $validated['name'],
+            'nama' => $validated['nama'],
             'email' => $validated['email'],
         ];
 
