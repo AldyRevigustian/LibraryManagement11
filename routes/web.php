@@ -91,6 +91,17 @@ Route::prefix('admin')->middleware('auth:web')->group(function () {
 
             Route::delete('/{id}', 'destroy')->name('admin.kategori_destroy');
         });
+
+        Route::prefix('penerbit')->controller(App\Http\Controllers\Admin\PenerbitController::class)->group(function () {
+            Route::get('/', 'index')->name('admin.penerbit');
+            Route::get('/add', 'add')->name('admin.penerbit_add');
+            Route::post('/add/store', 'store')->name('admin.penerbit_store');
+
+            Route::get('/edit/{id}', 'edit')->name('admin.penerbit_edit');
+            Route::post('/update/{id}', 'update')->name('admin.penerbit_update');
+
+            Route::delete('/{id}', 'destroy')->name('admin.penerbit_destroy');
+        });
     });
 
 

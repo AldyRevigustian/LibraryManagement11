@@ -47,6 +47,9 @@
             <li class="submenu-item {{ request()->is('admin/katalog/kategori*') ? 'active' : '' }}">
                 <a href="{{ route('admin.kategori') }}">Data Kategori</a>
             </li>
+            <li class="submenu-item {{ request()->is('admin/katalog/penerbit*') ? 'active' : '' }}">
+                <a href="{{ route('admin.penerbit') }}">Data Penerbit</a>
+            </li>
         </ul>
     </li>
 
