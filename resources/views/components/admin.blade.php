@@ -1,7 +1,7 @@
 @section('sidebar')
     <li class="sidebar-title">Menu</li>
 
-    <li class="sidebar-item {{ request()->is('admin/dashboard*') ? 'active' : '' }} ">
+    <li class="sidebar-item {{ request()->is('admin/dashboard*') ? 'active' : '' }}">
         <a href="{{ route('admin.dashboard') }}" class='sidebar-link'>
             <i class="bi bi-house-fill"></i>
             <span>Dashboard</span>

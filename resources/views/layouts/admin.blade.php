@@ -15,7 +15,6 @@
 
     <link rel="stylesheet" href="/assets/css/shared/iconly.css">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    {{-- <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"> --}}
 
     <link rel="stylesheet" href="/assets/extensions/apexcharts/apexcharts.css">
     <link rel="stylesheet" href="/assets/extensions/simple-datatables/style.css">
@@ -63,10 +62,9 @@
         <div class="sidebar-wrapper active">
             <div class="sidebar-header position-relative">
                 <div class="d-flex justify-content-center align-items-center">
-                    {{-- <div class="logo center">
-                        <img src="{{ $identitas->foto }}" style="width: 150px; height: 150px;" alt="Logo">
-                    </div> --}}
-
+                    <div class="logo text-center">
+                        <img src="/assets/images/lkc.png" style="width: 150px; height: 80px; " alt="Logo">
+                    </div>
                 </div>
             </div>
             <div class="sidebar-menu">

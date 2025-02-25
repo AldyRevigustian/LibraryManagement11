@@ -51,7 +51,7 @@ Route::prefix('admin')->middleware('auth:web')->group(function () {
         return redirect()->route('admin.dashboard');
     });
 
-    Route::prefix('dasboard')->group(function () {
+    Route::prefix('dashboard')->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
         Route::get('/chart', [DashboardController::class, 'getChartData'])->name('dashboard.chart');
     });
