@@ -12,7 +12,7 @@
                 <div class="d-flex flex-column w-100">
                     <div class="d-flex justify-content-between align-items-center">
                         <h5 class="mb-0">List Admin</h5>
-                        <a href="{{ route('admin.admin_add') }}" class="btn btn-primary text-light w-auto">
+                        <a href="{{ route('admin.administrator_add') }}" class="btn btn-primary text-light w-auto">
                             <i class="bi bi-plus-lg"></i> Add
                         </a>
                     </div>
@@ -40,10 +40,10 @@
                                 <td>{{ $admin->email }}</td>
                                 <td>{{ $admin->role }}</td>
                                 <td>
-                                    <a href="{{ route('admin.admin_edit', $admin->id) }}"
+                                    <a href="{{ route('admin.administrator_edit', $admin->id) }}"
                                         class="btn icon btn-warning text-light"><i class="bi bi-pencil-fill"></i></a>
                                     <form class="d-inline" method="POST"
-                                        action="{{ route('admin.admin_destroy', $admin->id) }}">
+                                        action="{{ route('admin.administrator_destroy', $admin->id) }}">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn icon btn-danger"><i

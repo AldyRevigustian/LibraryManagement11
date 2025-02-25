@@ -68,15 +68,15 @@ Route::prefix('admin')->middleware('auth:web')->group(function () {
             Route::delete('/{id}', 'destroy')->name('admin.anggota_destroy');
         });
 
-        Route::prefix('admin')->middleware(RedirectIfNotSuperAdmin::class)->controller(App\Http\Controllers\Admin\AdminController::class)->group(function () {
-            Route::get('/', 'index')->name('admin.admin');
-            Route::get('/add', 'add')->name('admin.admin_add');
-            Route::post('/add/store', 'store')->name('admin.admin_store');
+        Route::prefix('administrator')->middleware(RedirectIfNotSuperAdmin::class)->controller(App\Http\Controllers\Admin\AdminController::class)->group(function () {
+            Route::get('/', 'index')->name('admin.administrator');
+            Route::get('/add', 'add')->name('admin.administrator_add');
+            Route::post('/add/store', 'store')->name('admin.administrator_store');
 
-            Route::get('/edit/{id}', 'edit')->name('admin.admin_edit');
-            Route::post('/update/{id}', 'update')->name('admin.admin_update');
+            Route::get('/edit/{id}', 'edit')->name('admin.administrator_edit');
+            Route::post('/update/{id}', 'update')->name('admin.administrator_update');
 
-            Route::delete('/{id}', 'destroy')->name('admin.admin_destroy');
+            Route::delete('/{id}', 'destroy')->name('admin.administrator_destroy');
         });
     });
 

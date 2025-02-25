@@ -12,12 +12,12 @@ class AdminController extends Controller
     public function index()
     {
         $admins = Admin::all();
-        return view('admin.admin.index', compact('admins'));
+        return view('admin.administrator.index', compact('admins'));
     }
 
     public function add()
     {
-        return view('admin.admin.create');
+        return view('admin.administrator.create');
     }
 
     public function store(Request $request)
@@ -40,7 +40,7 @@ class AdminController extends Controller
         ]);
 
         if ($admin) {
-            return redirect()->route('admin.admin')->with('status', 'success')->with('message', 'Sukses Menambahkan Admin');
+            return redirect()->route('admin.administrator')->with('status', 'success')->with('message', 'Sukses Menambahkan Admin');
         } else {
             return redirect()->back()->with('status', 'danger')->with('message', 'Gagal Menambahkan Admin');
         }
@@ -49,7 +49,7 @@ class AdminController extends Controller
     public function edit($id)
     {
         $admin = Admin::find($id);
-        return view('admin.admin.edit', compact('admin'));
+        return view('admin.administrator.edit', compact('admin'));
     }
 
     public function update(Request $request, $id)
@@ -77,7 +77,7 @@ class AdminController extends Controller
 
         $admin->update($updateData);
 
-        return redirect()->route('admin.admin')
+        return redirect()->route('admin.administrator')
             ->with('status', 'success')
             ->with('message', 'Sukses Memperbarui Admin');
     }
@@ -88,8 +88,8 @@ class AdminController extends Controller
         $admin = Admin::find($id)->delete();
 
         if ($admin) {
-            return redirect()->route('admin.admin')->with('status', 'success')->with('message', 'Suskses Menghapus Admin');
+            return redirect()->route('admin.administrator')->with('status', 'success')->with('message', 'Suskses Menghapus Admin');
         }
-        return redirect()->route('admin.admin')->with('status', 'danger')->with('message', 'Gagal Menghapus Admin');
+        return redirect()->route('admin.administrator')->with('status', 'danger')->with('message', 'Gagal Menghapus Admin');
     }
 }

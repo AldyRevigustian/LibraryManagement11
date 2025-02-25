@@ -19,7 +19,7 @@
 
             @include('components.message')
             <div class="card-body">
-                <form class="form" action="{{ route('admin.admin_update', $admin->id) }}" method="POST">
+                <form class="form" action="{{ route('admin.administrator_update', $admin->id) }}" method="POST">
                     @csrf
                     <div class="row">
                         <div class="col-md-6 col-12">

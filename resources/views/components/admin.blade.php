@@ -19,15 +19,15 @@
                 <a href="{{ route('admin.anggota') }}">Data Anggota</a>
             </li>
             @if (Auth::user()->role == 'superadmin')
-                <li class="submenu-item {{ request()->is('admin/master/admin') ? 'active' : '' }}">
-                    <a href="{{ route('admin.admin') }}">Data Admin</a>
+                <li class="submenu-item {{ request()->is('admin/master/administrator*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.administrator') }}">Data Admin</a>
                 </li>
             @endif
             {{-- <li class="submenu-item {{ request()->is('admin/master/penerbit') ? 'active' : '' }}">
                 <a href="{{ route('admin.penerbit') }}">Data Penerbit</a>
             </li>
             <li class="submenu-item {{ request()->is('admin/master/administrator') ? 'active' : '' }}">
-                <a href="{{ route('admin.administrator') }}">Data Administrator</a>
+                <a href="{{ route('admin.administratoristrator') }}">Data Administrator</a>
             </li>
             <li class="submenu-item {{ request()->is('admin/master/peminjaman') ? 'active' : '' }}">
                 <a href="{{ route('admin.peminjaman') }}">Data Peminjaman</a>
