@@ -35,28 +35,28 @@
         </ul>
     </li>
 
-    {{-- <li class="sidebar-item has-sub {{ request()->is('admin/katalog*') ? 'active' : '' }}">
+    <li class="sidebar-item has-sub {{ request()->is('admin/katalog*') ? 'active' : '' }}">
         <a href="#" class="sidebar-link">
             <i class="bi bi-book-fill"></i>
             <span>Katalog Buku</span>
         </a>
         <ul class="submenu {{ request()->is('admin/katalog*') ? 'active' : '' }}">
-            <li class="submenu-item {{ request()->is('admin/katalog/buku') ? 'active' : '' }}">
+            {{-- <li class="submenu-item {{ request()->is('admin/katalog/buku') ? 'active' : '' }}">
                 <a href="{{ route('admin.buku') }}">Data Buku</a>
-            </li>
-            <li class="submenu-item {{ request()->is('admin/katalog/kategori') ? 'active' : '' }}">
+            </li> --}}
+            <li class="submenu-item {{ request()->is('admin/katalog/kategori*') ? 'active' : '' }}">
                 <a href="{{ route('admin.kategori') }}">Data Kategori</a>
             </li>
         </ul>
     </li>
 
-    <li class="sidebar-item {{ request()->is('admin/laporan*') ? 'active' : '' }}">
+    {{-- <li class="sidebar-item {{ request()->is('admin/laporan*') ? 'active' : '' }}">
         <a href="{{ route('admin.laporan') }}" class='sidebar-link'>
             <i class="bi bi-file-earmark-pdf-fill"></i>
             <span>Laporan Perpustakaan</span>
         </a>
-    </li>
-
+    </li> --}}
+{{--
     <li class="sidebar-item {{ request()->is('admin/identitas*') ? 'active' : '' }}">
         <a href="{{ route('admin.identitas') }}" class='sidebar-link'>
             <i class="bi bi-info-lg"></i>

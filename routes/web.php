@@ -80,6 +80,19 @@ Route::prefix('admin')->middleware('auth:web')->group(function () {
         });
     });
 
+    Route::prefix('master')->group(function () {
+        Route::prefix('kategori')->controller(App\Http\Controllers\Admin\KategoriController::class)->group(function () {
+            Route::get('/', 'index')->name('admin.kategori');
+            Route::get('/add', 'add')->name('admin.kategori_add');
+            Route::post('/add/store', 'store')->name('admin.kategori_store');
+
+            Route::get('/edit/{id}', 'edit')->name('admin.kategori_edit');
+            Route::post('/update/{id}', 'update')->name('admin.kategori_update');
+
+            Route::delete('/{id}', 'destroy')->name('admin.kategori_destroy');
+        });
+    });
+
 
     Route::post('/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
 });
