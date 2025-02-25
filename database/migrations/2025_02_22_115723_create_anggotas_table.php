@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('anggotas', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('nim');
-            $table->string('name');
+            $table->string('nama');
             $table->string('email')->unique();
             $table->string('password');
             $table->timestamps();

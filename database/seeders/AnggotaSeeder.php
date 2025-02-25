@@ -15,7 +15,7 @@ class AnggotaSeeder extends Seeder
     {
         Anggota::create([
             'nim' => 2702303715,
-            'name' => 'Aldy Revigustian',
+            'nama' => 'Aldy Revigustian',
             'email' => 'aldy@binus.ac.id',
             'password' => Hash::make("Akunbaru123*"),
         ]);

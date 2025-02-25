@@ -37,7 +37,7 @@
                             <tr>
                                 <td>{{ $key + 1 }}</td>
                                 <td>{{ $anggota->nim }}</td>
-                                <td>{{ $anggota->name }}</td>
+                                <td>{{ $anggota->nama }}</td>
                                 <td>{{ $anggota->email }}</td>
                                 <td>
                                     <a href="{{ route('admin.anggota_edit', $anggota->id) }}"

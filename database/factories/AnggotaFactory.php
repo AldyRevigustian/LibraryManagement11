@@ -20,7 +20,7 @@ class AnggotaFactory extends Factory
         $faker = \Faker\Factory::create('id_ID'); // Gunakan Faker Indonesia
         return [
             'nim' => mt_rand(2500000000, 2899999999),
-            'name' => $faker->name, // Nama dalam bahasa Indonesia
+            'nama' => $faker->name, // Nama dalam bahasa Indonesia
             'email' => strtolower($faker->unique()->userName . rand(1000, 9999) . '@binus.ac.id'),
             'password' => Hash::make('password123'), // Hash satu kali untuk efisiensi
             'created_at' => now(),

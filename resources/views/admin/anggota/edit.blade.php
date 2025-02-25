@@ -24,11 +24,11 @@
                     <div class="row">
                         <div class="col-md-6 col-12">
                             <div class="form-group mandatory">
-                                <label for="name-column" class="form-label">Nama Lengkap</label>
-                                <input type="text" id="name-column"
-                                    class="form-control @error('name') is-invalid @enderror" placeholder="Nama Lengkap"
-                                    name="name" value="{{ $anggota->name }}" required autocomplete="name">
-                                @error('name')
+                                <label for="nama-column" class="form-label">Nama Lengkap</label>
+                                <input type="text" id="nama-column"
+                                    class="form-control @error('nama') is-invalid @enderror" placeholder="Nama Lengkap"
+                                    name="nama" value="{{ $anggota->nama }}" required autocomplete="nama">
+                                @error('nama')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

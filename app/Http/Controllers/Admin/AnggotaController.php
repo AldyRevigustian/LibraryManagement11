@@ -28,7 +28,7 @@ class AnggotaController extends Controller
                 'unique:anggotas,nim',
                 'digits_between:1,10',
             ],
-            'name' => 'required|string|max:255',
+            'nama' => 'required|string|max:255',
             'email' => [
                 'required',
                 'email',
@@ -40,7 +40,7 @@ class AnggotaController extends Controller
 
         $anggota = Anggota::create([
             'nim' => $validated['nim'],
-            'name' => $validated['name'],
+            'nama' => $validated['nama'],
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
         ]);
@@ -68,7 +68,7 @@ class AnggotaController extends Controller
                 'digits_between:1,10',
                 'unique:anggotas,nim,' . $id,
             ],
-            'name' => 'required|string|max:255',
+            'nama' => 'required|string|max:255',
             'email' => [
                 'required',
                 'email',
@@ -80,7 +80,7 @@ class AnggotaController extends Controller
 
         $updateData = [
             'nim' => $validated['nim'],
-            'name' => $validated['name'],
+            'nama' => $validated['nama'],
             'email' => $validated['email'],
         ];
 
