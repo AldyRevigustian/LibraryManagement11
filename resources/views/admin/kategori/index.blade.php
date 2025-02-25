@@ -34,7 +34,7 @@
                         @foreach ($kategoris as $key => $kategori)
                             <tr>
                                 <td>{{ $key + 1 }}</td>
-                                <td>{{ $kategori->name }}</td>
+                                <td>{{ $kategori->nama }}</td>
                                 <td>
                                     <a href="{{ route('admin.kategori_edit', $kategori->id) }}"
                                         class="btn icon btn-warning text-light"><i class="bi bi-pencil-fill"></i></a>

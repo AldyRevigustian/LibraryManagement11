@@ -26,9 +26,9 @@
                             <div class="form-group mandatory">
                                 <label for="name-column" class="form-label">Nama Kategori</label>
                                 <input type="text" id="name-column"
-                                    class="form-control @error('name') is-invalid @enderror" placeholder="Nama Kategori"
-                                    name="name" value="{{ $kategori->name }}" required autocomplete="name">
-                                @error('name')
+                                    class="form-control @error('nama') is-invalid @enderror" placeholder="Nama Kategori"
+                                    name="nama" value="{{ $kategori->nama }}" required autocomplete="nama">
+                                @error('nama')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

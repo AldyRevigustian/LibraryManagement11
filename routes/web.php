@@ -80,7 +80,7 @@ Route::prefix('admin')->middleware('auth:web')->group(function () {
         });
     });
 
-    Route::prefix('master')->group(function () {
+    Route::prefix('katalog')->group(function () {
         Route::prefix('kategori')->controller(App\Http\Controllers\Admin\KategoriController::class)->group(function () {
             Route::get('/', 'index')->name('admin.kategori');
             Route::get('/add', 'add')->name('admin.kategori_add');

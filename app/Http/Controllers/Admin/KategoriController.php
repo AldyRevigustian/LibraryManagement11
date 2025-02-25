@@ -22,16 +22,16 @@ class KategoriController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => [
+            'nama' => [
                 'required',
                 'string',
-                'unique:kategoris,name',
+                'unique:kategoris,nama',
                 'max:255',
             ],
         ]);
 
         $kategori = Kategori::create([
-            'name' => $validated['name'],
+            'nama' => $validated['nama'],
         ]);
 
         if ($kategori) {
@@ -52,16 +52,16 @@ class KategoriController extends Controller
         $kategori = Kategori::findOrFail($id);
 
         $validated = $request->validate([
-            'name' => [
+            'nama' => [
                 'required',
                 'string',
-                'unique:kategoris,name' . $id,
+                'unique:kategoris,nama,' . $id,
                 'max:255',
             ],
         ]);
 
         $updateData = [
-            'name' => $validated['name'],
+            'nama' => $validated['nama'],
         ];
 
         $kategori->update($updateData);
