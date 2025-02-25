@@ -2,6 +2,7 @@
 
 use App\Http\Middleware\RedirectIfNotAdmin;
 use App\Http\Middleware\RedirectIfNotAnggota;
+use App\Http\Middleware\RedirectIfNotSuperAdmin;
 use Http\Client\Exception\HttpException;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;

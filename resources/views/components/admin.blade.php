@@ -18,6 +18,11 @@
             <li class="submenu-item {{ request()->is('admin/master/anggota') ? 'active' : '' }}">
                 <a href="{{ route('admin.anggota') }}">Data Anggota</a>
             </li>
+            @if (Auth::user()->role == 'superadmin')
+                <li class="submenu-item {{ request()->is('admin/master/admin') ? 'active' : '' }}">
+                    <a href="{{ route('admin.admin') }}">Data Admin</a>
+                </li>
+            @endif
             {{-- <li class="submenu-item {{ request()->is('admin/master/penerbit') ? 'active' : '' }}">
                 <a href="{{ route('admin.penerbit') }}">Data Penerbit</a>
             </li>

@@ -57,9 +57,6 @@
     </style>
     @stack('style')
 </head>
-{{-- @php
-    $identitas = \App\Models\Identitas::first();
-@endphp --}}
 
 <body class="theme-light">
     <div id="sidebar" class="active">

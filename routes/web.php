@@ -1,16 +1,15 @@
 <?php
 
-use App\Http\Controllers\Admin\AnggotaController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Anggota\BukuFavorit;
 use App\Http\Controllers\Guest\BukuController;
-use App\Http\Controllers\Guest\DetailController;
 use App\Http\Controllers\Guest\KategoriController;
 use App\Http\Controllers\Guest\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Auth\AdminAuthController;
 use App\Http\Controllers\Auth\AnggotaAuthController;
+use App\Http\Middleware\RedirectIfNotSuperAdmin;
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 Route::get('/buku', [BukuController::class, 'search'])->name('guest.search_buku');
@@ -67,6 +66,17 @@ Route::prefix('admin')->middleware('auth:web')->group(function () {
             Route::post('/update/{id}', 'update')->name('admin.anggota_update');
 
             Route::delete('/{id}', 'destroy')->name('admin.anggota_destroy');
+        });
+
+        Route::prefix('admin')->middleware(RedirectIfNotSuperAdmin::class)->controller(App\Http\Controllers\Admin\AdminController::class)->group(function () {
+            Route::get('/', 'index')->name('admin.admin');
+            Route::get('/add', 'add')->name('admin.admin_add');
+            Route::post('/add/store', 'store')->name('admin.admin_store');
+
+            Route::get('/edit/{id}', 'edit')->name('admin.admin_edit');
+            Route::post('/update/{id}', 'update')->name('admin.admin_update');
+
+            Route::delete('/{id}', 'destroy')->name('admin.admin_destroy');
         });
     });
 
