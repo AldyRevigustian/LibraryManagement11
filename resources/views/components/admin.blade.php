@@ -53,12 +53,12 @@
         </ul>
     </li>
 
-    {{-- <li class="sidebar-item {{ request()->is('admin/laporan*') ? 'active' : '' }}">
+    <li class="sidebar-item {{ request()->is('admin/laporan*') ? 'active' : '' }}">
         <a href="{{ route('admin.laporan') }}" class='sidebar-link'>
-            <i class="bi bi-file-earmark-pdf-fill"></i>
+            <i class="bi bi-file-earmark-excel-fill"></i>
             <span>Laporan Perpustakaan</span>
         </a>
-    </li> --}}
+    </li>
     {{--
     <li class="sidebar-item {{ request()->is('admin/identitas*') ? 'active' : '' }}">
         <a href="{{ route('admin.identitas') }}" class='sidebar-link'>

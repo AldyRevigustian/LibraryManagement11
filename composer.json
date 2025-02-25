@@ -13,6 +13,7 @@
         "laravel/framework": "^11.31",
         "laravel/scout": "^10.13",
         "laravel/tinker": "^2.9",
+        "maatwebsite/excel": "^3.1",
         "typesense/typesense-php": "^5.0"
     },
     "require-dev": {

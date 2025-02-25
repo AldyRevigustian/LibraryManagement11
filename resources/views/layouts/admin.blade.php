@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="/assets/extensions/simple-datatables/style.css">
     <link rel="stylesheet" href="/assets/css/pages/simple-datatables.css">
     <link rel="stylesheet" href="/assets/extensions/choices.js/public/assets/styles/choices.css" />
-
+    <link rel="stylesheet" href="/assets/extensions/flatpickr/flatpickr.min.css" />
     <style>
         ::-webkit-scrollbar {
             width: 20px;
@@ -99,6 +99,7 @@
     <script src="/assets/extensions/choices.js/public/assets/scripts/choices.js"></script>
     <script src="/assets/js/pages/form-element-select.js"></script>
     <script src="/assets/extensions/apexcharts/apexcharts.js"></script>
+    <script src="/assets/extensions/flatpickr/flatpickr.min.js"></script>
 
     <script>
         const appBody = document.body;

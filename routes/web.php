@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\LaporanController;
 use App\Http\Controllers\Anggota\BukuFavorit;
 use App\Http\Controllers\Guest\BukuController;
 use App\Http\Controllers\Guest\KategoriController;
@@ -115,6 +116,11 @@ Route::prefix('admin')->middleware('auth:web')->group(function () {
         });
     });
 
+    Route::prefix('laporan')->controller(App\Http\Controllers\Admin\LaporanController::class)->group(function () {
+        Route::get('/', 'index')->name('admin.laporan');
+        Route::post('/export/tanggal', [LaporanController::class, 'export_tanggal'])->name('admin.export_tanggal');
+        Route::post('/export/range', [LaporanController::class, 'export_range'])->name('admin.export_range');
+    });
 
     Route::post('/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
 });
