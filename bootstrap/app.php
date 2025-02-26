@@ -16,7 +16,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        $middleware->redirectGuestsTo(fn () => route('anggota.login'));
+        $middleware->redirectGuestsTo(function (Request $request) {
+            return $request->is('admin*') ? route('admin.login') : route('anggota.login');
+        });
+
 
         $middleware->alias([
             'admin' => RedirectIfNotAdmin::class,

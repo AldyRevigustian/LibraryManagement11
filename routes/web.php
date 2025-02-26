@@ -12,6 +12,18 @@ use App\Http\Controllers\Auth\AdminAuthController;
 use App\Http\Controllers\Auth\AnggotaAuthController;
 use App\Http\Middleware\RedirectIfNotSuperAdmin;
 
+// Auth Routes
+Route::middleware('guest')->group(function () {
+    Route::get('anggota/login', [AnggotaAuthController::class, 'showLoginForm'])->name('anggota.login');
+    Route::post('anggota/login', [AnggotaAuthController::class, 'login'])->name('anggota.login.auth');
+
+    Route::get('anggota/register', [AnggotaAuthController::class, 'showRegisterForm'])->name('anggota.register');
+    Route::post('anggota/register', [AnggotaAuthController::class, 'register'])->name('anggota.register.auth');
+
+    Route::get('admin/login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
+    Route::post('admin/login', [AdminAuthController::class, 'login'])->name('admin.login.auth');
+});
+
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 Route::get('/buku', [BukuController::class, 'search'])->name('guest.search_buku');
 Route::get('/buku/detail/{id}', [BukuController::class, 'detail'])->name('guest.detail_buku');
@@ -20,31 +32,15 @@ Route::get('/kategori', [KategoriController::class, 'index'])->name('guest.kateg
 Route::get('/kategori/penerbit/{id}', [KategoriController::class, 'penerbit'])->name('guest.penerbit_buku_id');
 Route::get('/kategori/{id}', [KategoriController::class, 'kategori'])->name('guest.kategori_buku_id');
 
-
-Route::prefix('anggota')->middleware('guest')->group(function () {
-    Route::get('login', [AnggotaAuthController::class, 'showLoginForm'])->name('anggota.login');
-    Route::post('login', [AnggotaAuthController::class, 'login'])->name('anggota.login.auth');
-
-    Route::get('register', [AnggotaAuthController::class, 'showRegisterForm'])->name('anggota.register');
-    Route::post('register', [AnggotaAuthController::class, 'register'])->name('anggota.register.auth');
-});
-
 Route::prefix('anggota')->middleware('auth:anggota')->group(function () {
-    // Route::get('/dashboard', function () {
-    //     return view('anggota.dashboard');
-    // })->name('anggota.dashboard');
+    Route::get('/', function () {
+        return redirect()->route('welcome');
+    });
     Route::get('/favorit', [BukuFavorit::class, 'index'])->name('anggota.favorite');
     Route::post('/favorit/add/{id}', [BukuFavorit::class, 'create'])->name('anggota.favorite_add');
     Route::delete('/favorit/delete/{id}', [BukuFavorit::class, 'destroy'])->name('anggota.favorite_delete');
 
     Route::post('/logout', [AnggotaAuthController::class, 'logout'])->name('anggota.logout');
-});
-
-
-// Admin Controlelr
-Route::middleware('guest')->group(function () {
-    Route::get('admin/login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
-    Route::post('admin/login', [AdminAuthController::class, 'login'])->name('admin.login.auth');
 });
 
 Route::prefix('admin')->middleware('auth:web')->group(function () {
