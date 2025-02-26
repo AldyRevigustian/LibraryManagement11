@@ -158,10 +158,10 @@
                                 </td>
                                 <td colspan="2" style="border: 2px solid #dee2e6; padding: 20px !important;">
                                     <h2 class="fw-bold mb-0">{{ $buku->judul }}</h2>
-                                    <h6 class="text-muted">{{ $buku->kontributor }}</h6>
+                                    <h6 class="text-muted mt-2">{{ $buku->kontributor }}</h6>
                                     <a href="/kategori/{{ $buku->kategori_id }}" class="text-decoration-none">
                                         <div
-                                            class="badge bg-danger bg-opacity-10 text-danger d-inline-flex align-items-center p-2 rounded">
+                                            class="badge bg-primary bg-opacity-10 text-primary d-inline-flex align-items-center p-2 rounded">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
                                                 fill="none" viewBox="0 0 24 24" stroke="currentColor" class="me-2"
                                                 style="stroke-width: 1.5;">
