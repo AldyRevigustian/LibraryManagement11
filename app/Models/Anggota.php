@@ -16,6 +16,7 @@ class Anggota extends Authenticatable
         'nama',
         'email',
         'password',
+        'foto',
     ];
 
     public function getAuthPassword()

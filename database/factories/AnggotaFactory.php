@@ -23,6 +23,7 @@ class AnggotaFactory extends Factory
             'nama' => $faker->name, // Nama dalam bahasa Indonesia
             'email' => strtolower($faker->unique()->userName . rand(1000, 9999) . '@binus.ac.id'),
             'password' => Hash::make('password123'), // Hash satu kali untuk efisiensi
+            'foto' => "/assets/images/faces/" .  mt_rand(1, 8) . ".jpg",
             'created_at' => now(),
             'updated_at' => now(),
         ];

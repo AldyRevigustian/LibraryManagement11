@@ -18,6 +18,7 @@ class AnggotaSeeder extends Seeder
             'nama' => 'Aldy Revigustian',
             'email' => 'aldy@binus.ac.id',
             'password' => Hash::make("Akunbaru123*"),
+            'foto' => "/assets/images/faces/2.jpg",
         ]);
 
         Anggota::factory()->count(199)->create();

@@ -105,30 +105,34 @@
             </div>
 
             <div class="sidebar-bottom mt-auto">
+                <hr>
                 <ul class="menu mt-0">
                     @if (Auth::guard('anggota')->check())
-                        <li class="sidebar-item">
-                            <a href="{{ route('anggota.logout') }}"
-                                onclick="event.preventDefault();
-        document.getElementById('logout-form').submit();"
-                                class='sidebar-link'>
-                                <i class="bi bi-box-arrow-in-left"></i>
-                                <span>Logout</span>
+                        @php
+                            $user = Auth::guard('anggota')->user();
+                        @endphp
+                        <li class="sidebar-item {{ request()->is('anggota/profile*') ? 'active' : '' }}">
+                            <a href="{{ route('anggota.profile') }}"
+                                class="sidebar-link d-flex align-items-center p-3">
+                                <img src="{{ $user->foto }}" alt="Avatar" class="rounded-circle me-2"
+                                    width="40" height="40">
+                                <div style="line-height: 17px">
+                                    <span class="d-block  {{ request()->is('anggota/profile*') ? '' : 'fw-bold' }} mx-0">{{ $user->nama }}</span>
+                                    <small class="{{ request()->is('anggota/profile*') ? 'text-white' : 'text-muted' }}">{{ $user->email }}</small>
+                                </div>
                             </a>
                         </li>
-                        <form id="logout-form" action="{{ route('anggota.logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
                     @else
                         <li class="sidebar-item">
-                            <a href="{{ route('anggota.login') }}" class='sidebar-link'>
+                            <a href="{{ route('anggota.login') }}" class="sidebar-link">
                                 <i class="bi bi-door-open-fill"></i>
                                 <span class="mt-1">Login</span>
                             </a>
                         </li>
+                    @endif
                 </ul>
-                @endif
             </div>
+
         </div>
     </div>
     <div id="main" class='layout-navbar navbar-fixed'>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LaporanController;
 use App\Http\Controllers\Anggota\BukuFavorit;
+use App\Http\Controllers\Anggota\ProfileController;
 use App\Http\Controllers\Guest\BukuController;
 use App\Http\Controllers\Guest\KategoriController;
 use App\Http\Controllers\Guest\WelcomeController;
@@ -11,6 +12,19 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AdminAuthController;
 use App\Http\Controllers\Auth\AnggotaAuthController;
 use App\Http\Middleware\RedirectIfNotSuperAdmin;
+
+Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
+
+Route::prefix('buku')->group(function () {
+    Route::get('/', [BukuController::class, 'search'])->name('guest.search_buku');
+    Route::get('/detail/{id}', [BukuController::class, 'detail'])->name('guest.detail_buku');
+});
+
+Route::prefix('kategori')->group(function () {
+    Route::get('/', [KategoriController::class, 'index'])->name('guest.kategori_buku');
+    Route::get('/penerbit/{id}', [KategoriController::class, 'penerbit'])->name('guest.penerbit_buku_id');
+    Route::get('/{id}', [KategoriController::class, 'kategori'])->name('guest.kategori_buku_id');
+});
 
 // Auth Routes
 Route::middleware('guest')->group(function () {
@@ -24,25 +38,27 @@ Route::middleware('guest')->group(function () {
     Route::post('admin/login', [AdminAuthController::class, 'login'])->name('admin.login.auth');
 });
 
-Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
-Route::get('/buku', [BukuController::class, 'search'])->name('guest.search_buku');
-Route::get('/buku/detail/{id}', [BukuController::class, 'detail'])->name('guest.detail_buku');
-
-Route::get('/kategori', [KategoriController::class, 'index'])->name('guest.kategori_buku');
-Route::get('/kategori/penerbit/{id}', [KategoriController::class, 'penerbit'])->name('guest.penerbit_buku_id');
-Route::get('/kategori/{id}', [KategoriController::class, 'kategori'])->name('guest.kategori_buku_id');
-
+// Anggota Routes
 Route::prefix('anggota')->middleware('auth:anggota')->group(function () {
     Route::get('/', function () {
         return redirect()->route('welcome');
     });
-    Route::get('/favorit', [BukuFavorit::class, 'index'])->name('anggota.favorite');
-    Route::post('/favorit/add/{id}', [BukuFavorit::class, 'create'])->name('anggota.favorite_add');
-    Route::delete('/favorit/delete/{id}', [BukuFavorit::class, 'destroy'])->name('anggota.favorite_delete');
+
+    Route::prefix('profile')->group(function () {
+        Route::get('/', [ProfileController::class, 'index'])->name('anggota.profile');
+        Route::put('/update/{id}', [ProfileController::class, 'update'])->name('anggota.profile_update');
+    });
+
+    Route::prefix('favorit')->group(function () {
+        Route::get('/', [BukuFavorit::class, 'index'])->name('anggota.favorite');
+        Route::post('/add/{id}', [BukuFavorit::class, 'create'])->name('anggota.favorite_add');
+        Route::delete('/delete/{id}', [BukuFavorit::class, 'destroy'])->name('anggota.favorite_delete');
+    });
 
     Route::post('/logout', [AnggotaAuthController::class, 'logout'])->name('anggota.logout');
 });
 
+// Admin Routes
 Route::prefix('admin')->middleware('auth:web')->group(function () {
     Route::get('/', function () {
         return redirect()->route('admin.dashboard');
