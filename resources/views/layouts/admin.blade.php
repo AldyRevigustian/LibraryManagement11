@@ -45,11 +45,6 @@
             padding: 5px 0;
         }
 
-        /* input:read-only {
-            background-color: #efefef;
-            pointer-events: none;
-        } */
-
         .choices__inner {
             background-color: white;
             min-height: 0px;

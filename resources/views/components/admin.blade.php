@@ -23,15 +23,6 @@
                     <a href="{{ route('admin.administrator') }}">Data Admin</a>
                 </li>
             @endif
-            {{-- <li class="submenu-item {{ request()->is('admin/master/penerbit') ? 'active' : '' }}">
-                <a href="{{ route('admin.penerbit') }}">Data Penerbit</a>
-            </li>
-            <li class="submenu-item {{ request()->is('admin/master/administrator') ? 'active' : '' }}">
-                <a href="{{ route('admin.administratoristrator') }}">Data Administrator</a>
-            </li>
-            <li class="submenu-item {{ request()->is('admin/master/peminjaman') ? 'active' : '' }}">
-                <a href="{{ route('admin.peminjaman') }}">Data Peminjaman</a>
-            </li> --}}
         </ul>
     </li>
 
@@ -53,12 +44,35 @@
         </ul>
     </li>
 
+    <li class="sidebar-item has-sub {{ request()->is('admin/transaksi*') ? 'active' : '' }}">
+        <a href="#" class="sidebar-link">
+            <i class="bi bi-arrow-left-right"></i>
+            <span>Transaksi</span>
+        </a>
+        {{-- <ul class="submenu {{ request()->is('admin/transaksi*') ? 'active' : '' }}">
+            <li class="submenu-item {{ request()->is('admin/transaksi/peminjaman*') ? 'active' : '' }}">
+                <a href="{{ route('admin.peminjaman') }}">Peminjaman Pending</a>
+            </li>
+        </ul> --}}
+        <ul class="submenu {{ request()->is('admin/transaksi*') ? 'active' : '' }}">
+            <li class="submenu-item {{ request()->is('admin/transaksi/peminjaman*') ? 'active' : '' }}">
+                <a href="{{ route('admin.peminjaman') }}">Data Peminjaman</a>
+            </li>
+        </ul>
+        {{-- <ul class="submenu {{ request()->is('admin/transaksi*') ? 'active' : '' }}">
+            <li class="submenu-item {{ request()->is('admin/transaksi/peminjaman*') ? 'active' : '' }}">
+                <a href="{{ route('admin.peminjaman') }}">Data Pengembalian</a>
+            </li>
+        </ul> --}}
+    </li>
+
     <li class="sidebar-item {{ request()->is('admin/laporan*') ? 'active' : '' }}">
         <a href="{{ route('admin.laporan') }}" class='sidebar-link'>
             <i class="bi bi-file-earmark-excel-fill"></i>
             <span>Laporan Perpustakaan</span>
         </a>
     </li>
+
     {{--
     <li class="sidebar-item {{ request()->is('admin/identitas*') ? 'active' : '' }}">
         <a href="{{ route('admin.identitas') }}" class='sidebar-link'>
@@ -90,7 +104,7 @@ document.getElementById('logout-form').submit();" class='sidebar-link'>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
                 <div class="user-menu navbar-nav ms-auto mb-lg-0">
-                    <div class="user-name text-end me-3">
+                    <div class="user-name text-end me-3" style="">
                         <h6 class="mb-0 text-gray-600">{{ Auth::user()->nama }}</h6>
                         <p class="mb-0 text-sm text-gray-600">{{ Auth::user()->role }}</p>
                     </div>

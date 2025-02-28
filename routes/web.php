@@ -128,6 +128,14 @@ Route::prefix('admin')->middleware('auth:web')->group(function () {
         });
     });
 
+    Route::prefix('transaksi')->group(function () {
+        Route::prefix('peminjaman')->controller(App\Http\Controllers\Admin\PeminjamanController::class)->group(function () {
+            Route::get('/', 'index')->name('admin.peminjaman');
+            // Route::post('/export/tanggal', [LaporanController::class, 'export_tanggal'])->name('admin.export_tanggal');
+            // Route::post('/export/range', [LaporanController::class, 'export_range'])->name('admin.export_range');
+        });
+    });
+
     Route::prefix('laporan')->controller(App\Http\Controllers\Admin\LaporanController::class)->group(function () {
         Route::get('/', 'index')->name('admin.laporan');
         Route::post('/export/tanggal', [LaporanController::class, 'export_tanggal'])->name('admin.export_tanggal');
