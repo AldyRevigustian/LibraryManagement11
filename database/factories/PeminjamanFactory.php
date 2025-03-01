@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Anggota;
+use App\Models\Aturan;
 use App\Models\Buku;
 use App\Models\Peminjaman;
 use Carbon\Carbon;
@@ -19,7 +20,6 @@ class PeminjamanFactory extends Factory
     {
         $faker = \Faker\Factory::create('id_ID');
 
-        // Ambil ID Anggota dan Buku
         $userIds = Anggota::pluck('id')->toArray();
         $bukuIds = Buku::pluck('id')->toArray();
         if (empty($userIds) || empty($bukuIds)) {
@@ -27,7 +27,7 @@ class PeminjamanFactory extends Factory
         }
 
         $tanggalPeminjaman = Carbon::parse($faker->dateTimeBetween('2024-01-01', '2025-02-28'));
-        $batasPengembalian = (clone $tanggalPeminjaman)->addDays(7);
+        $batasPengembalian = (clone $tanggalPeminjaman)->addDays(Aturan::first()->batas_pengembalian);
 
         // **Logika peminjaman yang belum dikembalikan:**
         // - Jika peminjaman terjadi di bulan 2025-02, ada 50% kemungkinan belum dikembalikan.
@@ -35,12 +35,12 @@ class PeminjamanFactory extends Factory
         if ($tanggalPeminjaman->format('Y-m') === '2025-02' && $faker->boolean(50)) {
             $tanggalPengembalian = null;
         } else {
-            $tanggalPengembalian = (clone $tanggalPeminjaman)->addDays(rand(3, 14));
+            $tanggalPengembalian = (clone $tanggalPeminjaman)->addDays(rand(3, 20));
         }
 
         if ($tanggalPengembalian && $tanggalPengembalian->gt($batasPengembalian)) {
             $hariTerlambat = $batasPengembalian->diffInDays($tanggalPengembalian);
-            $denda = $hariTerlambat * 10000;
+            $denda = $hariTerlambat * Aturan::first()->denda;
         } else {
             $denda = 0;
         }
