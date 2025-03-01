@@ -131,6 +131,10 @@ Route::prefix('admin')->middleware('auth:web')->group(function () {
     Route::prefix('transaksi')->group(function () {
         Route::prefix('peminjaman')->controller(App\Http\Controllers\Admin\PeminjamanController::class)->group(function () {
             Route::get('/', 'index')->name('admin.peminjaman');
+            Route::get('/add', 'add')->name('admin.peminjaman_add');
+            Route::post('/add/store', 'store')->name('admin.peminjaman_store');
+
+
             // Route::post('/export/tanggal', [LaporanController::class, 'export_tanggal'])->name('admin.export_tanggal');
             // Route::post('/export/range', [LaporanController::class, 'export_range'])->name('admin.export_range');
         });

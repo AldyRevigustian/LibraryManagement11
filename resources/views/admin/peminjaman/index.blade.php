@@ -11,10 +11,10 @@
             <div class="card-header d-flex justify-content-between align-items-center flex-wrap pb-0">
                 <div class="d-flex flex-column w-100">
                     <div class="d-flex justify-content-between align-items-center">
-                        <h5 class="mb-0">List Admin</h5>
-                        {{-- <a href="{{ route('admin.administrator_add') }}" class="btn btn-primary text-light w-auto">
+                        <h5 class="mb-0">List Peminjaman</h5>
+                        <a href="{{ route('admin.peminjaman_add') }}" class="btn btn-primary text-light w-auto">
                             <i class="bi bi-plus-lg"></i> Add
-                        </a> --}}
+                        </a>
                     </div>
                     <hr class="mt-4 mb w-100">
                 </div>
