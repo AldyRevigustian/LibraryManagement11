@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Anggota;
+use App\Models\Aturan;
 use App\Models\Buku;
 use App\Models\Peminjaman;
 use Illuminate\Http\Request;
@@ -19,10 +20,11 @@ class PeminjamanController extends Controller
     {
         $anggotas = Anggota::all();
         $bukus = Buku::all();
-        return view('admin.peminjaman.create', compact('anggotas', 'bukus'));
+        $rule = Aturan::first();
+        return view('admin.peminjaman.create', compact('anggotas', 'bukus', 'rule'));
     }
 
     public function store(){
-
+        
     }
 }

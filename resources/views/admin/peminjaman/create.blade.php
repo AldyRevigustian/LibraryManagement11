@@ -108,10 +108,10 @@
     </section>
 
     @push('script')
-        <script>
+    <script>
             var currentDate = new Date();
             var mingdep = new Date();
-            mingdep.setDate(currentDate.getDate() + 7);
+            mingdep.setDate(currentDate.getDate() + {{ $rule->batas_pengembalian }});
 
             flatpickr('.flatpickr-no-config', {
                 dateFormat: "d/m/Y",

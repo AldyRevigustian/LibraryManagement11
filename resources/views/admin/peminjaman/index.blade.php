@@ -26,7 +26,9 @@
                     <thead>
                         <tr>
                             <th>No.</th>
+                            <th>NIM</th>
                             <th>Nama Peminjam</th>
+                            <th>ISBN Buku</th>
                             <th>Buku</th>
                             <th>Tanggal Peminjaman</th>
                             <th class="action-table">Action</th>
@@ -36,7 +38,9 @@
                         @foreach ($peminjamans as $key => $peminjaman)
                             <tr>
                                 <td>{{ $key + 1 }}</td>
+                                <td>{{ $peminjaman->anggota->nim }}</td>
                                 <td>{{ $peminjaman->anggota->nama }}</td>
+                                <td>{{ $peminjaman->buku->ISBN }}</td>
                                 <td>{{ $peminjaman->buku->judul }}</td>
                                 <td>{{ $peminjaman->tanggal_peminjaman }}</td>
                                 <td>
