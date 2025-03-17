@@ -96,7 +96,7 @@
                     </li>
 
                     <li class="sidebar-item {{ request()->is('anggota/transaksi*') ? 'active' : '' }}">
-                        <a href="{{ route('guest.kategori_buku') }}" class='sidebar-link'>
+                        <a href="{{ route('anggota.peminjaman') }}" class='sidebar-link'>
                             <i class="bi bi-file-earmark-text-fill"></i>
                             <span class="mt-1">Transaksi</span>
                         </a>

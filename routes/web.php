@@ -55,6 +55,14 @@ Route::prefix('anggota')->middleware('auth:anggota')->group(function () {
         Route::delete('/delete/{id}', [BukuFavorit::class, 'destroy'])->name('anggota.favorite_delete');
     });
 
+
+    Route::prefix('transaksi')->group(function () {
+        Route::prefix('peminjaman')->controller(App\Http\Controllers\Anggota\PeminjamanController::class)->group(function () {
+            Route::get('/', 'index')->name('anggota.peminjaman');
+            Route::get('/add', 'add')->name('anggota.peminjaman_add');
+            Route::post('/add/store', 'store')->name('anggota.peminjaman_store');
+        });
+    });
     Route::post('/logout', [AnggotaAuthController::class, 'logout'])->name('anggota.logout');
 });
 
