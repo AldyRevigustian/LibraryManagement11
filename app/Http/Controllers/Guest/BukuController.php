@@ -34,7 +34,7 @@ class BukuController extends Controller
 
     public function search(Request $request)
     {
-        $perPage = 30; // Jumlah buku per halaman
+        $perPage = 25; // Jumlah buku per halaman
 
         if ($request->query('search')) {
             $query = $request->query('search');

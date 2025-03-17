@@ -19,7 +19,7 @@ class KategoriController extends Controller
 
     public function penerbit(Request $request)
     {
-        $perPage = 30;
+        $perPage = 25;
         $penerbit = Penerbit::find($request->id);
         $bukus = Buku::where('penerbit_id', $penerbit->id)->paginate($perPage);
         $tipe = 'penerbit';
@@ -28,7 +28,7 @@ class KategoriController extends Controller
 
     public function kategori(Request $request)
     {
-        $perPage = 30;
+        $perPage = 25;
         $kategori = Kategori::find($request->id);
         $bukus = Buku::where('kategori_id', $kategori->id)->paginate($perPage);
         $tipe = 'kategori';

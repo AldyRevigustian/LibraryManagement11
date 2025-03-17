@@ -14,7 +14,7 @@ class BukuFavorit extends Controller
     public function index()
     {
         $anggota = Anggota::find(Auth::guard('anggota')->user()->id);
-        $perPage = 30;
+        $perPage = 25;
         $bukus = $anggota->favorite()->paginate($perPage);
         return view('anggota.favorite', compact('bukus'));
     }
