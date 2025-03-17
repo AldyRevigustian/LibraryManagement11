@@ -265,24 +265,14 @@
                     </button>
                 </form>
             @endif
-            @if (Auth::guard('anggota')->check())
-                <a href="{{ route('anggota.peminjaman_add', ['buku_id' => $buku->id]) }}"
-                    class="action-btn borrow-btn btn btn-primary">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
-                        viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-                    </svg>
-                    Pinjam buku ini
-                </a>
-            @else
-                <button class="action-btn borrow-btn btn btn-primary">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
-                        viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-                    </svg>
-                    Pinjam buku ini
-                </button>
-            @endif
+            <a href="{{ route('anggota.peminjaman_add', ['buku_id' => $buku->id]) }}"
+                class="action-btn borrow-btn btn btn-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
+                    viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                </svg>
+                Pinjam buku ini
+            </a>
         </div>
     </div>
 
