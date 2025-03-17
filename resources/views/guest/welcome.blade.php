@@ -140,11 +140,54 @@
             opacity: 0;
         }
 
+        a[style="text-decoration: underline;"] {
+            color: #063A76;
+            font-weight: 600;
+            text-decoration: none !important;
+            position: relative;
+            transition: color 0.4s ease;
+        }
+
+        a[style="text-decoration: underline;"]:hover {
+            color: #0a51a9;
+        }
+
+        a[style="text-decoration: underline;"] p {
+            position: relative;
+            display: inline-block;
+            margin: 0;
+            padding: 2px 0;
+        }
+
+        a[style="text-decoration: underline;"] p::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #063A76;
+            transform: scaleX(0.3);
+            opacity: 0.7;
+            transform-origin: right;
+            transition: transform 0.5s ease, opacity 0.4s ease;
+        }
+
+        a[style="text-decoration: underline;"]:hover p::after {
+            transform: scaleX(1);
+            opacity: 1;
+            transform-origin: right;
+        }
     </style>
 @endpush
 
 @section('content')
     <div class="container">
+        <div class="mt-5"
+            style="height: 250px; width: 1140px; background-image: url('{{ asset('assets/images/banner.png') }}'); background-size: cover; background-position: center; border-radius: 10px; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);">
+        </div>
+
+
         <div class="rekomendasi mt-5">
             <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: flex-end;">
                 <div class="section-header">
