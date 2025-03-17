@@ -181,7 +181,7 @@
             @if (count($bukus) == 0)
                 <div class="d-flex justify-content-center align-items-center flex-column" style="min-height: 70vh;">
                     <img class="img-error" src="/assets/images/samples/error-500.svg" alt="Not Found" />
-                    <h3 class="error-title">Buku Tidak Ditemukan 😓</h3>
+                    <h3 class="error-title">Buku Tidak Ditemukan</h3>
                 </div>
             @endif
 
