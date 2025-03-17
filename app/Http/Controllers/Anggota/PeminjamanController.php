@@ -17,13 +17,15 @@ class PeminjamanController extends Controller
         return view('anggota.peminjaman.index', compact('peminjamans'));
     }
 
-    public function add()
+    public function add(Request $request)
     {
-        $anggotas = Anggota::all();
-        $bukus = Buku::where('stok','>', 0)->get();
+        $buku_id = $request->query('buku_id'); 
+        $bukus = Buku::where('stok', '>', 0)->get();
         $rule = Aturan::first();
-        return view('anggota.peminjaman.create', compact('anggotas', 'bukus', 'rule'));
+
+        return view('anggota.peminjaman.create', compact('bukus', 'rule', 'buku_id'));
     }
+
 
     public function store() {}
 }

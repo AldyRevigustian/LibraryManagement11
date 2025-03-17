@@ -133,6 +133,8 @@
         <script src="/assets/extensions/apexcharts/apexcharts.js"></script>
         <script src="/assets/extensions/flatpickr/flatpickr.min.js"></script>
         <script>
+            const preselectedBukuId = {{ $buku_id ?? 'null' }};
+            console.log(preselectedBukuId);
             var today = new Date();
             var batasHari = {{ $rule->batas_pengembalian }} || 7;
 
@@ -177,6 +179,12 @@
                 itemSelectText: '',
                 shouldSort: false
             });
+
+            if (preselectedBukuId) {
+                isbnChoice.setChoiceByValue(preselectedBukuId.toString());
+                bukuChoice.setChoiceByValue(preselectedBukuId.toString());
+                enableSubmitButton();
+            }
 
             isbnElement.addEventListener('change', function() {
                 const selectedId = this.value;
