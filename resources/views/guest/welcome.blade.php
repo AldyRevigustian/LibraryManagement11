@@ -167,10 +167,10 @@
             bottom: -2px;
             left: 0;
             background-color: #063A76;
-            transform: scaleX(0.3);
-            opacity: 0.7;
+            transform: scaleX(0.5);
             transform-origin: right;
-            transition: transform 0.5s ease, opacity 0.4s ease;
+            transition: transform 0.5s ease, background-color 0.4s ease;
+            will-change: transform;
         }
 
         a[style="text-decoration: underline;"]:hover p::after {
@@ -183,11 +183,9 @@
 
 @section('content')
     <div class="container">
-        <div class="mt-5"
+        <div class="mt-4"
             style="height: 250px; width: 1140px; background-image: url('{{ asset('assets/images/banner.png') }}'); background-size: cover; background-position: center; border-radius: 10px; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);">
         </div>
-
-
         <div class="rekomendasi mt-5">
             <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: flex-end;">
                 <div class="section-header">

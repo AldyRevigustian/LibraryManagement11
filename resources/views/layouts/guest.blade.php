@@ -124,7 +124,7 @@
                             <a href="{{ route('anggota.profile') }}"
                                 class="sidebar-link d-flex align-items-center p-3">
                                 <img src="{{ $user->foto }}" alt="Avatar" class="rounded-circle me-2"
-                                    width="40" height="40">
+                                    width="40" height="40" style="object-fit: cover; object-position: center;">
                                 <div style="line-height: 17px">
                                     <span
                                         class="d-block  {{ request()->is('anggota/profile*') ? '' : 'fw-bold' }} mx-0">{{ $user->nama }}</span>
