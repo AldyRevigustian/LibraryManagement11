@@ -16,14 +16,7 @@
             <div class="card-header d-flex justify-content-between align-items-center flex-wrap pb-0">
                 <div class="d-flex flex-column w-100">
                     <div class="d-flex justify-content-between align-items-center">
-                        <h5 class="mb-0">List Peminjaman</h5>
-                        @php
-                            $count = count($peminjamans);
-                        @endphp
-                        <a href="{{ route('anggota.peminjaman_add') }}"
-                            class="btn btn-primary text-light w-auto {{ $count >= 3 ? 'disabled' : '' }}">
-                            <i class="bi bi-plus-lg"></i> Pinjam Buku
-                        </a>
+                        <h5 class="mb-0">History Peminjaman</h5>
                     </div>
                     <hr class="mt-4 mb w-100">
                 </div>
@@ -38,16 +31,20 @@
                             <th>ISBN Buku</th>
                             <th>Buku</th>
                             <th class="">Tanggal Peminjaman</th>
-                            <th class="">Max. Pengembalian</th>
+                            <th class="">Tanggal Pengembalian</th>
                             <th class="">Status</th>
+                            <th class="">Denda</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($peminjamans as $key => $peminjaman)
                             @php
                                 $tanggal_pinjam = \Carbon\Carbon::parse($peminjaman->tanggal_peminjaman)->startOfDay();
+                                $tanggal_kembali = \Carbon\Carbon::parse(
+                                    $peminjaman->tanggal_pengembalian,
+                                )->startOfDay();
                                 $batas_kembali = \Carbon\Carbon::parse($peminjaman->batas_pengembalian)->startOfDay();
-                                $selisih = $tanggal_pinjam->diffInDays($batas_kembali, false);
+                                $selisih = $tanggal_kembali->diffInDays($batas_kembali, false);
                                 $isTelat = $selisih < 0;
                             @endphp
                             <tr>
@@ -55,26 +52,25 @@
                                 <td>{{ $peminjaman->buku->ISBN }}</td>
                                 <td>{{ $peminjaman->buku->judul }}</td>
                                 <td>{{ $tanggal_pinjam->translatedFormat('d F Y') }}</td>
-                                <td>{{ $batas_kembali->translatedFormat('d F Y') }}</td>
+                                <td>{{ $tanggal_kembali->translatedFormat('d F Y') }}</td>
+
                                 <td>
                                     @php
                                         if ($isTelat) {
                                             $badge = 'text-bg-danger';
                                             $text = 'Telat ' . abs($selisih) . ' hari';
-                                        } elseif ($selisih == 0) {
-                                            $badge = 'text-bg-warning';
-                                            $text = 'Segera kembalikan';
-                                        } elseif ($selisih <= 2) {
-                                            $badge = 'text-bg-warning';
-                                            $text = $selisih . ' hari lagi';
                                         } else {
                                             $badge = 'text-bg-success';
-                                            $text = $selisih . ' hari lagi';
+                                            $text = 'Tepat Waktu';
                                         }
                                     @endphp
                                     <span class="badge rounded-pill {{ $badge }}">
                                         {{ $text }}
                                     </span>
+                                </td>
+
+                                <td>
+                                    {{ $peminjaman->denda ? 'Rp' . number_format($peminjaman->denda, 0, ',', '.') : '-' }}
                                 </td>
                             </tr>
                         @endforeach

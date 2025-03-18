@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 class PeminjamanController extends Controller
 {
     public function index(){
-        $peminjamans = Peminjaman::whereNull('tanggal_pengembalian')->get();
+        $peminjamans = Peminjaman::whereNull('tanggal_pengembalian')->orderBy('tanggal_peminjaman', 'desc')->get();
         return view('admin.peminjaman.index', compact('peminjamans'));
     }
 
@@ -25,6 +25,6 @@ class PeminjamanController extends Controller
     }
 
     public function store(){
-        
+
     }
 }

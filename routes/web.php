@@ -62,6 +62,10 @@ Route::prefix('anggota')->middleware('auth:anggota')->group(function () {
             Route::get('/add', 'add')->name('anggota.peminjaman_add');
             Route::post('/add/store', 'store')->name('anggota.peminjaman_store');
         });
+        
+        Route::prefix('pengembalian')->controller(App\Http\Controllers\Anggota\PengembalianController::class)->group(function () {
+            Route::get('/', 'index')->name('anggota.pengembalian');
+        });
     });
     Route::post('/logout', [AnggotaAuthController::class, 'logout'])->name('anggota.logout');
 });

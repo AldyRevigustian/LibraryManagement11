@@ -33,4 +33,14 @@ class Anggota extends Authenticatable
     {
         return $this->favorite()->wherePivot('buku_id', $bukuId)->first();
     }
+
+    public function peminjamans()
+    {
+        return $this->hasMany(Peminjaman::class, 'anggota_id', 'id');
+    }
+
+    public function peminjamans_active()
+    {
+        return $this->hasMany(Peminjaman::class, 'anggota_id', 'id')->whereNull('tanggal_pengembalian');
+    }
 }

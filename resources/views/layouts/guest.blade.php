@@ -87,7 +87,22 @@
                             <span class="mt-1">Kategori</span>
                         </a>
                     </li>
-                    {{-- <li class="sidebar-item disabled"> --}}
+                    <li class="sidebar-item has-sub {{ request()->is('anggota/transaksi*') ? 'active' : '' }}">
+                        <a href="#" class="sidebar-link">
+                            <i class="bi bi-arrow-left-right"></i>
+                            <span>Peminjaman</span>
+                        </a>
+                        <ul class="submenu {{ request()->is('anggota/transaksi*') ? 'active' : '' }}">
+                            <li
+                                class="submenu-item {{ request()->is('anggota/transaksi/peminjaman*') ? 'active' : '' }}">
+                                <a href="{{ route('anggota.peminjaman') }}">Data Peminjaman</a>
+                            </li>
+                            <li
+                                class="submenu-item {{ request()->is('anggota/transaksi/pengembalian*') ? 'active' : '' }}">
+                                <a href="{{ route('anggota.pengembalian') }}">Data Pengembalian</a>
+                            </li>
+                        </ul>
+                    </li>
                     <li class="sidebar-item {{ request()->is('anggota/favorit*') ? 'active' : '' }}">
                         <a href="{{ route('anggota.favorite') }}" class='sidebar-link'>
                             <i class="bi bi-bookmark-fill"></i>
@@ -95,12 +110,6 @@
                         </a>
                     </li>
 
-                    <li class="sidebar-item {{ request()->is('anggota/transaksi*') ? 'active' : '' }}">
-                        <a href="{{ route('anggota.peminjaman') }}" class='sidebar-link'>
-                            <i class="bi bi-file-earmark-text-fill"></i>
-                            <span class="mt-1">Transaksi</span>
-                        </a>
-                    </li>
                 </ul>
             </div>
 
@@ -117,8 +126,10 @@
                                 <img src="{{ $user->foto }}" alt="Avatar" class="rounded-circle me-2"
                                     width="40" height="40">
                                 <div style="line-height: 17px">
-                                    <span class="d-block  {{ request()->is('anggota/profile*') ? '' : 'fw-bold' }} mx-0">{{ $user->nama }}</span>
-                                    <small class="{{ request()->is('anggota/profile*') ? 'text-white' : 'text-muted' }}">{{ $user->email }}</small>
+                                    <span
+                                        class="d-block  {{ request()->is('anggota/profile*') ? '' : 'fw-bold' }} mx-0">{{ $user->nama }}</span>
+                                    <small
+                                        class="{{ request()->is('anggota/profile*') ? 'text-white' : 'text-muted' }}">{{ $user->email }}</small>
                                 </div>
                             </a>
                         </li>
@@ -141,8 +152,8 @@
         </div>
 
     </div>
-
     <script src="/assets/extensions/swiper/swiper-bundle.min.js"></script>
+    <script src="/assets/js/app.js"></script>
     @stack('script')
 </body>
 

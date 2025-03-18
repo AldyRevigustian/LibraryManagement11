@@ -9,18 +9,24 @@
             padding: 4px !important;
             border: 1px solid #dce7f1 !important;
         }
+
+        .form-control:read-only {
+            background-color: #e9ecef;
+            pointer-events: none;
+        }
     </style>
 @endpush
 @section('content')
     @php
         $user = Auth::guard('anggota')->user();
+        $count = count($user->peminjamans_active);
     @endphp
     <section class="section mt-5">
         <div class="card shadow-sm">
             <div class="card-header d-flex justify-content-between align-items-center flex-wrap pb-0">
                 <div class="d-flex flex-column w-100">
                     <div class="d-flex justify-content-between align-items-center">
-                        <h5 class="mb-0">Add Peminjaman</h5>
+                        <h5 class="mb-0">Pinjam Buku</h5>
                     </div>
                     <hr class="mt-4 mb w-100">
                 </div>
@@ -48,14 +54,14 @@
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group mandatory">
-                                <label for="tanggal_pengembalian" class="form-label">Tanggal Pengembalian</label>
-                                <input type="date" disabled
-                                    class="form-control flatpickr-pengembalian @error('tanggal_pengembalian') is-invalid @enderror"
-                                    id="tanggal_pengembalian" placeholder="Tanggal Peminjaman" name="tanggal_pengembalian"
+                                <label for="batas_pengembalian" class="form-label">Batas Pengembalian</label>
+                                <input type="date" readonly
+                                    class="form-control flatpickr-pengembalian @error('batas_pengembalian') is-invalid @enderror"
+                                    id="batas_pengembalian" placeholder="Batas Pengembalian" name="batas_pengembalian"
                                     required />
-                                <p class="mb-0"><small class="text-muted">Maksimal Tanggal Pengembalian Sebelum Di
-                                        Denda</small></p>
-                                @error('tanggal_pengembalian')
+                                <p class="mb-0"><small class="text-muted">Maksimal Pengembalian Sebelum Di Denda</small>
+                                </p>
+                                @error('batas_pengembalian')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -118,9 +124,15 @@
                         </div>
                         <div class="row mt-4">
                             <div class="col-12 d-flex justify-content-end">
-                                <button type="submit" class="btn btn-primary me-1 mb-1" id="btn_submit" disabled>
-                                    Submit
-                                </button>
+                                @if ($count >= 3)
+                                    <button class="btn btn-primary me-1 mb-1" disabled>
+                                        Submit
+                                    </button>
+                                @else
+                                    <button type="submit" class="btn btn-primary me-1 mb-1" id="btn_submit" disabled>
+                                        Submit
+                                    </button>
+                                @endif
                             </div>
                         </div>
                 </form>
@@ -151,7 +163,7 @@
                 }
             });
 
-            var pengembalianPicker = flatpickr('#tanggal_pengembalian', {
+            var pengembalianPicker = flatpickr('#batas_pengembalian', {
                 dateFormat: "d/m/Y",
                 defaultDate: new Date(today.getTime() + batasHari * 24 * 60 * 60 * 1000),
             });
