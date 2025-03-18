@@ -17,7 +17,8 @@ class PeminjamanController extends Controller
     {
         $anggota = Anggota::find(Auth::guard('anggota')->user()->id);
         $peminjamans = Peminjaman::whereNull('tanggal_pengembalian')->where('anggota_id', $anggota->id)->get();
-        return view('anggota.peminjaman.index', compact('peminjamans'));
+        $rule = Aturan::first();
+        return view('anggota.peminjaman.index', compact('peminjamans', 'rule'));
     }
 
     public function add(Request $request)
@@ -44,10 +45,14 @@ class PeminjamanController extends Controller
 
         $anggota = Anggota::find(Auth::guard('anggota')->user()->id);
         $buku = Buku::find($request->buku_id);
+        $rule = Aturan::first();
 
         if ($buku->stok <= 0) {
-            return redirect()->back()->with('error', 'Buku tidak tersedia');
+            return redirect()->back()->with('status', 'danger')->with('message', 'Buku tidak tersedia');
+        } elseif ($anggota->peminjamans_active->count() >= $rule->maksimal_buku) {
+            return redirect()->back()->with('status', 'danger')->with('message', 'Maksimal peminjaman buku telah dicapai');
         }
+
 
         $peminjaman = new Peminjaman();
         $peminjaman->anggota_id = $anggota->id;

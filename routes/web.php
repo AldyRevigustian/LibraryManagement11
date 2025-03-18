@@ -62,7 +62,7 @@ Route::prefix('anggota')->middleware('auth:anggota')->group(function () {
             Route::get('/add', 'add')->name('anggota.peminjaman_add');
             Route::post('/add/store', 'store')->name('anggota.peminjaman_store');
         });
-        
+
         Route::prefix('pengembalian')->controller(App\Http\Controllers\Anggota\PengembalianController::class)->group(function () {
             Route::get('/', 'index')->name('anggota.pengembalian');
         });
@@ -146,6 +146,8 @@ Route::prefix('admin')->middleware('auth:web')->group(function () {
             Route::get('/add', 'add')->name('admin.peminjaman_add');
             Route::post('/add/store', 'store')->name('admin.peminjaman_store');
 
+            Route::get('/edit/{id}', 'edit')->name('admin.peminjaman_edit');
+            Route::post('/update/{id}', 'update')->name('admin.peminjaman_update');
 
             // Route::post('/export/tanggal', [LaporanController::class, 'export_tanggal'])->name('admin.export_tanggal');
             // Route::post('/export/range', [LaporanController::class, 'export_range'])->name('admin.export_range');

@@ -21,7 +21,7 @@
                             $count = count($peminjamans);
                         @endphp
                         <a href="{{ route('anggota.peminjaman_add') }}"
-                            class="btn btn-primary text-light w-auto {{ $count >= 3 ? 'disabled' : '' }}">
+                            class="btn btn-primary text-light w-auto {{ $count >= $rule->maksimal_buku ? 'disabled' : '' }}">
                             <i class="bi bi-plus-lg"></i> Pinjam Buku
                         </a>
                     </div>

@@ -97,7 +97,7 @@
                         <div class="col-md-6 col-12 mt-2">
                             <div class="form-group mandatory">
                                 <label for="ISBN-column" class="form-label">ISBN</label>
-                                <select name="ISBN_id" class="choices form-select">
+                                <select name="ISBN_id" class="form-select">
                                     <option value="" disabled selected>
                                         --ISBN--</option>
                                     @foreach ($bukus as $buku)
@@ -111,7 +111,7 @@
                         <div class="col-md-6 col-12 mt-2">
                             <div class="form-group mandatory">
                                 <label for="buku-column" class="form-label">Judul Buku</label>
-                                <select name="buku_id" class="choices form-select">
+                                <select name="buku_id" class="form-select">
                                     <option value="" disabled selected>
                                         --Pilih Buku--</option>
                                     @foreach ($bukus as $buku)
@@ -124,7 +124,7 @@
                         </div>
                         <div class="row mt-4">
                             <div class="col-12 d-flex justify-content-end">
-                                @if ($count >= 3)
+                                @if ($count >= $rule->max_pinjam)
                                     <button class="btn btn-primary me-1 mb-1" disabled>
                                         Submit
                                     </button>
