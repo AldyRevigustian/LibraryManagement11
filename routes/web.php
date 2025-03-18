@@ -149,8 +149,7 @@ Route::prefix('admin')->middleware('auth:web')->group(function () {
             Route::get('/edit/{id}', 'edit')->name('admin.peminjaman_edit');
             Route::post('/update/{id}', 'update')->name('admin.peminjaman_update');
 
-            // Route::post('/export/tanggal', [LaporanController::class, 'export_tanggal'])->name('admin.export_tanggal');
-            // Route::post('/export/range', [LaporanController::class, 'export_range'])->name('admin.export_range');
+            Route::delete('/{id}', 'destroy')->name('admin.peminjaman_destroy');
         });
     });
 

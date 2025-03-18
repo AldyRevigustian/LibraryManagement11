@@ -31,7 +31,7 @@
                             <th>ISBN Buku</th>
                             <th>Buku</th>
                             <th>Tanggal Peminjaman</th>
-                            <th class="action-table">Action</th>
+                            <th style="">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -44,15 +44,15 @@
                                 <td>{{ $peminjaman->buku->judul }}</td>
                                 <td>{{ $peminjaman->tanggal_peminjaman }}</td>
                                 <td>
-                                    {{-- <a href="{{ route('peminjaman.peminjaman_edit', $peminjaman->id) }}"
+                                    <a href="{{ route('admin.peminjaman_edit', $peminjaman->id) }}"
                                         class="btn icon btn-warning text-light"><i class="bi bi-pencil-fill"></i></a>
                                     <form class="d-inline" method="POST"
-                                        action="{{ route('peminjaman.peminjamanistrator_destroy', $admin->id) }}">
+                                        action="{{ route('admin.peminjaman_destroy', $peminjaman->id) }}">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn icon btn-danger"><i
                                                 class="bi bi-trash-fill"></i></a>
-                                    </form> --}}
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach

@@ -59,4 +59,19 @@ class PeminjamanController extends Controller
 
         return redirect()->route('admin.peminjaman')->with('status', 'success')->with('message', 'Peminjaman berhasil ditambahkan');
     }
+
+    public function destroy($id)
+    {
+        $peminjaman = Peminjaman::find($id);
+        $buku = Buku::find($peminjaman->buku_id);
+
+        if ($peminjaman) {
+            $peminjaman->delete();
+            $buku->update([
+                'stok' => $buku->stok + 1
+            ]);
+            return redirect()->route('admin.peminjaman')->with('status', 'success')->with('message', 'Sukses Menghapus Peminjaman');
+        }
+        return redirect()->route('admin.peminjaman')->with('status', 'danger')->with('message', 'Gagal Menghapus Peminjaman');
+    }
 }
