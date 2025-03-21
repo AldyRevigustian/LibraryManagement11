@@ -49,21 +49,16 @@
             <i class="bi bi-arrow-left-right"></i>
             <span>Transaksi</span>
         </a>
-        {{-- <ul class="submenu {{ request()->is('admin/transaksi*') ? 'active' : '' }}">
-            <li class="submenu-item {{ request()->is('admin/transaksi/peminjaman*') ? 'active' : '' }}">
-                <a href="{{ route('admin.peminjaman') }}">Peminjaman Pending</a>
-            </li>
-        </ul> --}}
         <ul class="submenu {{ request()->is('admin/transaksi*') ? 'active' : '' }}">
             <li class="submenu-item {{ request()->is('admin/transaksi/peminjaman*') ? 'active' : '' }}">
                 <a href="{{ route('admin.peminjaman') }}">Data Peminjaman</a>
             </li>
         </ul>
-        {{-- <ul class="submenu {{ request()->is('admin/transaksi*') ? 'active' : '' }}">
-            <li class="submenu-item {{ request()->is('admin/transaksi/peminjaman*') ? 'active' : '' }}">
-                <a href="{{ route('admin.peminjaman') }}">Data Pengembalian</a>
+        <ul class="submenu {{ request()->is('admin/transaksi*') ? 'active' : '' }}">
+            <li class="submenu-item {{ request()->is('admin/transaksi/pengembalian*') ? 'active' : '' }}">
+                <a href="{{ route('admin.pengembalian') }}">Data Pengembalian</a>
             </li>
-        </ul> --}}
+        </ul>
     </li>
 
     <li class="sidebar-item {{ request()->is('admin/laporan*') ? 'active' : '' }}">

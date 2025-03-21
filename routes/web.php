@@ -151,6 +151,17 @@ Route::prefix('admin')->middleware('auth:web')->group(function () {
 
             Route::delete('/{id}', 'destroy')->name('admin.peminjaman_destroy');
         });
+
+        Route::prefix('pengembalian')->controller(App\Http\Controllers\Admin\PengembalianController::class)->group(function () {
+            Route::get('/', 'index')->name('admin.pengembalian');
+            Route::get('/add', 'add')->name('admin.pengembalian_add');
+            Route::post('/add/store', 'store')->name('admin.pengembalian_store');
+
+            Route::get('/edit/{id}', 'edit')->name('admin.pengembalian_edit');
+            Route::post('/update/{id}', 'update')->name('admin.pengembalian_update');
+
+            Route::delete('/{id}', 'destroy')->name('admin.pengembalian_destroy');
+        });
     });
 
     Route::prefix('laporan')->controller(App\Http\Controllers\Admin\LaporanController::class)->group(function () {

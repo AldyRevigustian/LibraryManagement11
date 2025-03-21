@@ -3,6 +3,25 @@
 @include('components.admin')
 
 @push('style')
+    <style>
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        #table1 th,
+        #table1 td {
+            white-space: nowrap;
+            /* Supaya scroll horizontal tetap aktif */
+        }
+
+        #table1 td:nth-child(3),
+        #table1 th:nth-child(3),
+        #table1 td:nth-child(5),
+        #table1 th:nth-child(5) {
+            white-space: normal;
+            min-width: 250px;
+        }
+    </style>
 @endpush
 
 @section('content')
@@ -11,10 +30,10 @@
             <div class="card-header d-flex justify-content-between align-items-center flex-wrap pb-0">
                 <div class="d-flex flex-column w-100">
                     <div class="d-flex justify-content-between align-items-center">
-                        <h5 class="mb-0">List Admin</h5>
-                        {{-- <a href="{{ route('admin.administrator_add') }}" class="btn btn-primary text-light w-auto">
+                        <h5 class="mb-0">List Peminjaman</h5>
+                        <a href="{{ route('admin.peminjaman_add') }}" class="btn btn-primary text-light w-auto">
                             <i class="bi bi-plus-lg"></i> Add
-                        </a> --}}
+                        </a>
                     </div>
                     <hr class="mt-4 mb w-100">
                 </div>
@@ -22,47 +41,91 @@
 
             @include('components.message')
             <div class="card-body">
-                <table class="table table-striped" id="table1">
-                    <thead>
-                        <tr>
-                            <th>No.</th>
-                            <th>Nama Peminjam</th>
-                            <th>Buku</th>
-                            <th>Tanggal Peminjaman</th>
-                            <th>Tanggal Pengembalian</th>
-                            <th>Status</th>
-                            <th>Denda</th>
-                            <th class="col-1">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($peminjamans as $key => $peminjaman)
+                <div class="table-responsive">
+
+                    <table class="table table-striped" id="table1">
+                        <thead>
                             <tr>
-                                <td>{{ $key + 1 }}</td>
-                                <td>{{ $peminjaman->anggota->nama }}</td>
-                                <td>{{ $peminjaman->buku->judul }}</td>
-                                <td>{{ $peminjaman->tanggal_peminjaman }}</td>
-                                <td>{{ $peminjaman->tanggal_pengembalian }}</td>
-                                <td>{{ $peminjaman->tanggal_pengembalian == null ? '-' : 'Returned' }}</td>
-                                <td>{{ $peminjaman->denda }}</td>
-                                <td>
-                                    {{-- <a href="{{ route('peminjaman.peminjaman_edit', $peminjaman->id) }}"
-                                        class="btn icon btn-warning text-light"><i class="bi bi-pencil-fill"></i></a>
-                                    <form class="d-inline" method="POST"
-                                        action="{{ route('peminjaman.peminjamanistrator_destroy', $admin->id) }}">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn icon btn-danger"><i
-                                                class="bi bi-trash-fill"></i></a>
-                                    </form> --}}
-                                </td>
+                                <th>No.</th>
+                                <th>NIM</th>
+                                <th>Nama Peminjam</th>
+                                <th>ISBN Buku</th>
+                                <th>Buku</th>
+                                <th class="">Tanggal Peminjaman</th>
+                                <th class="">Tanggal Pengembalian</th>
+                                <th class="">Status</th>
+                                <th class="">Denda</th>
+                                <th style="">Action</th>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach ($peminjamans as $key => $peminjaman)
+                                @php
+                                    $tanggal_pinjam = \Carbon\Carbon::parse(
+                                        $peminjaman->tanggal_peminjaman,
+                                    )->startOfDay();
+                                    $tanggal_kembali = \Carbon\Carbon::parse(
+                                        $peminjaman->tanggal_pengembalian,
+                                    )->startOfDay();
+                                    $batas_kembali = \Carbon\Carbon::parse(
+                                        $peminjaman->batas_pengembalian,
+                                    )->startOfDay();
+                                    $selisih = $tanggal_kembali->diffInDays($batas_kembali, false);
+                                    $isTelat = $selisih < 0;
+                                @endphp
+                                <tr>
+                                    <td>{{ $key + 1 }}</td>
+                                    <td>{{ $peminjaman->anggota->nim }}</td>
+                                    <td>{{ $peminjaman->anggota->nama }}</td>
+                                    <td>{{ $peminjaman->buku->ISBN }}</td>
+                                    <td>{{ $peminjaman->buku->judul }}</td>
+                                    <td>{{ $tanggal_pinjam->translatedFormat('d F Y') }}</td>
+                                    <td>{{ $tanggal_kembali->translatedFormat('d F Y') }}</td>
+
+                                    <td>
+                                        @php
+                                            if ($isTelat) {
+                                                $badge = 'text-bg-danger';
+                                                $text = 'Telat ' . abs($selisih) . ' hari';
+                                            } else {
+                                                $badge = 'text-bg-success';
+                                                $text = 'Tepat Waktu';
+                                            }
+                                        @endphp
+                                        <span class="badge rounded-pill {{ $badge }}">
+                                            {{ $text }}
+                                        </span>
+                                    </td>
+
+                                    <td>
+                                        {{ $peminjaman->denda ? 'Rp' . number_format($peminjaman->denda, 0, ',', '.') : '-' }}
+                                    </td>
+                                    <td>
+                                        <a href="{{ route('admin.peminjaman_edit', $peminjaman->id) }}"
+                                            class="btn icon btn-warning text-light"><i class="bi bi-pencil-fill"></i></a>
+                                        <form class="d-inline" method="POST"
+                                            action="{{ route('admin.peminjaman_destroy', $peminjaman->id) }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn icon btn-danger"><i
+                                                    class="bi bi-trash-fill"></i></a>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </section>
     @push('script')
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                new DataTable('#table1', {
+                    scrollX: true,
+                });
+            });
+        </script>
     @endpush
 @endsection

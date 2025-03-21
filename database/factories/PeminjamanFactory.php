@@ -23,7 +23,7 @@ class PeminjamanFactory extends Factory
             throw new \Exception('Tidak ada Anggota atau Buku di database. Jalankan seeder Anggota dan Buku terlebih dahulu.');
         }
 
-        $tanggalPeminjaman = Carbon::parse($faker->dateTimeBetween('2024-01-01', '2025-03-21'));
+        $tanggalPeminjaman = Carbon::parse($faker->dateTimeBetween('2024-06-01', '2025-03-21'));
         $batasPengembalian = (clone $tanggalPeminjaman)->addDays(Aturan::first()->batas_pengembalian);
 
         // **Logika peminjaman yang belum dikembalikan:**
