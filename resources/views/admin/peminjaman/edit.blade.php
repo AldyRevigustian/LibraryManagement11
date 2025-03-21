@@ -11,7 +11,7 @@
             <div class="card-header d-flex justify-content-between align-items-center flex-wrap pb-0">
                 <div class="d-flex flex-column w-100">
                     <div class="d-flex justify-content-between align-items-center">
-                        <h5 class="mb-0">Add Peminjaman</h5>
+                        <h5 class="mb-0">Edit Peminjaman</h5>
                     </div>
                     <hr class="mt-4 mb w-100">
                 </div>
@@ -19,8 +19,7 @@
 
             @include('components.message')
             <div class="card-body">
-                <form class="form" action="{{ route('admin.peminjaman_store') }}" method="POST"
-                    enctype="multipart/form-data">
+                <form class="form" action="{{ route('admin.peminjaman_update', $peminjaman->id) }}" method="POST">
                     @csrf
                     <div class="row">
                         <div class="col-md-6 col-12">
@@ -115,7 +114,7 @@
                                     Reset
                                 </button>
                                 <button type="submit" class="btn btn-primary me-1 mb-1">
-                                    Submit
+                                    Update
                                 </button>
                             </div>
                         </div>
@@ -126,12 +125,19 @@
 
     @push('script')
         <script>
-            var today = new Date();
+            const preselectedBukuId = {{ $peminjaman->buku->id ?? 'null' }};
+            const preselectedAnggotaId = {{ $peminjaman->anggota_id ?? 'null' }};
+
+            const preselectedTanggalPeminjaman =
+                "{{ \Carbon\Carbon::parse($peminjaman->tanggal_peminjaman)->format('d/m/Y') }}";
+            const preselectedBatasPengembalian =
+                "{{ \Carbon\Carbon::parse($peminjaman->batas_pengembalian)->format('d/m/Y') }}";
+
             var batasHari = {{ $rule->batas_pengembalian }} || 7;
 
             var pinjamPicker = flatpickr('#tanggal_peminjaman', {
                 dateFormat: "d/m/Y",
-                defaultDate: today,
+                defaultDate: preselectedTanggalPeminjaman,
                 onChange: function(selectedDates, dateStr, instance) {
                     if (selectedDates.length > 0) {
                         let selectedDate = new Date(selectedDates[0]);
@@ -144,7 +150,7 @@
 
             var pengembalianPicker = flatpickr('#batas_pengembalian', {
                 dateFormat: "d/m/Y",
-                defaultDate: new Date(today.getTime() + batasHari * 24 * 60 * 60 * 1000),
+                defaultDate: preselectedBatasPengembalian,
             });
 
             const bukuMap = {};
@@ -165,7 +171,6 @@
                 };
             @endforeach
 
-
             const peminjamanAktifMap = {};
             @foreach ($anggotas as $anggota)
                 peminjamanAktifMap[{{ $anggota->id }}] = {{ $anggota->peminjamans_active->count() }};
@@ -184,7 +189,6 @@
                     infoDiv.classList.add('d-none');
                 }
             }
-
 
             const isbnElement = document.querySelector('select[name="ISBN_id"]');
             const bukuElement = document.querySelector('select[name="buku_id"]');
@@ -218,20 +222,33 @@
                 shouldSort: false
             });
 
+            if (preselectedBukuId && preselectedAnggotaId) {
+                isbnChoice.setChoiceByValue(preselectedBukuId.toString());
+                bukuChoice.setChoiceByValue(preselectedBukuId.toString());
+                nimChoice.setChoiceByValue(preselectedAnggotaId.toString());
+                namaChoice.setChoiceByValue(preselectedAnggotaId.toString());
+            }
 
             nimElement.addEventListener('change', function() {
                 const selectedId = this.value;
+                console.log(selectedId);
                 updateInfoPeminjaman(selectedId);
-                if (namaElement.value !== selectedId) {
-                    namaChoice.setChoiceByValue(selectedId);
+
+                if (selectedId) {
+                    if (namaElement.value !== selectedId) {
+                        namaChoice.setChoiceByValue(selectedId);
+                    }
                 }
             });
 
             namaElement.addEventListener('change', function() {
                 const selectedId = this.value;
                 updateInfoPeminjaman(selectedId);
-                if (nimElement.value !== selectedId) {
-                    nimChoice.setChoiceByValue(selectedId);
+
+                if (selectedId) {
+                    if (nimElement.value !== selectedId) {
+                        nimChoice.setChoiceByValue(selectedId);
+                    }
                 }
             });
 

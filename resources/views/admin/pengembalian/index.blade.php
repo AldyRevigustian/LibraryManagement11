@@ -32,7 +32,7 @@
                             <th>Tanggal Pengembalian</th>
                             <th>Status</th>
                             <th>Denda</th>
-                            <th class="action-table">Action</th>
+                            <th class="col-1">Action</th>
                         </tr>
                     </thead>
                     <tbody>

@@ -60,6 +60,56 @@ class PeminjamanController extends Controller
         return redirect()->route('admin.peminjaman')->with('status', 'success')->with('message', 'Peminjaman berhasil ditambahkan');
     }
 
+    public function edit($id)
+    {
+        $peminjaman = Peminjaman::find($id);
+        $anggota = Anggota::find($peminjaman->anggota_id);
+        $rule = Aturan::first();
+        $anggotas = Anggota::all();
+        $bukus = Buku::where('stok', '>', 0)->get();
+        return view('admin.peminjaman.edit', compact('peminjaman', 'anggota', 'rule', 'anggotas', 'bukus'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'buku_id' => 'required|exists:bukus,id',
+            'anggota_id' => 'required|exists:anggotas,id',
+            'tanggal_peminjaman' => 'required',
+            'batas_pengembalian' => 'required',
+        ]);
+
+        $peminjaman = Peminjaman::findOrFail($id);
+
+        $tanggal_peminjaman = convertDateToMysqlFormat($request->tanggal_peminjaman);
+        $batas_pengembalian = convertDateToMysqlFormat($request->batas_pengembalian);
+
+        $anggota = Anggota::find($request->anggota_id);
+        $buku_lama = Buku::find($peminjaman->buku_id);
+        $buku_baru = Buku::find($request->buku_id);
+
+        if ($peminjaman->buku_id != $buku_baru->id && $buku_baru->stok <= 0) {
+            return redirect()->back()->with('status', 'danger')->with('message', 'Buku baru tidak tersedia');
+        }
+
+        if ($peminjaman->buku_id != $buku_baru->id) {
+            $buku_lama->stok += 1;
+            $buku_lama->save();
+
+            $buku_baru->stok -= 1;
+            $buku_baru->save();
+        }
+
+        $peminjaman->anggota_id = $anggota->id;
+        $peminjaman->buku_id = $buku_baru->id;
+        $peminjaman->tanggal_peminjaman = $tanggal_peminjaman;
+        $peminjaman->batas_pengembalian = $batas_pengembalian;
+        $peminjaman->save();
+
+        return redirect()->route('admin.peminjaman')->with('status', 'success')->with('message', 'Peminjaman berhasil diupdate');
+    }
+
+
     public function destroy($id)
     {
         $peminjaman = Peminjaman::find($id);
