@@ -15,10 +15,10 @@ class DashboardController extends Controller
     {
         $tahun = $request->input('tahun', Carbon::now()->year);
 
-        $bukus = Buku::all()->count();
-        $anggotas = Anggota::all()->count();
-        $stoks = Buku::sum('stok');
-        $peminjamans = Peminjaman::whereNull('tanggal_pengembalian')->count();
+        $bukus = number_format(Buku::all()->count(), 0, ',', '.');
+        $anggotas = number_format(Anggota::all()->count(), 0, ',', '.');
+        $stoks = number_format(Buku::sum('stok'), 0, ',', '.');
+        $peminjamans = number_format(Peminjaman::whereNull('tanggal_pengembalian')->count(), 0, ',', '.');
 
         return view('admin.dashboard', compact('bukus', 'anggotas', 'stoks', 'peminjamans', 'tahun'));
     }
