@@ -100,7 +100,8 @@
                         <a href="/kategori/penerbit/{{ $penerbit->id }}">
                             <div class="penerbit-card">
                                 <div class="penerbit-img-container">
-                                    <img src="{{ asset('assets/images/' . $penerbit->id . '.jpg') }}"
+                                    <img src="{{ $penerbit->logo }}"
+                                    {{-- <img src="{{ asset('assets/images/' . $penerbit->id . '.jpg') }}" --}}
                                         alt="{{ $penerbit->nama }}" class="img-fluid">
                                     <div class="penerbit-overlay">
                                         <div class="kategori-header">

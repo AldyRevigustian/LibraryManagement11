@@ -28,10 +28,18 @@ class PenerbitController extends Controller
                 'unique:penerbits,nama',
                 'max:255',
             ],
+            'logo' => 'required',
         ]);
 
         $penerbit = Penerbit::create([
             'nama' => $validated['nama'],
+        ]);
+
+        $filename = $penerbit->id . '.jpg';
+        $request->logo->move(public_path('storage/penerbit'), $filename);
+
+        $penerbit->update([
+            'logo' => '/storage/penerbit/' . $filename,
         ]);
 
         if ($penerbit) {
@@ -58,11 +66,19 @@ class PenerbitController extends Controller
                 'unique:penerbits,nama,' . $id,
                 'max:255',
             ],
+            'logo' => 'required',
+
         ]);
 
         $updateData = [
             'nama' => $validated['nama'],
         ];
+
+        if (!empty($request->logo)) {
+            $filename = $id . '.jpg';
+            $request->logo->move(public_path('storage/penerbit'), $filename);
+            $updateData['logo'] = '/storage/penerbit/' . $filename;
+        }
 
         $penerbit->update($updateData);
 

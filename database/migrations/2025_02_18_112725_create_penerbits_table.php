@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('penerbits', function (Blueprint $table) {
             $table->id();
             $table->string('nama', 125);
+            $table->text('logo')->nullable();
             $table->timestamps();
         });
     }
