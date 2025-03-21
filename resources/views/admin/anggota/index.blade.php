@@ -29,7 +29,7 @@
                             <th>NIM</th>
                             <th>Nama Lengkap</th>
                             <th>Email</th>
-                            <th class="action-table">Action</th>
+                            <th class="col-1">Action</th>
                         </tr>
                     </thead>
                     <tbody>

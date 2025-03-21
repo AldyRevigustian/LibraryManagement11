@@ -27,13 +27,13 @@
                         <tr>
                             <th>No.</th>
                             <th class="col-1">ISBN</th>
-                            <th class="col-1">Judul</th>
-                            <th>Kontributor</th>
-                            <th>Penerbit</th>
+                            <th class="col-3">Judul</th>
+                            <th class="col-2">Kontributor</th>
+                            <th class="col-1">Penerbit</th>
                             <th>Kategori</th>
                             <th>Stok</th>
                             <th>Tahun Terbit</th>
-                            <th class="action-table">Action</th>
+                            <th class="col-1">Action</th>
                         </tr>
                     </thead>
                     <tbody>

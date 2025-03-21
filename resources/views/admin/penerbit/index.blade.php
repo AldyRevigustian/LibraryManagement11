@@ -25,15 +25,17 @@
                 <table class="table table-striped" id="table1">
                     <thead>
                         <tr>
-                            <th>No.</th>
+                            <th class="col-1">No.</th>
+                            <th style="width:160px !important;">Logo</th>
                             <th>Nama</th>
-                            <th class="action-table">Action</th>
+                            <th class="col-1">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($penerbits as $key => $penerbit)
                             <tr>
                                 <td>{{ $key + 1 }}</td>
+                                <td style="width:160px !important;"><img src="{{ $penerbit->logo }}" alt="{{ $penerbit->nama }}" class="img-fluid" style="height: 50px; width:135px;"></td>
                                 <td>{{ $penerbit->nama }}</td>
                                 <td>
                                     <a href="{{ route('admin.penerbit_edit', $penerbit->id) }}"
