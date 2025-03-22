@@ -49,13 +49,7 @@
                                 <td>
                                     <a href="{{ route('admin.penerbit_edit', $penerbit->id) }}"
                                         class="btn icon btn-warning text-light"><i class="bi bi-pencil-fill"></i></a>
-                                    <form class="d-inline" method="POST"
-                                        action="{{ route('admin.penerbit_destroy', $penerbit->id) }}">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn icon btn-danger"><i
-                                                class="bi bi-trash-fill"></i></a>
-                                    </form>
+                                    <x-modal :action="route('admin.penerbit_destroy', $penerbit->id)" :id="$penerbit->id" title="Konfirmasi Hapus Penerbit" />
                                 </td>
                             </tr>
                         @endforeach

@@ -55,6 +55,64 @@
         .choices[data-type*=select-one] .choices__inner {
             padding: 0;
         }
+
+        .modal-content {
+            border: none;
+            border-radius: 1rem;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        }
+
+        .modal-header {
+            border-bottom: none;
+            padding: 1.5rem 1.5rem 0.5rem;
+            background: #dc3545;
+            border-radius: 1rem 1rem 0 0;
+            color: white;
+        }
+
+        .modal-title {
+            font-weight: 600;
+            font-size: 1.25rem;
+        }
+
+        .btn-close {
+            filter: brightness(0) invert(1);
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .btn-close:hover {
+            opacity: 1;
+        }
+
+        .modal-body {
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+            padding-top: 2rem;
+
+            font-size: 1.1rem;
+            color: #495057;
+        }
+
+        .modal-footer {
+            border-top: none;
+            padding: 1rem 1.5rem 1.5rem;
+        }
+
+        .warning-icon {
+            font-size: 3rem;
+            color: #dc3545;
+            margin-bottom: 1rem;
+        }
+
+        .modal.fade .modal-dialog {
+            transform: scale(0.95);
+            transition: transform 0.2s ease-out;
+        }
+
+        .modal.show .modal-dialog {
+            transform: scale(1);
+        }
     </style>
     @stack('style')
 </head>

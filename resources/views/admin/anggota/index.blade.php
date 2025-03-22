@@ -48,13 +48,12 @@
                                 <td>
                                     <a href="{{ route('admin.anggota_edit', $anggota->id) }}"
                                         class="btn icon btn-warning text-light"><i class="bi bi-pencil-fill"></i></a>
-                                    <form class="d-inline" method="POST"
-                                        action="{{ route('admin.anggota_destroy', $anggota->id) }}">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn icon btn-danger"><i
-                                                class="bi bi-trash-fill"></i></a>
-                                    </form>
+
+                                    <x-modal
+                                        :action="route('admin.anggota_destroy', $anggota->id)"
+                                        :id="$anggota->id"
+                                        title="Konfirmasi Hapus Anggota"
+                                    />
                                 </td>
                             </tr>
                         @endforeach

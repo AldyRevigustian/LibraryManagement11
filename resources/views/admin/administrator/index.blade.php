@@ -3,6 +3,13 @@
 @include('components.admin')
 
 @push('style')
+    <style>
+        #table1 th,
+        #table1 td {
+            vertical-align: middle;
+            white-space: nowrap;
+        }
+    </style>
 @endpush
 
 @section('content')
@@ -28,8 +35,8 @@
                             <th class="col-1">No.</th>
                             <th>Nama Lengkap</th>
                             <th>Email</th>
-                            <th>Role</th>
-                            <th class="col-1">Action</th>
+                            <th class="col-1">Role</th>
+                            <th class="col-2">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -38,17 +45,16 @@
                                 <td>{{ $key + 1 }}</td>
                                 <td>{{ $admin->nama }}</td>
                                 <td>{{ $admin->email }}</td>
-                                <td>{{ $admin->role }}</td>
+                                <td>
+                                    <span class="badge text-bg-{{ $admin->role == 'superadmin' ? 'primary' : 'secondary' }}"
+                                        style="min-width: 120px">
+                                        {{ Str::ucfirst($admin->role) }}
+                                    </span>
+                                </td>
                                 <td>
                                     <a href="{{ route('admin.administrator_edit', $admin->id) }}"
                                         class="btn icon btn-warning text-light"><i class="bi bi-pencil-fill"></i></a>
-                                    <form class="d-inline" method="POST"
-                                        action="{{ route('admin.administrator_destroy', $admin->id) }}">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn icon btn-danger"><i
-                                                class="bi bi-trash-fill"></i></a>
-                                    </form>
+                                    <x-modal :action="route('admin.administrator_destroy', $admin->id)" :id="$admin->id" title="Konfirmasi Hapus Admin" />
                                 </td>
                             </tr>
                         @endforeach

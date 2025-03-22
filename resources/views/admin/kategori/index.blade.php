@@ -44,13 +44,7 @@
                                 <td>
                                     <a href="{{ route('admin.kategori_edit', $kategori->id) }}"
                                         class="btn icon btn-warning text-light"><i class="bi bi-pencil-fill"></i></a>
-                                    <form class="d-inline" method="POST"
-                                        action="{{ route('admin.kategori_destroy', $kategori->id) }}">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn icon btn-danger"><i
-                                                class="bi bi-trash-fill"></i></a>
-                                    </form>
+                                    <x-modal :action="route('admin.kategori_destroy', $kategori->id)" :id="$kategori->id" title="Konfirmasi Hapus Kategori" />
                                 </td>
                             </tr>
                         @endforeach

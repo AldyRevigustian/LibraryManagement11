@@ -20,21 +20,44 @@
         }
 
         #table1 th:nth-child(4),
-        #table1 td:nth-child(4){
+        #table1 td:nth-child(4) {
             white-space: normal;
             min-width: 300px;
             max-width: 300px;
             word-wrap: break-word;
         }
 
-        #table1 th:nth-child(1) { width: 50px; }
-        #table1 th:nth-child(2) { width: 120px; }
-        #table1 th:nth-child(3) { width: 80px; }
-        #table1 th:nth-child(6) { width: 120px; }
-        #table1 th:nth-child(7) { width: 100px; }
-        #table1 th:nth-child(8) { width: 70px; }
-        #table1 th:nth-child(9) { width: 100px; }
-        #table1 th:nth-child(10) { width: 120px; }
+        #table1 th:nth-child(1) {
+            width: 50px;
+        }
+
+        #table1 th:nth-child(2) {
+            width: 120px;
+        }
+
+        #table1 th:nth-child(3) {
+            width: 80px;
+        }
+
+        #table1 th:nth-child(6) {
+            width: 120px;
+        }
+
+        #table1 th:nth-child(7) {
+            width: 100px;
+        }
+
+        #table1 th:nth-child(8) {
+            width: 70px;
+        }
+
+        #table1 th:nth-child(9) {
+            width: 100px;
+        }
+
+        #table1 th:nth-child(10) {
+            width: 120px;
+        }
 
         .book-image {
             border-radius: 4px;
@@ -81,7 +104,8 @@
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
                                     <td>{{ $buku->ISBN }}</td>
-                                    <td><img src="{{ $buku->foto }}" alt="{{ $buku->judul }}" class="book-image" style="height: 96px; width: 63px; object-fit: cover;"></td>
+                                    <td><img src="{{ $buku->foto }}" alt="{{ $buku->judul }}" class="book-image"
+                                            style="height: 96px; width: 63px; object-fit: cover;"></td>
                                     <td>{{ $buku->judul }}</td>
                                     <td>{{ $buku->kontributor }}</td>
                                     <td>{{ $buku->penerbit->nama }}</td>
@@ -91,13 +115,7 @@
                                     <td>
                                         <a href="{{ route('admin.buku_edit', $buku->id) }}"
                                             class="btn icon btn-warning text-light"><i class="bi bi-pencil-fill"></i></a>
-                                        <form class="d-inline" method="POST"
-                                            action="{{ route('admin.buku_destroy', $buku->id) }}">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn icon btn-danger"><i
-                                                    class="bi bi-trash-fill"></i></button>
-                                        </form>
+                                        <x-modal :action="route('admin.buku_destroy', $buku->id)" :id="$buku->id" title="Konfirmasi Hapus Buku" />
                                     </td>
                                 </tr>
                             @endforeach
