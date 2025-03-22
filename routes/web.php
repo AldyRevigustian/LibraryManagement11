@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\DendaController;
 use App\Http\Controllers\Admin\LaporanController;
 use App\Http\Controllers\Anggota\BukuFavorit;
 use App\Http\Controllers\Anggota\ProfileController;
@@ -161,6 +162,7 @@ Route::prefix('admin')->middleware('auth:web')->group(function () {
             Route::post('/update/{id}', 'update')->name('admin.pengembalian_update');
 
             Route::delete('/{id}', 'destroy')->name('admin.pengembalian_destroy');
+            Route::get('/{id}', 'destroy')->name('admin.pengembalian_destroy');
         });
     });
 
@@ -172,3 +174,6 @@ Route::prefix('admin')->middleware('auth:web')->group(function () {
 
     Route::post('/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
 });
+
+
+Route::post('/calculate-denda', [DendaController::class, 'calculateDenda']);

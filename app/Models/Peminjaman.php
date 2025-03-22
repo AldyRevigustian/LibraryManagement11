@@ -16,6 +16,7 @@ class Peminjaman extends Model
         'buku_id',
         'tanggal_peminjaman',
         'tanggal_pengembalian',
+        'batas_pengembalian',
         'denda',
     ];
 

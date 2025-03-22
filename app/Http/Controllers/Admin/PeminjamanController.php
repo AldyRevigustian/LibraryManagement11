@@ -63,11 +63,10 @@ class PeminjamanController extends Controller
     public function edit($id)
     {
         $peminjaman = Peminjaman::find($id);
-        $anggota = Anggota::find($peminjaman->anggota_id);
         $rule = Aturan::first();
         $anggotas = Anggota::all();
         $bukus = Buku::where('stok', '>', 0)->get();
-        return view('admin.peminjaman.edit', compact('peminjaman', 'anggota', 'rule', 'anggotas', 'bukus'));
+        return view('admin.peminjaman.edit', compact('peminjaman', 'rule', 'anggotas', 'bukus'));
     }
 
     public function update(Request $request, $id)

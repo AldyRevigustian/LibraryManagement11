@@ -36,7 +36,7 @@
                 <div class="d-flex flex-column w-100">
                     <div class="d-flex justify-content-between align-items-center">
                         <h5 class="mb-0">List Peminjaman</h5>
-                        <a href="{{ route('admin.peminjaman_add') }}" class="btn btn-primary text-light w-auto">
+                        <a href="{{ route('admin.pengembalian_add') }}" class="btn btn-primary text-light w-auto">
                             <i class="bi bi-plus-lg"></i> Add
                         </a>
                     </div>
@@ -113,10 +113,10 @@
                                         {{ $peminjaman->denda ? 'Rp' . number_format($peminjaman->denda, 0, ',', '.') : '-' }}
                                     </td>
                                     <td>
-                                        <a href="{{ route('admin.peminjaman_edit', $peminjaman->id) }}"
+                                        <a href="{{ route('admin.pengembalian_edit', $peminjaman->id) }}"
                                             class="btn icon btn-warning text-light"><i class="bi bi-pencil-fill"></i></a>
                                         <form class="d-inline" method="POST"
-                                            action="{{ route('admin.peminjaman_destroy', $peminjaman->id) }}">
+                                            action="{{ route('admin.pengembalian_destroy', $peminjaman->id) }}">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn icon btn-danger"><i
