@@ -11,6 +11,8 @@
         #table1 th,
         #table1 td {
             white-space: nowrap;
+            vertical-align: middle;
+
         }
 
         #table1 td:nth-child(3),
@@ -19,6 +21,10 @@
         #table1 th:nth-child(5) {
             white-space: normal;
             min-width: 250px;
+        }
+
+        .badge {
+            min-width: 110px;
         }
     </style>
 @endpush
@@ -71,6 +77,13 @@
                                     )->startOfDay();
                                     $selisih = $tanggal_kembali->diffInDays($batas_kembali, false);
                                     $isTelat = $selisih < 0;
+
+                                    $formatPeminjaman = \Carbon\Carbon::parse(
+                                        $peminjaman->tanggal_peminjaman,
+                                    )->translatedFormat('d F Y');
+                                    $formatKembali = \Carbon\Carbon::parse(
+                                        $peminjaman->tanggal_pengembalian,
+                                    )->translatedFormat('d F Y');
                                 @endphp
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
@@ -78,8 +91,8 @@
                                     <td>{{ $peminjaman->anggota->nama }}</td>
                                     <td>{{ $peminjaman->buku->ISBN }}</td>
                                     <td>{{ $peminjaman->buku->judul }}</td>
-                                    <td>{{ $tanggal_pinjam->translatedFormat('d F Y') }}</td>
-                                    <td>{{ $tanggal_kembali->translatedFormat('d F Y') }}</td>
+                                    <td>{{ $formatPeminjaman }}</td>
+                                    <td>{{ $formatKembali }}</td>
 
                                     <td>
                                         @php

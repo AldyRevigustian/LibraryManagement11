@@ -155,13 +155,13 @@
             -o-object-fit: contain;
             object-fit: contain;
             padding: 3rem 0;
-            opacity: 0.2;
+            opacity: 0.5;
             padding-bottom: 20px;
             padding-top: 20px;
         }
 
         .error-title {
-            opacity: 0.2;
+            opacity: 0.5;
             font-size: 32px;
         }
     </style>

@@ -24,6 +24,10 @@
         #table1 th {
             vertical-align: middle;
         }
+
+        .badge {
+            min-width: 110px;
+        }
     </style>
 @endpush
 

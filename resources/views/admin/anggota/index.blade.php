@@ -3,6 +3,12 @@
 @include('components.admin')
 
 @push('style')
+    <style>
+        #table1 td,
+        #table1 th {
+            vertical-align: middle;
+        }
+    </style>
 @endpush
 
 @section('content')
@@ -26,10 +32,10 @@
                     <thead>
                         <tr>
                             <th>No.</th>
-                            <th>NIM</th>
+                            <th class="col-1">NIM</th>
                             <th>Nama Lengkap</th>
                             <th>Email</th>
-                            <th class="col-1">Action</th>
+                            <th class="col-2">Action</th>
                         </tr>
                     </thead>
                     <tbody>

@@ -7,6 +7,11 @@
         div.dataTable-top {
             padding: 5px 0;
         }
+
+        #table1 td,
+        #table1 th {
+            vertical-align: middle;
+        }
     </style>
 @endpush
 

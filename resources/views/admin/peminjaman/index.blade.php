@@ -13,8 +13,8 @@
             border-collapse: collapse;
         }
 
-        #table1 th, #table1 td {
-            padding: 0.75rem;
+        #table1 th,
+        #table1 td {
             vertical-align: middle;
             white-space: nowrap;
         }
@@ -24,16 +24,9 @@
         #table1 th:nth-child(5),
         #table1 td:nth-child(5) {
             white-space: normal;
-            min-width: 250px;
-            max-width: 300px;
+            min-width: 300px;
             word-wrap: break-word;
         }
-
-        #table1 th:nth-child(1) { width: 50px; }
-        #table1 th:nth-child(2) { width: 100px; }
-        #table1 th:nth-child(4) { width: 130px; }
-        #table1 th:nth-child(6) { width: 150px; }
-        #table1 th:nth-child(7) { width: 120px; }
     </style>
 @endpush
 
@@ -70,14 +63,22 @@
                         </thead>
                         <tbody>
                             @foreach ($peminjamans as $key => $peminjaman)
+                                @php
+                                    $tanggal_pinjam = \Carbon\Carbon::parse(
+                                        $peminjaman->tanggal_peminjaman,
+                                    )->translatedFormat('d F Y');
+                                    $batas_kembali = \Carbon\Carbon::parse(
+                                        $peminjaman->batas_pengembalian,
+                                    )->translatedFormat('d F Y');
+                                @endphp
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
                                     <td>{{ $peminjaman->anggota->nim }}</td>
                                     <td>{{ $peminjaman->anggota->nama }}</td>
                                     <td>{{ $peminjaman->buku->ISBN }}</td>
                                     <td>{{ $peminjaman->buku->judul }}</td>
-                                    <td>{{ $peminjaman->tanggal_peminjaman }}</td>
-                                    <td>{{ $peminjaman->batas_pengembalian }}</td>
+                                    <td>{{ $tanggal_pinjam }}</td>
+                                    <td>{{ $batas_kembali }}</td>
                                     <td>
                                         <a href="{{ route('admin.peminjaman_edit', $peminjaman->id) }}"
                                             class="btn icon btn-warning text-light"><i class="bi bi-pencil-fill"></i></a>
