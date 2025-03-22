@@ -117,9 +117,8 @@
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label for="tanggal_peminjaman" class="form-label">Tanggal Peminjaman</label>
-                                <input type="date"
-                                    class="form-control flatpickr-no-config"
-                                    id="tanggal_peminjaman" placeholder="Tanggal Peminjaman" name="tanggal_peminjaman" />
+                                <input type="date" class="form-control flatpickr-no-config" id="tanggal_peminjaman"
+                                    placeholder="Tanggal Peminjaman" name="tanggal_peminjaman" />
                                 @error('tanggal_peminjaman')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -209,11 +208,11 @@
             var today = new Date();
 
             var pinjamPicker = flatpickr('#tanggal_peminjaman', {
-                dateFormat: "Y-m-d",
+                dateFormat: "d/m/Y",
             });
 
             var pengembalianPicker = flatpickr('#tanggal_pengembalian', {
-                dateFormat: "Y-m-d",
+                dateFormat: "d/m/Y",
                 onChange: function(selectedDates, dateStr, instance) {
                     calculateDenda(dateStr);
                 }
@@ -251,6 +250,16 @@
             isbnElement.closest('.form-group').classList.add('disabled');
             bukuElement.closest('.form-group').classList.add('disabled');
 
+            function parseDate(input) {
+                let [d, m, y] = input.split('/');
+                return new Date(`${y}-${m}-${d}`);
+            }
+
+            function formatToISO(date) {
+                return date.toISOString().split('T')[0];
+            }
+
+
             function calculateDenda(tanggalPengembalianValue) {
                 const selectedBookId = isbnElement.value || bukuElement.value;
                 const selectedAnggotaId = nimElement.value || namaElement.value;
@@ -259,11 +268,15 @@
                     return;
                 }
 
-                let borrowDate = new Date(tanggalPeminjamanInput.value);
+                let borrowDate = parseDate(tanggalPeminjamanInput.value);
                 let batasDate = new Date(borrowDate);
                 batasDate.setDate(batasDate.getDate() + batasHari);
 
-                const batasPengembalianFormatted = batasDate.toISOString().split('T')[0];
+                let pengembalianDate = parseDate(tanggalPengembalianValue);
+
+                const batasPengembalianFormatted = formatToISO(batasDate);
+                const tanggalPengembalianFormatted = formatToISO(pengembalianDate);
+
 
                 fetch('/calculate-denda', {
                         method: 'POST',
@@ -273,7 +286,7 @@
                         },
                         body: JSON.stringify({
                             batas_pengembalian: batasPengembalianFormatted,
-                            tanggal_pengembalian: tanggalPengembalianValue
+                            tanggal_pengembalian: tanggalPengembalianFormatted
                         })
                     })
                     .then(response => response.json())
@@ -323,7 +336,7 @@
                     // Set the peminjaman_id for the selected book
                     peminjamanIdInput.value = selectedBook.peminjaman_id;
 
-                    pinjamPicker.setDate(selectedBook.tanggal_peminjaman);
+                    pinjamPicker.setDate(new Date(selectedBook.tanggal_peminjaman).toLocaleDateString('id-ID'));
                     pinjamPicker.set('clickOpens', false);
                     tanggalPeminjamanInput.disabled = true;
 
@@ -335,7 +348,8 @@
                     returnDate.setDate(returnDate.getDate() + batasHari);
 
 
-                    const batasPengembalianFormatted = returnDate.toISOString().split('T')[0];
+                    const batasPengembalianFormatted = returnDate.toLocaleDateString('id-ID');
+                    // const batasPengembalianFormatted = returnDate.toISOString().split('T')[0];
                     batasPengembalianText.textContent = batasPengembalianFormatted;
 
 

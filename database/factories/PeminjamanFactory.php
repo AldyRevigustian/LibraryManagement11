@@ -46,9 +46,9 @@ class PeminjamanFactory extends Factory
         return [
             'anggota_id' => $faker->randomElement($userIds),
             'buku_id' => $faker->randomElement($bukuIds),
-            'tanggal_peminjaman' => $tanggalPeminjaman->format('Y-m-d H:i:s'),
-            'batas_pengembalian' => $batasPengembalian->format('Y-m-d H:i:s'),
-            'tanggal_pengembalian' => $tanggalPengembalian ? $tanggalPengembalian->format('Y-m-d H:i:s') : null,
+            'tanggal_peminjaman' => $tanggalPeminjaman->format('Y-m-d'),
+            'batas_pengembalian' => $batasPengembalian->format('Y-m-d'),
+            'tanggal_pengembalian' => $tanggalPengembalian ? $tanggalPengembalian->format('Y-m-d') : null,
             'denda' => $denda > 0 ? $denda : 0,
             'created_at' => now(),
             'updated_at' => now(),

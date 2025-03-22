@@ -8,6 +8,6 @@ if (!function_exists('convertDateToMysqlFormat')) {
         $date = Carbon::createFromFormat('d/m/Y', $dateString);
         $now = Carbon::now();
         $date->setTime($now->hour, $now->minute, $now->second);
-        return $date->format('Y-m-d H:i:s');
+        return $date->format('Y-m-d');
     }
 }

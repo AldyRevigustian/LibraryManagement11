@@ -161,8 +161,8 @@ Route::prefix('admin')->middleware('auth:web')->group(function () {
             Route::get('/edit/{id}', 'edit')->name('admin.pengembalian_edit');
             Route::post('/update/{id}', 'update')->name('admin.pengembalian_update');
 
+            Route::post('/{id}', 'restore')->name('admin.pengembalian_restore');
             Route::delete('/{id}', 'destroy')->name('admin.pengembalian_destroy');
-            Route::get('/{id}', 'destroy')->name('admin.pengembalian_destroy');
         });
     });
 

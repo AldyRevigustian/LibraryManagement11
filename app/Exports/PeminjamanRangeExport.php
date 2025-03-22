@@ -57,8 +57,8 @@ class PeminjamanRangeExport implements FromQuery, WithHeadings, WithMapping, Wit
             $peminjaman->anggota->nim,
             $peminjaman->anggota->nama,
             $peminjaman->buku->judul,
-            $peminjaman->tanggal_peminjaman ? date('d/m/Y H:i:s', strtotime($peminjaman->tanggal_peminjaman)) : '-',
-            $peminjaman->tanggal_pengembalian ? date('d/m/Y H:i:s', strtotime($peminjaman->tanggal_pengembalian)) : '-',
+            $peminjaman->tanggal_peminjaman ? date('d/m/Y', strtotime($peminjaman->tanggal_peminjaman)) : '-',
+            $peminjaman->tanggal_pengembalian ? date('d/m/Y', strtotime($peminjaman->tanggal_pengembalian)) : '-',
             $peminjaman->tanggal_pengembalian ? 'Returned' : '',
         ];
     }

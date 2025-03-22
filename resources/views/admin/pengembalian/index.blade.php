@@ -115,12 +115,20 @@
                                     <td>
                                         <a href="{{ route('admin.pengembalian_edit', $peminjaman->id) }}"
                                             class="btn icon btn-warning text-light"><i class="bi bi-pencil-fill"></i></a>
+
+                                        <form class="d-inline" method="POST"
+                                            action="{{ route('admin.pengembalian_restore', $peminjaman->id) }}">
+                                            @csrf
+                                            <button type="submit" class="btn icon btn-success"><i
+                                                    class="bi bi-arrow-counterclockwise"></i></button>
+                                        </form>
+
                                         <form class="d-inline" method="POST"
                                             action="{{ route('admin.pengembalian_destroy', $peminjaman->id) }}">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn icon btn-danger"><i
-                                                    class="bi bi-trash-fill"></i></a>
+                                                    class="bi bi-trash-fill"></i></button>
                                         </form>
                                     </td>
                                 </tr>

@@ -156,22 +156,35 @@
             const batasPengembalian = document.getElementById('batas_pengembalian');
 
             const preselectedTanggalPeminjaman =
-                "{{ \Carbon\Carbon::parse($peminjaman->tanggal_pengembalian)->format('Y-m-d') }}";
+                "{{ \Carbon\Carbon::parse($peminjaman->tanggal_pengembalian)->format('d/m/Y') }}";
 
             var pengembalianPicker = flatpickr('#tanggal_pengembalian', {
-                dateFormat: "Y-m-d",
+                dateFormat: "d/m/Y",
                 defaultDate: preselectedTanggalPeminjaman,
                 onChange: function(selectedDates, dateStr, instance) {
                     calculateDenda(dateStr);
                 }
             });
 
-            function calculateDenda(tanggalPengembalianValue) {
-                let borrowDate = new Date(tanggalPeminjamanInput.value);
-                let batasDate = new Date(batasPengembalian.value);
 
-                const batasPengembalianFormatted = batasDate.toISOString().split('T')[0];
-                console.log(batasPengembalianFormatted);
+            function parseDate(input) {
+                let [d, m, y] = input.split('/');
+                return new Date(`${y}-${m}-${d}`);
+            }
+
+            function formatToISO(date) {
+                return date.toISOString().split('T')[0];
+            }
+
+
+            function calculateDenda(tanggalPengembalianValue) {
+                let batasDate = new parseDate(batasPengembalian.value);
+                const batasPengembalianFormatted = formatToISO(batasDate);
+
+                let pengembalianDate = parseDate(tanggalPengembalianValue);
+                const tanggalPengembalianFormatted = formatToISO(pengembalianDate);
+                console.log(tanggalPengembalianFormatted);
+
 
                 fetch('/calculate-denda', {
                         method: 'POST',
@@ -181,7 +194,7 @@
                         },
                         body: JSON.stringify({
                             batas_pengembalian: batasPengembalianFormatted,
-                            tanggal_pengembalian: tanggalPengembalianValue
+                            tanggal_pengembalian: tanggalPengembalianFormatted
                         })
                     })
                     .then(response => response.json())
