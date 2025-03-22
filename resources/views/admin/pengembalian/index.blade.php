@@ -11,7 +11,6 @@
         #table1 th,
         #table1 td {
             white-space: nowrap;
-            /* Supaya scroll horizontal tetap aktif */
         }
 
         #table1 td:nth-child(3),

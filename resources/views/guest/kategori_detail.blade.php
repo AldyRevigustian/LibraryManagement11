@@ -115,6 +115,7 @@
             align-items: center;
             min-height: 80vh;
         }
+
         .books-grid.loading {
             display: none;
         }
@@ -150,14 +151,18 @@
         }
 
         .img-error {
-            height: 435px;
+            height: 400px;
             -o-object-fit: contain;
             object-fit: contain;
             padding: 3rem 0;
+            opacity: 0.2;
+            padding-bottom: 20px;
+            padding-top: 20px;
         }
 
         .error-title {
-            margin-top: 10px;
+            opacity: 0.2;
+            font-size: 32px;
         }
     </style>
 @endpush
@@ -183,7 +188,7 @@
             </div>
 
             @if (count($bukus) == 0)
-                <div class="d-flex justify-content-center align-items-center flex-column" style="min-height: 70vh;">
+                <div class="d-flex justify-content-center align-items-center flex-column" style="min-height: 73vh">
                     <img class="img-error" src="/assets/images/samples/error-500.svg" alt="Not Found" />
                     <h3 class="error-title">Buku Tidak Ditemukan</h3>
                 </div>
