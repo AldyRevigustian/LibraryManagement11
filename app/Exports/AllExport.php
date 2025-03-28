@@ -14,7 +14,7 @@ use Maatwebsite\Excel\Events\BeforeSheet;
 use PhpOffice\PhpSpreadsheet\Style\Alignment;
 use PhpOffice\PhpSpreadsheet\Style\Border;
 
-class PeminjamanExport implements FromQuery, WithHeadings, WithMapping, WithEvents
+class AllExport implements FromQuery, WithHeadings, WithMapping, WithEvents
 {
     use Exportable;
 
@@ -31,12 +31,10 @@ class PeminjamanExport implements FromQuery, WithHeadings, WithMapping, WithEven
     {
         if ($this->until == null) {
             return Peminjaman::query()
-                ->whereNull('tanggal_pengembalian')
                 ->whereDate('tannggal_peminjaman', $this->from)
                 ->orderBy('tanggal_peminjaman', 'ASC');
         } else {
             return Peminjaman::query()
-                ->whereNull('tanggal_pengembalian')
                 ->whereBetween('tanggal_peminjaman', [$this->from, $this->until])
                 ->orderBy('tanggal_peminjaman', 'ASC');
         }
@@ -94,7 +92,7 @@ class PeminjamanExport implements FromQuery, WithHeadings, WithMapping, WithEven
                 $event->sheet->getDelegate()->mergeCells('A1:I1');
                 $event->sheet->getDelegate()->mergeCells('A2:I2');
 
-                $event->sheet->getDelegate()->setCellValue('A1', 'Laporan Peminjaman Buku')
+                $event->sheet->getDelegate()->setCellValue('A1', 'Laporan Peminjaman & Pengembalian Buku')
                     ->getStyle('A1')
                     ->getFont()
                     ->setBold(true)
