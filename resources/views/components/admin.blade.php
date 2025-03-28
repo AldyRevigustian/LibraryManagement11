@@ -66,13 +66,13 @@
         </a>
     </li>
 
-    {{--
-    <li class="sidebar-item {{ request()->is('admin/identitas*') ? 'active' : '' }}">
-        <a href="{{ route('admin.identitas') }}" class='sidebar-link'>
+
+    <li class="sidebar-item {{ request()->is('admin/aturan*') ? 'active' : '' }}">
+        <a href="{{ route('admin.aturan') }}" class='sidebar-link'>
             <i class="bi bi-info-lg"></i>
-            <span>Identitas Aplikasi</span>
+            <span>Aturan Aplikasi</span>
         </a>
-    </li> --}}
+    </li>
 
     <li class="sidebar-item" style="margin-bottom:5rem;">
         <a href="{{ route('admin.logout') }}"

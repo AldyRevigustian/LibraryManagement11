@@ -168,9 +168,14 @@ Route::prefix('admin')->middleware('auth:web')->group(function () {
 
     Route::prefix('laporan')->controller(App\Http\Controllers\Admin\LaporanController::class)->group(function () {
         Route::get('/', 'index')->name('admin.laporan');
-        Route::post('/export/peminjaman', [LaporanController::class, 'export_peminjaman'])->name('admin.export_peminjaman');
-        Route::post('/export/pengembalian', [LaporanController::class, 'export_pengembalian'])->name('admin.export_pengembalian');
-        Route::post('/export/all', [LaporanController::class, 'export_all'])->name('admin.export_all');
+        Route::post('/export/peminjaman', 'export_peminjaman')->name('admin.export_peminjaman');
+        Route::post('/export/pengembalian', 'export_pengembalian')->name('admin.export_pengembalian');
+        Route::post('/export/all', 'export_all')->name('admin.export_all');
+    });
+
+    Route::prefix('aturan')->controller(App\Http\Controllers\Admin\AturanController::class)->group(function () {
+        Route::get('/', 'index')->name('admin.aturan');
+        Route::post('/update', 'update')->name('admin.aturan_update');
     });
 
     Route::post('/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
