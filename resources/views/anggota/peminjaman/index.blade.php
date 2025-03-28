@@ -50,16 +50,16 @@
                     <tbody>
                         @foreach ($peminjamans as $key => $peminjaman)
                             @php
-                                $tanggal_pinjam = \Carbon\Carbon::parse($peminjaman->tanggal_peminjaman)->startOfDay();
                                 $batas_kembali = \Carbon\Carbon::parse($peminjaman->batas_pengembalian)->startOfDay();
-                                $selisih = $tanggal_pinjam->diffInDays($batas_kembali, false);
+                                $selisih = now()->startOfDay()->diffInDays($batas_kembali, false);
                                 $isTelat = $selisih < 0;
                             @endphp
                             <tr>
                                 <td>{{ $key + 1 }}</td>
                                 <td>{{ $peminjaman->buku->ISBN }}</td>
                                 <td>{{ $peminjaman->buku->judul }}</td>
-                                <td>{{ $tanggal_pinjam->translatedFormat('d F Y') }}</td>
+                                <td>{{ \Carbon\Carbon::parse($peminjaman->tanggal_peminjaman)->translatedFormat('d F Y') }}
+                                </td>
                                 <td>{{ $batas_kembali->translatedFormat('d F Y') }}</td>
                                 <td>
                                     @php
@@ -83,6 +83,7 @@
                                 </td>
                             </tr>
                         @endforeach
+
                     </tbody>
                 </table>
             </div>

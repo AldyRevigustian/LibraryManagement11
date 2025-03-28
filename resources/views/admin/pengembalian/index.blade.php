@@ -57,8 +57,9 @@
                                 <th>ISBN Buku</th>
                                 <th>Buku</th>
                                 <th class="">Tanggal Peminjaman</th>
-                                <th class="">Tanggal Pengembalian</th>
+                                <th class="">Batas Pengembalian</th>
                                 <th class="">Status</th>
+                                <th class="">Tanggal Pengembalian</th>
                                 <th class="">Denda</th>
                                 <th style="">Action</th>
                             </tr>
@@ -84,6 +85,9 @@
                                     $formatKembali = \Carbon\Carbon::parse(
                                         $peminjaman->tanggal_pengembalian,
                                     )->translatedFormat('d F Y');
+                                    $formatBatas = \Carbon\Carbon::parse(
+                                        $peminjaman->batas_pengembalian,
+                                    )->translatedFormat('d F Y');
                                 @endphp
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
@@ -92,7 +96,7 @@
                                     <td>{{ $peminjaman->buku->ISBN }}</td>
                                     <td>{{ $peminjaman->buku->judul }}</td>
                                     <td>{{ $formatPeminjaman }}</td>
-                                    <td>{{ $formatKembali }}</td>
+                                    <td>{{ $formatBatas }}</td>
 
                                     <td>
                                         @php
@@ -108,6 +112,7 @@
                                             {{ $text }}
                                         </span>
                                     </td>
+                                    <td>{{ $formatKembali }}</td>
 
                                     <td>
                                         {{ $peminjaman->denda ? 'Rp' . number_format($peminjaman->denda, 0, ',', '.') : '-' }}
