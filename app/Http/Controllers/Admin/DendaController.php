@@ -31,7 +31,7 @@ class DendaController extends Controller
             'isLate' => $isLate,
             'denda' => $denda,
             'hariTerlambat' => $isLate ? $batasPengembalian->diffInDays($tanggalPengembalian) : 0,
-            'batas_pengembalian' => $batasPengembalian->format('Y-m-d'),
+            'batas_pengembalian' => $batasPengembalian->format('d/m/Y'),
         ]);
     }
 }

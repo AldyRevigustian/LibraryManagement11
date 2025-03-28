@@ -35,7 +35,7 @@
             <div class="card-header d-flex justify-content-between align-items-center flex-wrap pb-0">
                 <div class="d-flex flex-column w-100">
                     <div class="d-flex justify-content-between align-items-center">
-                        <h5 class="mb-0">List Peminjaman</h5>
+                        <h5 class="mb-0">List Pengembalian</h5>
                         <a href="{{ route('admin.pengembalian_add') }}" class="btn btn-primary text-light w-auto">
                             <i class="bi bi-plus-lg"></i> Add
                         </a>

@@ -124,7 +124,7 @@
                         </div>
                         <div class="row mt-4">
                             <div class="col-12 d-flex justify-content-end">
-                                @if ($count >= $rule->max_pinjam)
+                                @if ($count >= $rule->maksimal_buku)
                                     <button class="btn btn-primary me-1 mb-1" disabled>
                                         Submit
                                     </button>
