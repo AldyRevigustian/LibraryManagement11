@@ -10,7 +10,8 @@ class AturanController extends Controller
 {
     public function index()
     {
-        return view('admin.aturan');
+        $aturan = Aturan::first();
+        return view('admin.aturan', compact('aturan'));
     }
 
     public function update(Request $request)
