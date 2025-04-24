@@ -80,6 +80,8 @@ Route::prefix('admin')->middleware('auth:web')->group(function () {
     Route::prefix('dashboard')->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
         Route::get('/chart', [DashboardController::class, 'getChartData'])->name('dashboard.chart');
+        Route::get('/popular', [DashboardController::class, 'getPopularData'])->name('dashboard.popular');
+        Route::get('/category', [DashboardController::class, 'getCategoryData'])->name('dashboard.category');
     });
 
     Route::prefix('master')->group(function () {
