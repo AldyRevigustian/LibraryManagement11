@@ -96,10 +96,10 @@ document.getElementById('logout-form').submit();" class='sidebar-link'>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-                <div class="user-menu navbar-nav ms-auto mb-lg-0">
-                    <div class="user-name text-end me-3" style="">
+                <div class="user-menu navbar-nav ms-auto mb-lg-0 align-items-center" >
+                    <div class="user-name text-end me-3">
                         <h6 class="mb-0 text-gray-600">{{ Auth::user()->nama }}</h6>
-                        <p class="mb-0 text-sm text-gray-600">{{ Auth::user()->role }}</p>
+                        <p class="mb-0 text-sm text-gray-600" style="line-height: 10px;">{{ Auth::user()->role }}</p>
                     </div>
                     <div class="user-img d-flex align-items-center">
                         <div class="avatar avatar-md">
