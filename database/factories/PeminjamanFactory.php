@@ -23,13 +23,13 @@ class PeminjamanFactory extends Factory
             throw new \Exception('Tidak ada Anggota atau Buku di database. Jalankan seeder Anggota dan Buku terlebih dahulu.');
         }
 
-        $tanggalPeminjaman = Carbon::parse($faker->dateTimeBetween('2024-06-01', '2025-03-21'));
+        $tanggalPeminjaman = Carbon::parse($faker->dateTimeBetween('2024-01-01', '2025-04-28'));
         $batasPengembalian = (clone $tanggalPeminjaman)->addDays(Aturan::first()->batas_pengembalian);
 
         // **Logika peminjaman yang belum dikembalikan:**
         // - Jika peminjaman terjadi di bulan 2025-02, ada 50% kemungkinan belum dikembalikan.
         // - Jika di luar bulan 2025-02, selalu dikembalikan.
-        if ($tanggalPeminjaman->format('Y-m') === '2025-03' && $faker->boolean(50)) {
+        if ($tanggalPeminjaman->format('Y-m') === '2025-04' && $faker->boolean(50)) {
             $tanggalPengembalian = null;
         } else {
             $tanggalPengembalian = (clone $tanggalPeminjaman)->addDays(rand(3, 20));
