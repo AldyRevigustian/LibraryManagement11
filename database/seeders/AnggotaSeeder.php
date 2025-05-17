@@ -10,7 +10,6 @@ use Faker\Factory as Faker;
 
 class AnggotaSeeder extends Seeder
 {
-
     public function run(): void
     {
         Anggota::create([
@@ -20,7 +19,6 @@ class AnggotaSeeder extends Seeder
             'password' => Hash::make("Akunbaru123*"),
             'foto' => "/assets/images/faces/2.jpg",
         ]);
-
-        Anggota::factory()->count(199)->create();
+        Anggota::factory()->count(499)->create();
     }
 }

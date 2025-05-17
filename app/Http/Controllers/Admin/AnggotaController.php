@@ -43,6 +43,7 @@ class AnggotaController extends Controller
             'nama' => $validated['nama'],
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
+            'foto' => "default.jpg",
         ]);
 
         if ($anggota) {

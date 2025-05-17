@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\File;
 
 class BukuSeeder extends Seeder
 {
-
     public function run(): void
     {
         $jsonFile = base_path('scrapper/products.json');

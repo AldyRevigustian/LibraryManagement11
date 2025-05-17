@@ -9,9 +9,6 @@ use Illuminate\Support\Facades\Hash;
 
 class AdminSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
         Admin::create([
@@ -29,3 +26,4 @@ class AdminSeeder extends Seeder
         ]);
     }
 }
+

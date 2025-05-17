@@ -8,7 +8,6 @@ use Illuminate\Database\Seeder;
 
 class PeminjamanSeeder extends Seeder
 {
-
     public function run(): void
     {
         Peminjaman::factory()->count(2000)->create();

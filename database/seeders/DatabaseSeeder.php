@@ -8,7 +8,6 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-
         $this->call([
             AturanSeeder::class,
             AdminSeeder::class,
@@ -18,6 +17,5 @@ class DatabaseSeeder extends Seeder
             BukuSeeder::class,
             PeminjamanSeeder::class,
         ]);
-
     }
 }
