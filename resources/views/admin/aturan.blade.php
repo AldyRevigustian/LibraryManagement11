@@ -53,7 +53,7 @@
                                     Denda (Per hari)
                                 </label>
                                 <div class="input-group">
-                                    <span class="input-group-text"><i class="mb-2 bi bi-currency-dollar"></i></span>
+                                    <span class="input-group-text">Rp.</span>
                                     <input class="form-control" type="number" name="denda" value="{{ $aturan->denda }}"
                                         required min="0">
                                 </div>
